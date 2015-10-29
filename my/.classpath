@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/wofu.base.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjpool.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjutil.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/open-api-sdk-2.0.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/MaWSOrdersJavaClientLibrary-1.0.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/MaWSJavaClientLibrary-1.0.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/amazon.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/dangdang.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/public.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/vjia.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/YhdClient.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/json.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/ecommerce.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yhd.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/360buy.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/aoauthpaipai.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/lefeng.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/taobao-sdk-java-online_standard-20131023.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_22"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/taobao.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/coo8.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/suning.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

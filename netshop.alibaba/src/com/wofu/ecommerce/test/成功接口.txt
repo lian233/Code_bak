@@ -1,0 +1,9 @@
+编码格式UTF-8
+获取省份编码信息                                                          areaCode.get
+获取系统时间，从而跟本地时间进行校准                             system.time.get 
+本接口实现获取当前用户信息，包括可用空间和总空间等            ibank.profile.get 
+获取某个卖家的相关橱窗信息(目前诚信通用户可用)      industry.showwindow.query 
+本接口查询当前会话会员的交易订单列表                            trade.order.orderList.get
+获取阿里巴巴中国网站会员所有的产品                     offer.getAllOfferList(产考360buy中getItems)
+获取单个产品信息                                               offer.get
+修改offer的功能                                      offer.modify  （产考京东)

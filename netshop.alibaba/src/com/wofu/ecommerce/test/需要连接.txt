@@ -1,0 +1,32 @@
+自己联系发货（线下物流）   e56.logistics.offline.send
+获取阿里巴巴中国网站会员所有的产品   offer.getAllOfferList(产考360buy中getItems)
+获取单个产品信息                                    offer.get
+修改offer的功能                          offer.modify  （产考京东）
+
+
+
+
+//根据商品编号查询商品信息
+	public static Goods getGoodsByWareID(String jobname,long offerId,String SERVER_URL,String token,String appKey,String appSecret) throws Exception
+	{
+		//String queryFields = "ware_id,skus,ware_status,title,item_num,stock_num,creator,status,created,modified,outer_id" ;
+		Hashtable<String, String> params = new Hashtable<String, String>() ;
+		params.put("offerId", String.valueOf(offerId));
+		params.put("returnFields", "offerId,offerStatus,subject,amount,type,gmtCreate,gmtModified,skuArray,productFeatureList");
+		String urlPath=CommonUtil.buildInvokeUrlPath(Params.namespace,find_apiName,Params.version,Params.requestmodel,Params.appkey);
+		String response = ApiCallService.callApiTest(Params.url, urlPath, Params.secretKey, params);
+		
+		JSONObject jo=new JSONObject(response).getJSONObject("result");
+		if(jo.getBoolean("success")){
+			JSONArray jarray=jo.getJSONArray("toReturn");
+			Goods oo=new Goods();
+			oo.setObjValue(oo,jarray.getJSONObject(0));
+			return oo ;
+		}
+		else
+		{
+			Log.error(jobname, "获取阿里巴巴商品资料失败,商品编号:"+ offerId +"错误信息:"+ jo.getString("error_code") + "," + jo.getString("error_message")) ;
+			return null ;
+		}
+		
+	}
