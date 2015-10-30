@@ -1,0 +1,207 @@
+/* 
+    Document   : privilege
+    Created on : 2015-4-22, 1:24:16
+    Author     : lzy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.this_main{
+	width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+.active_menu_arrow_priv { 
+    left:250px;
+}
+.tab_row{
+	width:100%;
+	height: 37px;
+}
+.tab_off{
+	float: left;
+	width: 20px;
+	height: 36px;
+	border-bottom: 1px solid rgb(190,190,190);
+}
+.tab{
+	float: left;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	border: 1px solid rgb(190,190,190);
+	border-top: 2px solid orange;
+	border-bottom: none;
+	color: black;
+	font-size: 14px;
+	font-weight: 800;
+	text-align: center;
+}
+.tab_line{
+	margin-left:142px;
+	height: 36px;
+	border-bottom: 1px solid rgb(190,190,190);
+}
+.align_center_row{
+	width: 100%;
+	text-align: center;
+}
+.role_panel{
+	margin-left:auto;
+	margin-right: auto;
+	width: 775px;
+	height: 350px;
+}
+.role_panel_title{
+	margin-left:auto;
+	margin-right: auto;
+	width: 775px;
+	height: 30px;	
+}
+.role_title{
+	float: left;
+	width: 312px;
+	height: 100%;
+	line-height: 30px;
+	text-align: left;
+}
+.list_container{
+	float: left;
+	width: 300px;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border: 1px solid #dddddd;
+	background: rgb(250,250,250);
+	padding: 5px;
+}
+.button_panel{
+	float: left;
+	width: 90px;
+	height: 100%;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.v_off{
+	width:100%;
+	height:80px;
+}
+.text{
+	margin-top:5px;
+	width:98%;
+	height:22px;
+	/*border-radius: 3px;*/
+	border: none;
+}
+.remove_float{
+	float:none;
+}
+.remove_left_margin{
+	margin-left: 0px;
+}
+.float_right{
+	float: right;
+}
+.tr_high_light{
+	background: rgb(235,235,255);
+}
+
+.text-field_spec{
+	float:left;
+	margin-left:10px;
+	margin-top:5px;
+	width:100px;
+	height:22px;
+	border-radius: 5px;
+	border:1px solid rgb(50,50,120);
+}
+
+
+.select_body_cu{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:95%;
+	height:100%;
+	padding-left:2px;
+	padding-right:20px;
+	-webkit-appearance:none;
+	border:1px solid rgb(50,50,120);
+	border-radius:5px;
+	background:transparent;
+	color:rgb(50,50,120);
+	font-family: "MicroSoft YaHei";
+}
+
+.select_offset_right_cu{
+	float:right;
+	width:0px;
+	height:100%;
+}
+
+
+.select_arrow1{
+	float:right;
+	width:0px;
+	height:0px;
+	margin-right:10px;
+	margin-top:11px;
+	border-left:5px solid transparent;
+	border-right:5px solid transparent;
+	border-top:5px solid rgb(50,50,120);
+	border-bottom:none;
+}
+
+.tb_fix_width_short_cu{
+	width:0px;
+}
+.specail_table{
+	border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #dddddd;
+    width:80%;
+}
+.tdnote{
+    width:auto;
+}
+.tdgroupid{
+    width:10%;
+}
+
+.tb_fix_width_short1{
+	width:5%;
+}
+
+
+.select_wraper1{
+	position:relative;
+	float:left;
+	margin-left:10px;
+	margin-top:5px;
+	width:90px;
+	height:25px;
+	border-radius:5px;
+	background: white;
+}
+
+.th5{
+width:5%;
+}
+
+.th10{
+width:10%;
+}
+
+.th20{
+width:20%;
+}
+
+.th15{
+width:20%;
+}
+
+.th8{
+width:8%;
+}
+
+
+

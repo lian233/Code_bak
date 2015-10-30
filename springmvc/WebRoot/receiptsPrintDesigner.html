@@ -1,0 +1,125 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css"/>
+		<link rel="stylesheet" href="./css/printDesigner.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+		<script type="text/javascript" src="./js/logisticsPrintDesign.js?v=2"></script>
+	</head>
+	<body style="margin-left:18px;width:auto;">
+		<div class="seperate_row_short"></div>
+		<div id="panel" style="width:940px;height:581px;border:1px solid #d0d0d0;text-align:left;">
+			<div style="float:left;width:800px;height:100%;background:#f9f9f9;">
+				<div style="width:100%;height:40px;background:#f0f0f0;border-bottom:1px solid #d0d0d0;">
+					<div style="width:100%;height:3px;"></div>
+					<div style="width:100%;height:25px;line-height:25px;">
+						<div style="float:left;width:10px;height:100%;"></div>
+						<div style="float:left;width:36px;height:100%;line-height:35px;">字号:</div>
+						<div class="select_wraper select_small">
+							<div class="select_offset_right"></div>
+							<div class="select_arrow"></div>
+							<select id="fieldFontSize" class="select_body" onchange="javascript:changeFont();">
+								<option value="9">9px</option>
+								<option value="10">10px</option>
+								<option value="12" selected>12px</option>
+								<option value="14">14px</option>
+								<option value="18">18px</option>
+								<option value="20">20px</option>
+								<option value="24">24px</option>
+								<option value="30">30px</option>
+							</select>
+						</div>
+						<div style="float:left;width:20px;height:100%;"></div>
+						<input id='fieldFontWeight' type="checkbox" style="float:left;margin-top:12px;" onclick="javascript:changeFontWeight();">
+						<div style="float:left;width:100px;height:100%;line-height:35px;">粗字体</div>
+						<div style="float:left;width:70px;height:100%;line-height:35px;">整体字号:</div>
+						<div class="button" style="width:30px" onclick="javascript:btnAddFontSize();">+</div>
+						<div style="float:left;width:5px;height:100%;"></div>
+						<div class="button" style="width:30px" onclick="javascript:btnDecFontSize();">-</div>
+						<div style="float:left;width:5px;height:100%;margin-top:6px;border-right:1px solid #d0d0d0;"></div>
+						<div style="float:left;width:25px;height:100%;"></div>
+						<div class="button" onclick="javascript:save();">保存模板</div>
+						<div style="float:left;width:25px;height:100%;"></div>
+						<div class="button" style="width:120px" onclick="javascript:btnPrintContent();">自定义打印内容</div>
+						<input id="realWidth" type="hidden"/><input id="realHeight" type="hidden"/>
+					</div>
+				</div>
+				<div style="width:100%;text-align:center;">
+					<div id="workspace" style="position:relative;margin-left:auto;margin-right:auto;width:100%;overflow:hidden;">
+						<img id="bgImage" style="width:100%;border:none;visibility:hidden;" src="" onmousedown="javascript:unSelField();"/>
+					</div>
+				</div>
+			</div>
+			<div style="float:left;width:139px;height:100%;border-left:1px solid #d0d0d0;">
+				<div style="width:100%;height:40px;line-height:40px;background:#f0f0f0;border-bottom:1px solid #d0d0d0;">&nbsp;可打印数据域：</div>
+				<div id="workspace1" style="width:100%;height:auto;">
+				</div>
+			</div>
+		</div>
+		<div id="tips_dlg" class="dialog">
+			<div class="dialog_bg_new"></div>
+			<div class="dialog_body">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">提示消息</div>
+				<div class="tips"></div>
+				<div class="dlg_button_row">
+					<div class="dlg_button_panel"><div class="button" id="dlg_btn">确定</div></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="PrintContent_dialog" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body" style="width:330px; height:420px;">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">自定义打印内容</div>
+                <div style="text-align: center;">
+                    <div class="label">打印内容1&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent1" style="width:200px" />
+					<br>
+                    <div class="label">打印内容2&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent2" style="width:200px" />
+					<br>
+                    <div class="label">打印内容3&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent3" style="width:200px" />
+					<br>
+                    <div class="label">打印内容4&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent4" style="width:200px" />
+					<br>
+                    <div class="label">打印内容5&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent5" style="width:200px" />
+					<br>
+                    <div class="label">打印内容6&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent6" style="width:200px" />
+					<br>
+                    <div class="label">打印内容7&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent7" style="width:200px" />
+					<br>
+                    <div class="label">打印内容8&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent8" style="width:200px" />
+					<br>
+                    <div class="label">打印内容9&nbsp;&nbsp;</div>
+					<input class="text-field" id="txtPrintContent9" style="width:200px" />
+					<br>
+                    <div class="label">打印内容10</div>
+					<input class="text-field" id="txtPrintContent10" style="width:200px" />
+					<br>
+				</div>
+                <br/>
+                <div class="dlg_button_row">
+					<div style="float:left;width:5px;height:100%;"></div>
+                    <div style="float: left;height: 100%;margin-left: 84px;">
+                        <div class="button" id="btnOK" onclick="javascript:saveCustomerPrintContent();">确定</div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

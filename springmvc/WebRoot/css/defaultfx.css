@@ -1,0 +1,179 @@
+//摘自网络
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+    background-color: #d9dee2;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebeef2), to(#d9dee2));
+    background-image: -webkit-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -moz-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -ms-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -o-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: linear-gradient(top, #ebeef2, #d9dee2);    
+    /*width: 1920px;
+    height: 1050px;*/
+}
+
+/*--------------------*/
+
+#loginForm
+{
+    width: 400px;
+    position: absolute;
+    top: 20%;
+    left: 55%;
+    z-index: 1;
+}
+
+#loginForm .form_div{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(73, 138, 228);
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;  
+
+}
+
+/*--------------------*/
+
+fieldset
+{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/*--------------------*/
+
+#inputs{
+    width: 100%;
+    padding: 20px;
+}
+
+#inputs input
+{
+    padding: 15px 0px 15px 10px;
+    margin: 0 0 10px 0;
+    width: 60%; 
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+#username
+{
+    background-position: 5px -2px !important;
+}
+
+#password
+{
+    background-position: 5px -52px !important;
+}
+
+#inputs input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+/*--------------------*/
+#actions
+{
+    margin: 0 0 25px 0;
+}
+
+#loginbtn
+{		
+    background-color: #498AE4;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(87, 176, 245)), to(#498AE4));
+    background-image: -webkit-linear-gradient(top, rgb(87, 176, 245), #498AE4);
+    background-image: -moz-linear-gradient(top, rgb(87, 176, 245), #498AE4);
+    background-image: -ms-linear-gradient(top, rgb(87, 176, 245), #498AE4);
+    background-image: -o-linear-gradient(top, rgb(87, 176, 245), #498AE4);
+    background-image: linear-gradient(top, rgb(87, 176, 245), #498AE4);
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+
+    
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(127, 139, 155);
+
+    float: left;
+    height: 35px;
+    padding: 0;
+    width: 120px;
+    cursor: pointer;
+    font: bold 15px Arial, Helvetica;
+    color: white;
+}
+
+#loginbtn:hover,#loginbtn:focus
+{		
+    border-color: #498AE4;
+}	
+
+#loginbtn:active
+{		
+    outline: none;
+   
+     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#loginbtn::-moz-focus-inner
+{
+  border: none;
+}
+
+#actions a
+{
+    color: #3151A2;    
+    float: right;
+    line-height: 35px;
+    margin-left: 10px;
+}
+
+/*--------------------*/
+
+#back
+{
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 60px;
+    color: #999;
+}
+
+/*--------------------*/
+
+#qr{
+    color: #498AE4;
+    font-size: 18px;
+}
+
+#qr p{
+      margin-top: 6px;
+      margin-bottom: 0;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjutil.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjpool.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/service.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/public.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/wofu.base.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/axiom-api-1.2.11.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/axiom-impl-1.2.11.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/axis2-adb-1.5.5.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/axis2-kernel-1.5.5.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/groupon-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/jox-1.17b3.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

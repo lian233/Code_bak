@@ -1,0 +1,44 @@
+/* 
+    Document   : ShopManager
+    Created on : 2015-4-23
+    Author     : FW
+*/
+.text{
+	margin-top:5px;
+	width:98%;
+	height:30px;
+	border: none;
+}
+.foot_wraper_left{
+	float:left;
+	height:100%;
+	margin-top:5px;
+}
+.foot_wraper_right{
+	float:right;
+	height:100%;
+	margin-top:5px;
+}
+#frmShopSetting{
+	margin-bottom: 5px;
+	border:none;
+	width: 400px;
+	height: 280px;
+}
+.menu_seperate_line{
+	float:right;
+	width: 1px;
+	height: 30px;
+	margin-top:10px;
+	background: gray;
+}
+.remove_left_margin{
+	margin-left: 0px;
+}
+.tr_high_light{
+	background: rgb(235,235,255);
+}
+
+.active_menu_arrow_priv { 
+    left:285px;
+}

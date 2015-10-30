@@ -1,0 +1,166 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/search.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+		<script type="text/javascript" src="./js/searchAdv.js"></script>
+	</head>
+	<body>
+		<div class="seperater_row"></div>
+		<div class="row">
+			<div class="label">订单号：</div>
+			<input type="text" class="text-field" id="refsheetid"/>
+			<div class="seperater"></div>
+			<div class="label">插旗：</div>
+			<div class="select_wraper">
+				<div class="select_offset_right"></div>
+				<div class="select_arrow"></div>
+				<select class="select_body" id="sellerFlag">
+					<option value=-1></option>
+					<option value=1>红色</option>
+					<option value=2>黄色</option>
+					<option value=3>绿色</option>
+					<option value=4>蓝色</option>
+					<option value=5>玫红</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="label">买家昵称：</div>
+			<input type="text" class="text-field" id="buyerNick"/>
+			<div class="seperater"></div>
+			<div class="label">收货人：</div>
+			<input type="text" class="text-field" id="linkman"/>
+		</div>
+		<div class="row">
+			<div class="label">联系电话：</div>
+			<input type="text" class="text-field" id="phone"/>
+			<div class="seperater"></div>
+			<div class="label">联系手机：</div>
+			<input type="text" class="text-field" id="mobile"/>
+		</div>
+		<div class="row">
+			<div class="label">省市区：</div>
+			<input type="text" class="text-field" id="state"/>
+			<div class="seperater"></div>
+			<div class="label">地址：</div>
+			<input type="text" class="text-field" id="address"/>
+		</div>
+		<div class="row">
+			<div class="label">快递单号：</div>
+			<input type="text" class="text-field" id="deliverySheetID"/>
+			<div class="seperater"></div>
+			<div class="label">商品名称：</div>
+			<input type="text" class="text-field" id="goodsName"/>
+		</div>
+		<div class="row">
+			<div class="label">商品标题：</div>
+			<input type="text" class="text-field" id="title"/>
+			<div class="seperater"></div>
+			<div class="label">SKU：</div>
+			<input type="text" class="text-field" id="outerSkuID"/>
+		</div>
+		<div class="row">
+			<div class="label">备注：</div>
+			<input type="text" class="text-field" id="note"/>
+			<div class="seperater"></div>
+			<div class="label">买家备注：</div>
+			<input type="text" class="text-field" id="buyerMemo"/>
+		</div>
+		<div class="row">
+			<div class="label">卖家备注：</div>
+			<input type="text" class="text-field" id="sellerMemo"/>
+			<div class="seperater"></div>
+			<div class="label">买家留言：</div>
+			<input type="text" class="text-field" id="buyerMessage"/>
+		</div>
+		<div class="row">
+			<div class="label">交易备注：</div>
+			<input type="text" class="text-field" id="tradeMemo"/>
+			<div class="seperater"></div>
+			<div class="label">颜色：</div>
+			<input type="text" class="text-field" id="color"/>
+		</div>
+		<div class="row">
+			<div class="label">尺码：</div>
+			<input type="text" class="text-field" id="size"/>
+			<div class="seperater"></div>
+			<div class="label">明细数：</div>
+			<input type="text" class="text-field" id="itemCount"/>
+		</div>
+		<div class="row">
+			<div class="label">明细件数：</div>
+			<input type="text" class="text-field" id="itemQty"/>
+			<div class="seperater"></div>
+			<div class="label">已付运费：</div>
+			<input type="text" class="text-field" id="postFee"/>
+		</div>
+		<div class="row">
+			<div class="label">成交金额：</div>
+			<input type="text" class="text-field" id="totalAmount"/>
+			<div class="seperater"></div>
+			<div class="label">单据来源：</div>
+			<input type="text" class="text-field" id="tradeFrom"/>
+		</div>
+		<div class="row">
+			<div class="label">是否需要发票：</div>
+			<div class="select_wraper">
+				<div class="select_offset_right"></div>
+				<div class="select_arrow"></div>
+				<select class="select_body" id="invoiceFlag">
+					<option value=-1></option>
+					<option value=1>是</option>
+					<option value=0>否</option>
+				</select>
+			</div>
+			<!--input type="text" class="text-field" id="invoiceFlag"/-->
+			<div class="seperater"></div>
+			<div class="label">付款方式：</div>
+			<div class="select_wraper">
+				<div class="select_offset_right"></div>
+				<div class="select_arrow"></div>
+				<select class="select_body" id="payMode">
+					<option value=-1></option>
+					<option value=1>在线支付</option>
+					<option value=2>货到付款</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="select_swraper">
+				<div class="select_offset_right"></div>
+				<div class="select_arrow"></div>
+				<select class="select_body" id="timeType">
+					<option value=1>发货时间</option>
+					<option value=2>付款时间</option>
+				</select>
+			</div>
+			<input type="datetime-local" class="text-field" id="beginTime"/>
+			<div class="seperater"></div>
+			<div class="label">至</div>
+			<input type="datetime-local" class="text-field" id="endTime"/>
+		</div>
+		<div class="row">
+			<div class="label">单据编号：</div>
+			<input type="text" class="text-field" id="sheetID"/>
+			<div class="seperater"></div>
+		</div>
+		<div class="row">
+			<div class="button_bar">
+				<div class="seperater"></div>
+				<div class="button" id="search">查询</div>
+				<div class="seperater"></div>
+				<div class="button" id="clear">清除</div>
+				<div class="seperater"></div>
+				<div class="button" id="close">关闭</div>
+				<div class="seperater"></div>
+			</div>
+		</div>
+	</body>
+</html>

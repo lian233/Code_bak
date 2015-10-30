@@ -1,0 +1,148 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css"/>
+		<link rel="stylesheet" href="./css/editBill.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+		<script type="text/javascript" src="./js/editBill.js?v=33"></script>
+	</head>
+	<body>
+		<div class="seperate_row"></div>
+		<div class="bill_block">
+			<div class="block_row">
+				<div class="label_align_right">网店单号：</div>
+				<input type="text" class="input_field" id="bill_num"/>
+				<div class="label_align_right">店铺：</div>
+				<div class="select_wraper select_fix_width">
+					<div class="select_offset_right"></div>
+					<div class="select_arrow"></div>
+					<select class="select_body" id="shops">
+						<option value="-1">请选择店铺</option>
+					</select>
+				</div>
+				<div class="label_align_right">买家昵称：</div>
+				<input type="text" class="input_field" id="buyerNick"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">收货人：</div>
+				<input type="text" class="input_field" id="buyer"/>
+				<div class="label_align_right" >快递：</div>
+				<div class="select_wraper select_fix_width">
+					<div class="select_offset_right"></div>
+					<div class="select_arrow" id="arrDelivery" ></div>
+					<select class="select_body" id="deliverys">
+						<option value="-1">请选择快递</option>
+					</select>
+				</div>
+				<div class="label_align_right">快递单号：</div>
+				<input type="text" class="input_field" id="deliverySheetID"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">省份：</div>
+				<input type="text" class="input_field" id="province"/>
+				<div class="label_align_right">城市：</div>
+				<input type="text" class="input_field" id="city"/>
+				<div class="label_align_right">区：</div>
+				<input type="text" class="input_field" id="district"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">地址：</div>
+				<input type="text" class="input_field" id="address"/>
+				<div class="label_align_right">电话：</div>
+				<input type="text" class="input_field" id="tel"/>
+				<div class="label_align_right">手机：</div>
+				<input type="text" class="input_field" id="mobile"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">付款方式：</div>
+				<div class="select_wraper select_fix_width">
+					<div class="select_offset_right"></div>
+					<div class="select_arrow"></div>
+					<select class="select_body" id="pay_mode">
+						<option value="0">其他</option>
+						<option value="1" selected >在线支付</option>
+						<option value="2">货到付款</option>
+						<option value="3">自动发货</option>
+						<option value="4">分销</option>
+					</select>
+				</div>
+				<div class="label_align_right">货到付款代收费：</div>
+				<input type="text" class="input_field" id="pay_fee"/>
+				<div class="label_align_right">付款时间：</div>
+				<input type="datetime-local" class="input_field" id="pay_time"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">发票：</div>
+				<div class="select_wraper select_fix_width">
+					<div class="select_offset_right"></div>
+					<div class="select_arrow"></div>
+					<select class="select_body" id="invoice_flag">
+						<option value="0">否</option>
+						<option value="1">是</option>
+					</select>
+				</div>
+				<div class="label_align_right">发票抬头：</div>
+				<input type="text" class="input_field" id="invoice_title"/>
+				<div class="label_align_right">发票号：</div>
+				<input type="text" class="input_field" id="invoice_num"/>
+			</div>
+			<div class="block_row">
+				<div class="label_align_right">备注：</div>
+				<input type="text" class="input_field" id="note"/>
+			</div>
+		</div>
+		<div class="seperate_row"></div>
+		<table class="grid with_margin" id="goods_list">
+			<thead>
+				<tr>
+					<th><input type="checkbox" class="checkbox" id="all_check"/></th>
+					<th>SKU</th>
+					<th></th>
+					<th>商品标题</th>
+					<th>SKU属性</th>
+					<th>商品数量</th>
+					<th>商品价格</th>
+					<th id="coldp">分销价格</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="seperate_row"></div>
+		<div class="dlg_button_row">
+			<div class="button_panel">
+				<div class="button" id="save_btn">保存</div>
+				<div class="seperater"></div>
+				<div class="button" id="add_btn">添加</div>
+				<div class="seperater"></div>
+				<div class="button_red" id="del_btn">删除</div>
+			</div>
+		</div>
+		<div id="tips_dlg" class="dialog">
+			<div class="dialog_bg white_bkg"></div>
+			<div class="dialog_body">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">提示消息</div>
+				<div class="tips"></div>
+				<div class="dlg_button_row">
+					<div class="dlg_button_panel"><div class="button" id="dlg_btn">确定</div></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

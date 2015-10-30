@@ -1,0 +1,18 @@
+.bill_block{
+	width:40%;
+	margin-left:30px;
+	border-top: 0px solid #d0d0d0;
+}
+.block_row{
+	width:100%;
+	height:30px;
+	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+.button_panel{
+	margin-left: 130px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 110px;
+	height: 31px;
+}

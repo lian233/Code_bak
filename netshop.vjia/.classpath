@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjutil.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjpool.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/service.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/public.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/wofu.base.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/ecommerce.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/Vjia.Open.Sdk.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/json.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/Vjia.Open.Sdk_source.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

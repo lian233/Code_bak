@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DecOrderItemMapper">
+
+	<resultMap type="DecOrderItem" id="DecOrderItemMap">
+	<id column="ID" property="id" />
+	<result column="SheetID" property="sheetID" />
+	<result column="OuterSkuID" property="outerSkuID" />
+	<result column="Title" property="title" />
+	<result column="SkuPropertiesName" property="skuPropertiesName" />
+	<result column="BasePrice" property="basePrice" />
+	<result column="CustomPrice" property="customPrice" />
+	<result column="DistributePrice" property="distributePrice" />
+	<result column="PurQty" property="purQty" />
+	<result column="OID" property="oID" />
+	<result column="SalePrice" property="salePrice" />
+	<result column="OuterID" property="outerID" />
+	<result column="PayPresentID" property="payPresentID" />
+	<result column="PicPath" property="picPath" />
+	<result column="Note" property="note" />
+	</resultMap>
+
+	<!-- 增加订单明细  -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DecOrderItem">
+		insert into ${front}DecOrderItem0 (
+			ID,
+			SheetID,
+			OuterSkuID,
+			Title,
+			SkuPropertiesName,
+			BasePrice,
+			CustomPrice,
+			DistributePrice,
+			PurQty,
+			OID,
+			SalePrice,
+			OuterID,
+			PayPresentID,
+			PicPath,
+			Note
+		)
+		values (
+			#{id},
+			#{sheetID},
+			#{outerSkuID},
+			#{title},
+			#{skuPropertiesName},
+			#{basePrice},
+			#{customPrice},
+			#{distributePrice},
+			#{purQty},
+			#{oID},
+			#{salePrice},
+			#{outerID},
+			#{payPresentID},
+			#{picPath},
+			#{note}
+		)
+	</insert>
+
+	<!-- 删除订单明细 -->
+	<delete id="delete" parameterType="int">
+		delete from ${front}DecOrderItem0 where
+		ID=#{id}
+	</delete>
+
+	<!-- 删除订单明细 -->
+	<delete id="delete2" parameterType="com.wofu.fenxiao.domain.DecOrderItem">
+		delete from ${front}DecOrderItem0 where
+		ID=#{id}
+	</delete>
+
+	<!-- 修改订单明细-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DecOrderItem">
+		update ${front}DecOrderItem0
+		<set>
+			<if test="outerSkuID != null and outerSkuID != ''">
+				OuterSkuID=#{outerSkuID},
+			</if>
+			<if test="title != null and title != ''">
+				Title=#{title},
+			</if>
+			<if test="skuPropertiesName != null and skuPropertiesName != ''">
+				SkuPropertiesName=#{skuPropertiesName},
+			</if>			
+			<if test="basePrice != null ">
+				BasePrice=#{basePrice},
+			</if>
+			<if test="customPrice != null ">
+				CustomPrice=#{customPrice},
+			</if>
+			<if test="distributePrice != null ">
+				DistributePrice=#{distributePrice},
+			</if>
+			<if test="purQty != null ">
+				PurQty=#{purQty},
+			</if>
+			<if test="oID != null and oID != ''">
+				OID=#{oID},
+			</if>							
+			<if test="salePrice != null ">
+				SalePrice=#{salePrice},
+			</if>
+			<if test="outerID != null and outerID != ''">
+				OuterID=#{outerID},
+			</if>							
+			<if test="picPath != null and picPath != ''">
+				PicPath=#{picPath},
+			</if>							
+			Note=#{note}
+		</set>
+		where ID=#{id}
+	</update>
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+			ID,
+			rtrim(SheetID) SheetID,
+			OuterSkuID,
+			Title,
+			SkuPropertiesName,
+			BasePrice,
+			CustomPrice,
+			DistributePrice,
+			PurQty,
+			OID,
+			SalePrice,
+			OuterID,
+			PayPresentID,
+			PicPath,
+			Note
+	</sql>
+
+	<select id="getByObj" parameterType="java.util.HashMap" resultType="com.wofu.fenxiao.domain.DecOrderItem">
+		select
+		<include refid="selectId" />
+		from ${front}DecOrderItem${bak} where id=#{id}
+	</select>
+
+	
+	<!-- 查询订单资料  {sheetID}}  -->
+	<select id="qryDecOrderItem" parameterType="java.util.HashMap" resultMap="DecOrderItemMap">
+		select <include refid="selectId" />
+		from ${front}DecOrderItem${bak}   
+		<where>
+			1=1
+			<if test="sheetID != null and sheetID != ''">
+				and SheetID = '${sheetID}'
+			</if>
+			<if test="title != null ">
+				and Title = '${title}'
+			</if>
+			<if test="skuPropertiesName != null ">
+				and SkuPropertiesName = '${skuPropertiesName}'
+			</if>
+			<if test="outerSkuID != null ">
+				and OuterSkuID = '${outerSkuID}'
+			</if>
+		</where>		
+	</select>	
+</mapper>

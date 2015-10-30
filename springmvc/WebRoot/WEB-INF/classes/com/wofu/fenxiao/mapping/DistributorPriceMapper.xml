@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DistributorPriceMapper">
+
+	<!--mybatis ehcache缓存配置 -->
+	<!--
+		以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache
+		type="org.mybatis.caches.ehcache.LoggingEhcache" />
+	-->
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+	<!-- 以下与实体类的中字段一致    关联字段也一起查出来   这里只保持实体跟sql语句的一致，没有跟数据库字段保存一致-->
+	<!-- 为了返回list 类型而定义的returnMap -->
+	<resultMap type="DistributeGoods" id="DistributeGoodsMap">
+		<id column="ID" property="ID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="ParentID" property="ParentID" />
+		<result column="GoodsLevel" property="GoodsLevel" />
+		<result column="GoodsKey" property="GoodsKey" />
+		<result column="SetType" property="SetType" />
+		<result column="Value" property="Value" />
+	</resultMap>
+	
+	<!-- 多级分销的映射    -->
+	<resultMap type="java.util.HashMap" id="subDistributorMap" >
+		<result column="LevelID" property="LevelID" />
+		<result column="Level" property="Level" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="Name" property="Name" />
+		<result column="State" property="State" />
+		<result column="City" property="City" />
+		<result column="District" property="District" />
+		<result column="Address" property="Address" />
+		<result column="ZipNo" property="ZipNo" />
+		<result column="Email" property="Email" />
+		<result column="LinkTele" property="LinkTele" />
+		<result column="LinkMan" property="LinkMan" />
+		<result column="MobileNo" property="MobileNo" />
+		<result column="FaxNo" property="FaxNo" />
+		<result column="Enable" property="Enable" />
+		<result column="Note" property="Note" />
+		<result column="ParentID" property="ParentID" />
+		<result column="ParentName" property="ParentName" />
+	</resultMap>
+	
+	<!-- 分销价格的映射    -->
+	<resultMap type="java.util.HashMap" id="distributorPriceMap" >
+		<result column="ID" property="ID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="ParentID" property="ParentID" />
+		<result column="GoodsLevel" property="GoodsLevel" />
+		<result column="GoodsKey" property="GoodsKey" />
+		<result column="SetType" property="SetType" />
+		<result column="Value" property="Value" />
+	</resultMap>
+	
+	<!-- 分销价格历史的映射    -->
+	<resultMap type="java.util.HashMap" id="distributorPriceLogMap" >
+		<result column="ID" property="ID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="ParentID" property="ParentID" />
+		<result column="GoodsLevel" property="GoodsLevel" />
+		<result column="GoodsKey" property="GoodsKey" />
+		<result column="SetType" property="SetType" />
+		<result column="Value" property="Value" />
+		<result column="Operator" property="Operator" />
+		<result column="OperType" property="OperType" />
+		<result column="OperTime" property="OperTime" />		
+	</resultMap>
+	
+
+	<!-- 分销价格的映射    -->
+	<resultMap type="java.util.HashMap" id="allDistributorPriceMap" >
+		<result column="Name" property="Name" />
+		<result column="GoodsLevel" property="GoodsLevel" />
+		<result column="GoodsKey" property="GoodsKey" />
+		<result column="SetType" property="SetType" />
+		<result column="Value" property="Value" />
+	</resultMap>
+
+	<!-- 更新分销商状态 -->
+	<update id="setDistributorEnable" parameterType="java.util.HashMap">
+		update Customer Set Enable = ${Enable} where CustomerID = ${CustomerID}
+	</update>
+
+	<!-- 查询多级分销商 -->
+	<select id="qrySubDistributor" parameterType="java.util.HashMap" resultMap="subDistributorMap">
+		select 1 LevelID , CustomerID,Name,State,City,District,Address,ZipNo,Email,
+				LinkTele,LinkMan,MobileNo,FaxNo,Enable,Note,ParentID, '' ParentName,Level
+		from V_DCustomer where ParentID=${CustomerID}
+		union
+		select 2 LevelID ,a.CustomerID,a.Name,a.State,a.City,a.District,a.Address,a.ZipNo,a.Email,
+				a.LinkTele,a.LinkMan,a.MobileNo,a.FaxNo,a.Enable,a.Note,a.ParentID , b.Name ParentName,a.Level
+	    from V_DCustomer a , V_DCustomer b 
+		where a.ParentID = b.CustomerID 
+		  and b.ParentID=${CustomerID}
+		
+	</select>
+	
+	<!-- 保存分销商资料 -->
+	<select id="tlSaveDistributor" statementType="CALLABLE">
+	<![CDATA[
+	{#{err,mode=OUT,jdbcType=INTEGER}=call TL_SaveDistributor(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{ParentID,mode=IN,jdbcType=INTEGER},
+		#{Name,mode=IN,jdbcType=VARCHAR},
+		#{State,mode=IN,jdbcType=VARCHAR},
+		#{City,mode=IN,jdbcType=VARCHAR},
+		#{District,mode=IN,jdbcType=VARCHAR},
+		#{Address,mode=IN,jdbcType=VARCHAR},
+		#{LinkMan,mode=IN,jdbcType=VARCHAR},
+		#{LinkTele,mode=IN,jdbcType=VARCHAR},
+		#{MobileNo,mode=IN,jdbcType=VARCHAR},
+		#{Note,mode=IN,jdbcType=VARCHAR},
+		#{NewID,mode=OUT,jdbcType=INTEGER}
+		)}
+	]]>
+	</select>	
+	
+	
+	<!-- 查询分销价格  -->
+	<select id="qryDistributorPrice" parameterType="java.util.HashMap" resultMap="distributorPriceMap">
+		select *
+		from DistributorPrice
+		<where>
+			<if test="CustomerID != null ">
+				and CustomerID = #{CustomerID}
+			</if>
+			<if test="ParentID != null ">
+				and ParentID = #{ParentID}
+			</if>
+			<if test="SetType != null ">
+				and SetType = #{SetType}
+			</if>
+			<if test="GoodsLevel != null ">
+				and GoodsLevel = #{GoodsLevel}
+			</if>
+
+			<if test="GoodsKey != null and GoodsKey != ''">
+				and GoodsKey like '%${GoodsKey}%'
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 查询分销价格历史  -->
+	<select id="qryDistributorPriceLog" parameterType="java.util.HashMap" resultMap="distributorPriceLogMap">
+		select *
+		from DistributorPriceLog
+		<where>
+			<if test="CustomerID != null ">
+				and CustomerID = #{CustomerID}
+			</if>
+			<if test="ParentID != null ">
+				and ParentID = #{ParentID}
+			</if>
+			<if test="SetType != null ">
+				and SetType = #{SetType}
+			</if>
+			<if test="GoodsLevel != null ">
+				and GoodsLevel = #{GoodsLevel}
+			</if>
+
+			<if test="GoodsKey != null and GoodsKey != ''">
+				and GoodsKey like '%${GoodsKey}%'
+			</if>
+		</where>		
+	</select>			
+	
+	<!-- 查询分销价格  -->
+	<select id="qryAllDistributorPrice" parameterType="java.util.HashMap" resultMap="allDistributorPriceMap">
+		select c.Name , case when GoodsLevel = 1 then '品牌' when GoodsLevel = 2 then '品类' when GoodsLevel = 3 then '货号' when GoodsLevel = 4 then 'SKU' else '' end GoodsLevel ,
+			case when SetType = 0 then '折扣' when SetType = 1 then '一口价' else '' end SetType , GoodsKey , Value     
+		from DistributorPrice a , Customer c 
+		where a.ParentID = c.CustomerID
+		  and a.ParentID = #{CustomerID}
+		union
+		select c.Name , case when GoodsLevel = 1 then '品牌' when GoodsLevel = 2 then '品类' when GoodsLevel = 3 then '货号' when GoodsLevel = 4 then 'SKU' else '' end GoodsLevel ,
+			case when SetType = 0 then '折扣' when SetType = 1 then '一口价' else '' end SetType , GoodsKey , Value     
+		from DistributorPrice a , Customer c 
+		where a.CustomerID = c.CustomerID
+		  and a.CustomerID = #{CustomerID}		
+	</select>	
+	
+
+				
+	
+	<!-- 增加分销价格 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DistributorPrice">
+		insert into DistributorPrice (
+		ID,
+		CustomerID,
+		ParentID,
+		GoodsLevel,
+		GoodsKey,
+		SetType,
+		Value
+		)
+		values (
+		#{ID},
+		#{CustomerID},
+		#{ParentID},
+		#{GoodsLevel},
+		#{GoodsKey},
+		#{SetType},
+		#{Value}
+		)
+	</insert>	
+	
+	<!-- 增加分销价格记录 -->
+	<insert id="addDistributorPriceLog" parameterType="java.util.HashMap">
+	insert into DistributorPriceLog(ID , CustomerID , ParentID , GoodsLevel , GoodsKey , SetType , Value , Operator , OperType , OperTime)
+	select ID , CustomerID , ParentID , GoodsLevel , GoodsKey , SetType , Value , #{Operator} , #{OperType} , getdate()
+	from DistributorPrice 
+	where ID = #{ID};
+	</insert>		
+	
+	
+		
+	
+	<!-- 删除分销价格-->
+	<delete id="delete" parameterType="int">
+		delete from DistributorPrice where ID=#{ID}
+	</delete>
+	
+	<!-- 修改分销价格-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DistributorPrice">
+		update DistributorPrice
+		<set>
+			<if test="GoodsLevel != null ">
+				GoodsLevel=#{GoodsLevel},
+			</if>					
+			<if test="SetType != null ">
+				SetType=#{SetType},
+			</if>					
+			<if test="GoodsKey != null ">
+				GoodsKey=#{GoodsKey},
+			</if>					
+			<if test="Value != null ">
+				Value=#{Value},
+			</if>					
+		</set>
+		where ID=#{ID}
+	</update>		
+	
+	
+</mapper>

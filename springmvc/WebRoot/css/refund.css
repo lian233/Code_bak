@@ -1,0 +1,15 @@
+.tr_check{
+	background: rgb(235,235,255);
+}
+.select_flag{
+	width:90px;
+}
+.time-field{
+	float:left;
+	margin-left:0px;
+	margin-top:5px;
+	width:166px;
+	height:22px;
+	border-radius: 5px;
+	border:1px solid rgb(50,50,120);
+}

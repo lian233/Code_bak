@@ -1,0 +1,53 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/shopSetting.css"/>
+	</head>
+	<body>
+		<div class="seperater_row"></div>
+		<div class="row">
+			<div class="setlabel">主帐号：</div>
+			<input type="text" class="text-field" id="txtNick"/>
+		</div>
+		<div class="row">
+            <div class="setlabel"><a id="appurl" href="http://www.163.com" target="_blank">获取token链接：</a></div>
+			<input type="text" class="text-field" id="getToken"/>
+        </div>
+		<div class="row">
+            <div class="setlabel">订单下载时间：</div>
+			<input type="text" class="text-field" id="ordertime"/>
+        </div>
+		<div class="row">
+			<div class="label">网店Key：</div>
+			<input type="text" class="text-field" id="txtAppKey"/>
+
+		</div>
+        <div class="row">
+			<div class="label">网店Token：</div>
+			<input type="text" class="text-field" id="txtSession"/>
+        </div>
+        <div class="row">
+            <div class="label">网店Session：</div>
+            <input type="text" class="text-field" id="txtToken"/>
+        </div>
+		<div class="seperater_row"></div>
+		<div class="row">
+			<div class="button_bar">
+				<div id="btn_gettoken" class="button">获取token</div>
+				<div class="seperater"></div>
+				<div id="btn_Save_params" class="button">保存设置</div>
+				<div class="seperater"></div>
+				<div id="btn_Cancel" class="button">取消</div>
+				<div class="seperater"></div>
+			</div>
+		</div>
+		<input type="hidden" id="channelid"/>
+		<input type="hidden" id="shopid"/>
+	</body>
+</html>

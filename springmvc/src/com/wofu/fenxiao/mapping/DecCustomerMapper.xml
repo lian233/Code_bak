@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DecCustomerMapper">
+
+	<resultMap type="DecCustomer" id="decCustomerMap">
+		<id column="ID" property="id" />
+		<result column="Name" property="name" />
+		<result column="Code" property="code" />
+		<result column="GroupID" property="groupID" />
+		<result column="DeliveryGroupID" property="deliveryGroupID" />
+		<result column="Address" property="address" />
+		<result column="State" property="state" />
+		<result column="City" property="city" />
+		<result column="District" property="district" />
+		<result column="ZipCode" property="zipCode" />
+		<result column="Email" property="email" />
+		<result column="FaxNo" property="faxNo" />
+		<result column="Tele" property="tele" />
+		<result column="Moblie" property="mobile" />
+		<result column="LinkMan" property="linkMan" />
+		<result column="GradeID" property="gradeID" />
+		<result column="CreateTime" property="createTime" />
+		<result column="Creator" property="creator" />
+		<result column="ModiTime" property="modiTime" />
+		<result column="ModiID" property="modiID" />
+		<result column="Status" property="status" />
+		<result column="Note" property="note" />
+		<result column="PrintContent1" property="PrintContent1" />
+		<result column="PrintContent2" property="PrintContent2" />
+		<result column="PrintContent3" property="PrintContent3" />
+		<result column="PrintContent4" property="PrintContent4" />
+		<result column="PrintContent5" property="PrintContent5" />
+		<result column="PrintContent6" property="PrintContent6" />
+		<result column="PrintContent7" property="PrintContent7" />
+		<result column="PrintContent8" property="PrintContent8" />
+		<result column="PrintContent9" property="PrintContent9" />
+		<result column="PrintContent10" property="PrintContent10" />		
+	</resultMap>
+	
+	<sql id="pageSelect">
+	row_number() over(order by id) as page,
+	<include refid="selectId"/>
+	</sql>
+
+	<!-- 返回的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultqryCustomerListMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="Code" property="Code" />
+		<result column="ParentID" property="ParentID" />
+	</resultMap>
+
+	<!-- 返回的自定义打印内容定义 -->
+	<resultMap type="java.util.HashMap" id="customerPrintContentMap">
+		<result column="PrintContent1" property="PrintContent1" />
+		<result column="PrintContent2" property="PrintContent2" />
+		<result column="PrintContent3" property="PrintContent3" />
+		<result column="PrintContent4" property="PrintContent4" />
+		<result column="PrintContent5" property="PrintContent5" />
+		<result column="PrintContent6" property="PrintContent6" />
+		<result column="PrintContent7" property="PrintContent7" />
+		<result column="PrintContent8" property="PrintContent8" />
+		<result column="PrintContent9" property="PrintContent9" />
+		<result column="PrintContent10" property="PrintContent10" />
+	</resultMap>
+
+
+
+	<resultMap type="java.util.HashMap" id="resultqryCustomerGroupListMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="Front" property="Front" />
+	</resultMap>
+	
+	
+	<!-- 客户服务跟踪返回的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="customerServiceMap">
+		<result column="ID" property="ID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="TypeID" property="TypeID" />
+		<result column="Question" property="Question" />
+		<result column="Questioner" property="Questioner" />
+		<result column="LinkTele" property="LinkTele" />
+		<result column="Email" property="Email" />
+		<result column="Answer" property="Answer" />
+		<result column="Answerer" property="Answerer" />
+		<result column="SID" property="SID" />
+		<result column="Flag" property="Flag" />
+		<result column="Note" property="Note" />
+		<result column="CreateTime" property="CreateTime" />
+		<result column="ModiTime" property="ModiTime" />
+		<result column="AnswerTime" property="AnswerTime" />
+	</resultMap>
+	
+	
+	
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		ID,
+		rtrim(Name) Name,
+		rtrim(Code) Code,
+		GroupID,
+		DeliveryGroupID,
+		State,
+		City,
+		District,
+		Address,
+		ZipCode,
+		Email,
+		FaxNo,
+		Tele,
+		Moblie,
+		LinkMan,
+		GradeID,
+		CreateTime,
+		Creator,
+		ModiTime,
+		ModiID,
+		Status,
+		Note,
+		'' Level,
+		PrintContent1,
+		PrintContent2,
+		PrintContent3,
+		PrintContent4,
+		PrintContent5,
+		PrintContent6,
+		PrintContent7,
+		PrintContent8,
+		PrintContent9,
+		PrintContent10
+	</sql>	
+
+
+	<!-- 增加客户 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DecCustomer">
+		insert into DecCustomer (
+		ID,
+		Name,
+		Code,
+		GroupID,
+		DeliveryGroupID,
+		State,
+		City,
+		District,		
+		Address,
+		ZipCode,
+		Email,
+		FaxNo,
+		Tele,
+		Moblie,
+		LinkMan,
+		GradeID,
+		CreateTime,
+		Creator,
+		ModiTime,
+		ModiID,
+		Status,
+		Note
+		)
+		values (#{id},
+		#{name}, #{code},
+		#{groupID},
+		#{deliveryGroupID},
+		#{state},
+		#{city},
+		#{district},
+		#{address},
+		#{zipCode},
+		#{email},
+		#{faxNo},
+		#{tele},
+		#{mobile},
+		#{linkMan},
+		#{gradeID},
+		#{createTime},
+		#{creator},
+		#{modiTime},
+		#{modiID},
+		#{status},
+		#{note}
+		)
+	</insert>
+
+	<!-- 增加客户问题 -->
+	<insert id="addCustomerService" parameterType="java.util.HashMap">
+		insert into CustomerService (
+		ID,
+		CustomerID,
+		TypeID,
+		Question,
+		Questioner,
+		LinkTele,
+		Email,
+		Answer,		
+		Answerer,
+		SID,
+		Flag,
+		Note,
+		AnswerTime,
+		CreateTime,
+		ModiTime
+		)
+		values (
+		#{ID},
+		#{CustomerID},
+		#{TypeID},
+		#{Question},
+		#{Questioner},
+		#{LinkTele},
+		#{Email},
+		#{Answer},	
+		#{Answerer},
+		#{SID},
+		#{Flag},
+		#{Note},
+		#{AnswerTime},
+		#{CreateTime},
+		#{ModiTime}		
+		)
+	</insert>
+
+	<!-- 删除客户问题-->
+	<delete id="deleteCustomerService" parameterType="int">
+		delete from CustomerService where ID=#{ID}
+	</delete>
+		
+	
+	<!-- 删除客户-->
+	<delete id="delete" parameterType="int">
+		delete from DecCustomer where
+		ID=#{id}
+	</delete>
+	
+	<select id="getById" parameterType="int" resultType="com.wofu.fenxiao.domain.DecCustomer">
+		select
+		<include refid="selectId" />
+		from DecCustomer where id=#{id}
+	</select>
+	
+	<select id="getByDId" parameterType="int" resultType="com.wofu.fenxiao.domain.DecCustomer">
+		select CustomerID ID , rtrim(Name) Name, rtrim(DetailID) Code, 0 GroupID,
+			0 DeliveryGroupID,'' State, '' City, '' District, Address,
+		'' ZipCode, Email, FaxNo, LinkTele Tele, '' Moblie, LinkMan, GradeID,
+			getdate() CreateTime, '' Creator, getdate() ModiTime, '' ModiID, 1  Status, Note,Level
+		from V_DCustomer where CustomerID=#{id}
+	</select>
+
+	<!-- 修改客户-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DecCustomer">
+		update DecCustomer
+		<set>
+			<if test="name != null and name != ''">
+				Name=#{name},
+			</if>
+			<if test="code != null and code != ''">
+				Code=#{code},
+			</if>
+			<if test="groupID >0 ">
+				GroupID=#{groupID},
+			</if>
+			<if test="deliveryGroupID!=null and deliveryGroupID >0 ">
+				DeliveryGroupID=#{deliveryGroupID},
+			</if>
+			<if test="state != null and state != ''">
+				State=#{state},
+			</if>
+			<if test="city != null and city != ''">
+				City=#{city},
+			</if>
+			<if test="district != null and district != ''">
+				District=#{district},
+			</if>
+			<if test="address != null and address != ''">
+				Address=#{address},
+			</if>
+			<if test="zipCode != null">
+				ZipCode=#{zipCode},
+			</if>
+			<if test="email != null">
+				Email=#{email},
+			</if>
+			<if test="faxNo != null">
+				FaxNo=#{faxNo},
+			</if>
+			<if test="tele != null and tele!=''">
+				Tele=#{tele},
+			</if>
+			<if test="mobile != null and mobile!=''">
+				Moblie=#{mobile},
+			</if>
+			<if test="linkMan != null">
+				LinkMan=#{linkMan},
+			</if>
+			<if test="gradeID!=null and gradeID >=0 ">
+				GradeID=#{gradeID},
+			</if>
+			<if test="createTime != null ">
+				CreateTime=#{createTime},
+			</if>
+			<if test="creator != null and creator != ''">
+				Creator=#{creator},
+			</if>
+			<if test="modiTime != null ">
+				ModiTime=#{modiTime},
+			</if>
+			<if test="modiID != null and modiID != ''">
+				ModiID=#{modiID},
+			</if>
+			<if test="note != null ">
+				Note=#{note},
+			</if>			
+			<if test="status!=null and status >=0">
+				Status=#{status},
+			</if>
+		</set>
+		where ID=#{id}
+	</update>
+
+	<!-- 修改客户问题-->
+	<update id="updateCustomerService" parameterType="java.util.HashMap">
+		update CustomerService
+		<set>
+			<if test="TypeID != null ">
+				TypeID=#{TypeID},
+			</if>
+			<if test="Question != null ">
+				Question=#{Question},
+			</if>
+			<if test="Questioner != null ">
+				Questioner=#{Questioner},
+			</if>
+			<if test="LinkTele != null ">
+				LinkTele=#{LinkTele},
+			</if>
+			<if test="Email != null ">
+				Email=#{Email},
+			</if>
+			<if test="Answer != null ">
+				Answer=#{Answer},
+			</if>
+			<if test="Answerer != null ">
+				Answerer=#{Answerer},
+			</if>
+			<if test="SID != null ">
+				SID=#{SID},
+			</if>
+			<if test="Flag != null ">
+				Flag=#{Flag},
+			</if>
+			<if test="Note != null ">
+				Note=#{Note},
+			</if>
+			<if test="CreateTime != null ">
+				CreateTime=#{CreateTime},
+			</if>
+			<if test="ModiTime != null ">
+				ModiTime=#{ModiTime},
+			</if>
+			<if test="AnswerTime != null ">
+				AnswerTime=#{AnswerTime},
+			</if>
+		</set>
+		where ID=#{ID}
+	</update>
+
+	<!-- 修改自定义打印内容-->
+	<update id="updateCustomerPrintContent" parameterType="java.util.HashMap">
+		update DecCustomer
+		<set>
+			<if test="PrintContent1 != null ">
+				PrintContent1=#{PrintContent1},
+			</if>
+			<if test="PrintContent2 != null ">
+				PrintContent2=#{PrintContent2},
+			</if>
+			<if test="PrintContent3 != null ">
+				PrintContent3=#{PrintContent3},
+			</if>
+			<if test="PrintContent4 != null ">
+				PrintContent4=#{PrintContent4},
+			</if>
+			<if test="PrintContent5 != null ">
+				PrintContent5=#{PrintContent5},
+			</if>
+			<if test="PrintContent6 != null ">
+				PrintContent6=#{PrintContent6},
+			</if>
+			<if test="PrintContent7 != null ">
+				PrintContent7=#{PrintContent7},
+			</if>
+			<if test="PrintContent8 != null ">
+				PrintContent8=#{PrintContent8},
+			</if>
+			<if test="PrintContent9 != null ">
+				PrintContent9=#{PrintContent9},
+			</if>
+			<if test="PrintContent10 != null ">
+				PrintContent10=#{PrintContent10},
+			</if>
+		</set>
+		where ID=#{CustomerID}
+	</update>
+
+
+	<!-- 取得客户分组   -->
+	<select id="qryCustomerGroupList" parameterType="java.util.HashMap"
+		resultMap="resultqryCustomerGroupListMap">
+		select ID,rtrim(Name) Name,Front
+		from CustomerGroup
+		<where>
+			Status=1
+			<if test="id != null ">
+				and ID = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+		</where>		
+	</select>		
+
+
+	<!-- 根据条件查客户列表 qryCustomerList{key}  -->
+	<select id="qryCustomerList" parameterType="java.util.HashMap" resultMap="resultqryCustomerListMap">
+		select ID,rtrim(Name) Name,rtrim(Code) Code, null ParentID
+ 			from DecCustomer b 
+		<where>
+			Status = 1
+			<if test="key != null and key != ''">
+				and (Name like '%${key}%' or Code like '%${key}%')
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据条件查客户列表 qryDCustomerList{key}  -->
+	<select id="qryDCustomerList" parameterType="java.util.HashMap" resultMap="resultqryCustomerListMap">
+		select CustomerID ID , rtrim(Name) Name,rtrim(DetailID) Code, ParentID
+ 			from V_DCustomer b 
+		<where>
+			1=1
+			<if test="key != null and key != ''">
+				and (Name like '%${key}%' or DetailID like '%${key}%')
+			</if>
+			<if test="name != null and name != ''">
+				and Name = #{name}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 分页查询客户列表 -->
+	<select id="qryCustomerListOnPage" parameterType="java.util.HashMap" resultMap="resultqryCustomerListMap">
+	<![CDATA[
+	select <include refid="selectId"/> from (select <include refid="pageSelect"/> from DecCustomer
+	<where>
+	1=1
+	<if test="key != null and key != ''">
+		and (Name like '%${key}%' or Code like '%${key}%')
+	</if>
+	</where>) as a
+	<where>
+		1=1
+		<if test="startPage !=null and startPage!=''">
+		and page>=#{startPage}
+		</if>
+		<if test="endPage !=null and endPage!=''">
+		and page<=#{endPage}
+		</if>
+	</where>
+	]]>
+	</select>
+	
+	<!-- 查询客户资料  { groupID ,name ,code,address,linkman}  -->
+	<select id="qryCustomer" parameterType="java.util.HashMap" resultMap="decCustomerMap">
+		select <include refid="selectId" />
+		from DecCustomer   
+		<where>
+			1=1
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="groupID != null">
+				and GroupID = #{groupID}
+			</if>
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+			<if test="code != null and code != ''">
+				and Code like '%${code}%'
+			</if>
+			<if test="address != null and address != ''">
+				and (Address like '%${address}%' or State like '%${address}%' 
+					or City like '%${address}%' or District like '%${address}%' ) 
+			</if>
+			<if test="linkman != null and linkman != ''">
+				and Linkman like '%${linkman}%'
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 调用存储过程  生成客户编码-->
+	<select id="tlMakeCustomerCode" statementType="CALLABLE">
+	<![CDATA[
+	{#{err,mode=OUT,jdbcType=INTEGER}=call TL_MakeCustomerCode(#{Code,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+	
+	<!-- 查询自定义打印内容-->
+	<select id="qryCustomerPrintContent" parameterType="int" resultMap="customerPrintContentMap">
+		select 	PrintContent1 , PrintContent2 , PrintContent3 , PrintContent4 , PrintContent5 , 
+				PrintContent6 , PrintContent7 , PrintContent8 , PrintContent9 , PrintContent10
+		from DecCustomer where ID=#{CustomerID}
+	</select>
+	
+	
+	<!-- 查询问题 -->
+	<select id="qryCustomerService" resultMap="customerServiceMap" parameterType="java.util.HashMap">
+		select a.* , b.Name CustomerName
+		from CustomerService a , DecCustomer b 
+		<where>
+			a.CustomerID = b.ID
+		  	<if test="ID != null">
+				and a.ID = #{ID}
+			</if>
+		  	<if test="CustomerID != null">
+				and a.CustomerID = #{CustomerID}
+			</if>
+		  	<if test="TypeID != null">
+				and a.TypeID = #{TypeID}
+			</if>
+		  	<if test="Question != null">
+				and a.Question like '%${Question}%'
+			</if>
+		  	<if test="Questioner != null">
+				and a.Questioner like '%${Questioner}%'
+			</if>
+		  	<if test="Answerer != null">
+				and a.Answerer like '%${Answerer}%'
+			</if>
+		  	<if test="Flag != null">
+				and a.Flag = #{Flag}
+			</if>
+		</where>
+
+	</select>		
+		
+		
+</mapper>

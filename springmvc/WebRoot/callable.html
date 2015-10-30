@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>调用存储过程</title>
+</head>
+<script type="text/javascript" src="js/jquery1.11.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+$("#callbtn").click(function(){
+ var datasent = $("#callForm").serializeObject();
+ params = JSON.stringify(datasent);
+ alert(params);
+ $.ajax({
+		type : "POST",
+		url : "callable.do",
+		dataType:'json',
+		contentType:"application/json;charset=UTF-8",
+		data:params,
+		async : false,
+		success : function(data) {
+				if(data.errorcode == 0){   //登录成功
+				alert("调用成功");
+				}else{
+				alert(data.msg);
+			}
+			
+		},error:function(data){
+			var ss=eval(data);
+			//alert(data.toString());
+			alert(JSON.stringify(ss));
+			//alert(data.flag);
+		}
+	});
+});
+ 
+ 
+});
+
+</script>
+<body>
+<form id="callForm" action="login.do" method="post">
+<table>
+<tr>
+	<td>用户名:</td><td><input id="username" name="name" type="text" /></td>
+	<td>密码:</td><td><input id="password"  name="password" type="text"/></td>
+	<td>登录:</td><td><input id="callbtn" type="button"/></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

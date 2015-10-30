@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.PartMapper">
+
+	<!--mybatis ehcache缓存配置 -->
+	<!--
+		以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache
+		type="org.mybatis.caches.ehcache.LoggingEhcache" />
+	-->
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+	<!-- 以下与实体类的中字段一致    关联字段也一起查出来   这里只保持实体跟sql语句的一致，没有跟数据库字段保存一致-->
+	<!-- 为了返回list 类型而定义的returnMap -->
+	<resultMap type="Part" id="partMap">
+		<id column="ID" property="id" />
+		<result column="Name" property="name" />
+		<result column="Status" property="status" />
+		<result column="Note" property="note" />
+	</resultMap>
+
+	<resultMap type="Part" id="partLoginMap" extends="partMap">
+		<collection property="login" ofType="Login">
+			<id column="ID" property="id" />
+			<result column="Name" property="name" />
+			<result column="CName" property="cName" />
+			<result column="CustomerID" property="customerID" />
+			<result column="Password" property="password" />
+			<result column="IP" property="ip" />
+			<result column="Status" property="status" />
+			<result column="Note" property="note" />
+		</collection>
+	</resultMap>
+
+
+	<!-- 返回的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultpartMap">
+		<result column="LoginID" property="LoginID" />
+		<result column="PartID" property="PartID" />
+	</resultMap>
+
+
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		ID,
+		Name,
+		Status,
+		Note
+	</sql>
+
+	<!--resultType="Part" 每返回一条结果封装到List中里      like中取变量属性要用‘$’,而不用#-->
+	<select id="queryPart" resultMap="partMap" parameterType="com.wofu.fenxiao.domain.Part">
+		select
+		<include refid="selectId" />
+		from Part
+		<where>
+			<if test="name != null and name != ''">
+				Name like '%${name}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 增加用户权限 传入一个map，包含loginId和partId ，${t.loginId} 这样定义对不对？   不用的，直接用map的key  {key} -->
+	<insert id="addPartMember" parameterType="java.util.HashMap">
+		insert into PartMember(
+		LoginID,
+		PartID)
+		values (
+		${loginId},
+		${partId}
+		)
+	</insert>
+	
+	<!-- 增加用户权限 传入一个map，包含loginId和partId ，${t.loginId} 这样定义对不对？   不用的，直接用map的key  {key} -->
+	<insert id="add" parameterType="Part">
+		insert into part(
+		ID,
+		Name,
+		Status,
+		Note) values(
+		#{id},
+		#{name},
+		#{status},
+		#{note}
+		)
+	</insert>
+
+	<!-- 删除用户权限 -->
+	<delete id="deletePartMember" parameterType="int">
+		delete from PartMember where
+		LoginID=#{loginId}
+	</delete>
+	
+	<!-- 删除所有的角色 -->
+	<delete id="deleteAll">
+	delete part
+	</delete>
+
+	
+	<!-- 根据帐号查帐号对应有角色  输入的参数 #{loginId} 对不对？是的，跟参数名一样    与queryPartMember函数的参数对应？ 是的，一对一   -->
+	<select id="queryPartMember" parameterType="java.util.HashMap" resultMap="resultpartMap">
+	select LoginID,PartID from PartMember where LoginID = #{loginId} 
+	</select>
+	
+</mapper>

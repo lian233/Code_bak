@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Test</title>
+</head>
+<script type="text/javascript" src="js/jquery1.11.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+
+$(function(){
+	
+	
+	function fillDetailGrid(data){
+		var ln = data.length;
+		alert(ln);
+		for(var i=0; i<ln; i++)
+		{	
+			var record = data[i];
+			document.write(record.CustomerName+"<br>");
+			}}
+			
+			
+$("#btn").click(function(){
+
+
+
+var student={};
+var name = "圆";
+student.deliverycode = name; 
+var stu = new Array(); 
+stu[0] = "deliverycode";
+
+var json = JSON.stringify(student,stu); 
+alert(json); 
+		$.ajax({
+			url: "./qryCustomerDeliveryNum.do",
+			type: "post", 
+			data:JSON.stringify(student),
+			success: function(rsp){
+				if (rsp.errorCode!=0){
+					showTips(rsp.msg);
+				}else{
+					fillDetailGrid(rsp.data);
+					if (typeof(resetPageCtrl_detail)!=="undefined"){
+						resetPageCtrl_detail(rsp.pageInfo);
+					}
+				}
+			}, 
+			error: function(){
+				showTips("请求出错了");
+			}, 
+			dataType: "json"
+		});
+	});
+});
+
+ 
+
+</script>
+<body>
+
+	<td></td><td><input id="btn" type="button" value="调用" /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

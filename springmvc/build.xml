@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="springmvc" basedir="." default="startup">
+    <property name="tomcat.home" value="D:\tomcat"/>
+    <property name="web.root" value="${tomcat.home}\webapps"></property>
+    <property name="app.name" value="springmvc"/>
+    <property name="src.dir" value="src"/>
+    <property name="jdk.dir" value="D:\jdk1.6.0_22"/>
+	<property name="resource.dir" value="rst-resources"/>
+    <property name="classes.dir" value="WebRoot/WEB-INF/classes"/>
+	 <property name="html.dir" value="WebRoot/WEB-INF/html"/>
+    <property name="lib.dir" value="WebRoot/WEB-INF/lib"/>
+  
+    <target name="clean" description="clean application">
+        <echo message="----------delete application----------"/>
+        <delete dir="${web.root}/${app.name}"></delete>
+        <delete file="${web.root}/${app.name}.war"></delete>
+        <delete file="${app.name}.war"></delete>
+        <delete dir="${classes.dir}"></delete>
+    </target>
+  
+    <target name="compile" depends="clean" description="compile java files">
+        <mkdir dir="${classes.dir}"/>
+        <javac compiler="javac1.6" source="1.6" target="1.6" debug="on" fork="yes"
+            listfiles="yes" memoryinitialsize="128m" memorymaximumsize="256m"
+            srcdir="${src.dir}" destdir="${classes.dir}" includes="**/*.java" encoding="UTF-8">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="**/*.jar"></fileset>
+                <fileset dir="${lib.dir}" includes="**/*.zip"></fileset>
+                <fileset dir="${tomcat.home}/lib" includes="**/*.jar"></fileset>
+            </classpath>
+        </javac>
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"></fileset>
+        </copy>
+    </target>
+  
+    <target name="build" depends="compile" description="make war">
+        <war destfile="${app.name}.war" basedir="WebRoot" webxml="WebRoot/WEB-INF/web.xml">
+            <lib dir="${lib.dir}"></lib>
+            <classes dir="${classes.dir}"></classes>
+        	<classes dir="${resource.dir}"></classes>
+        	<classes dir="${html.dir}"></classes>
+        	
+        </war>
+    </target>
+  
+    <target name="deploy" depends="build" description="deploy project in tomcat">
+        <echo message="----------deploy project----------"/>
+        <copy todir="${web.root}">
+            <fileset dir="${basedir}">
+                <include name="**/*.war"/>
+            </fileset>
+        </copy>
+    </target>
+  
+    <target name="startup" depends="deploy" description="start up tomcat">
+        <echo message="----------start tomcat----------"/>
+        <exec executable="cmd" dir="${tomcat.home}/bin">
+            <arg value="/c"/>
+            <arg value="startup.bat"/>
+        </exec>
+    </target>
+  
+    <target name="shutdown" description="shut down tomcat">
+        <echo message="----------close tomcat----------"></echo>
+        <exec executable="cmd" dir="${tomcat.home}/bin">
+            <arg value="/c"/>
+            <arg value="shutdown.bat"/>
+        </exec>
+    </target>
+</project>

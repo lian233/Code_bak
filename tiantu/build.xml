@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<project basedir="." default="deploy" name="tiantu">
+  <property name="build" value=".\bin"/>
+  <property name="build.file" value="tiantu"/>
+  <property name="ant.tmp" value="${build}/building"/>
+  <property name="obf.file" value="${build}/${build.file}.jar"/>
+
+  <property name="src" value="src"/>
+  <property name="build.classes" value="${ant.tmp}/classes"/>
+  <property name="deploy.home" value="./deploy" />
+
+  <property name="version.file" value="version" />
+  <property name="version.number" value="1.0.0" />
+  <property name="version.prop" value="${src}/${version.file}" />
+
+  <path id="project.class.path">
+    <pathelement location="../../lib/yjutil.jar" /> 
+    <pathelement location="../../lib/yjpool.jar" />
+    <pathelement location="../../lib/service.jar" />   	  
+    <pathelement location="../../lib/wofu.base.jar" /> 
+    <pathelement location="../../lib/public.jar" />
+  	<pathelement location="../../lib/servlet-api.jar" />
+  	<pathelement location="../../lib/commons-httpclient-3.1.jar" />
+  	<pathelement location="../../lib/commons-codec-1.7.jar" />
+  </path>
+
+  <target name="cleanup" description="清理临时目录">
+    <delete failonerror="false" includeemptydirs="true">
+      <fileset dir="${ant.tmp}"/>
+    </delete>
+  </target>
+
+  <target name="init" description="建立编译,发布目录">
+    <delete failonerror="false" includeemptydirs="true">
+      <fileset dir="${ant.tmp}"/>
+    </delete>
+    <mkdir dir="${build.classes}"/>
+  </target>
+
+  <target name="javacompile" depends="init" description="编译">
+    <javac classpathref="project.class.path" debug="false" verbose="false" 
+    	deprecation="true" destdir="${build.classes}" nowarn="true" target="1.6">
+      <src path="${src}"/>
+    </javac>
+        
+    <copy todir="${build.classes}">
+      <fileset dir="${src}">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  </target>
+  
+	<target name="package" depends="javacompile" description="打包发布">
+	<jar destfile="${obf.file}" basedir="${build.classes}">
+	</jar>
+	</target>
+  
+  <target name="deploy" depends="package,cleanup" description="完整执行">
+  	<copy todir="X:/Code/Imp/lib" overwrite="true" file="${obf.file}" />
+  	<copy todir="D:/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
+  </target>
+</project>

@@ -1,0 +1,305 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>分销商管理</title>
+		<link rel="stylesheet" href="./css/index.css"/>
+        <link rel="stylesheet" href="./css/zTreeStyle/zTreeStyle.css" type="text/css">
+		<link rel="stylesheet" href="./css/distributorsManage.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.form.js"></script>
+        <script type="text/javascript" src="./js/ztree/jquery.ztree.core-3.2.js"></script>
+        <script type="text/javascript" src="./js/ztree/jquery.ztree.exedit-3.2.js"></script>
+		<script type="text/javascript" src="./js/pageCtrl.js"></script>   <!-- 价格表翻页 -->
+        <script type="text/javascript" src="./js/pageCtrl_extra.js"></script>   <!-- 历史价格表翻页 -->
+		<script type="text/javascript" src="./js/menu.js"></script>
+		<script type="text/javascript" src="./iniDistributorPrice.do"></script>
+		<script type="text/javascript" src="./js/distributorsManage.js"></script>
+	</head>
+	<body>
+        <div id="main">
+			<div class="top_bar">
+				<div class="logo">
+					<img src="./images/print.png" id="systemLogo" /><span id="systemName">E快递电商系统</span>
+				</div>
+				<div class="menu">
+					<span id="mi_off">&nbsp;</span>
+					<div class="active_menu_arrow"></div>
+				</div>
+				<div class="menu_seperate_line"></div>
+				<div class="acount_info">管理员</div>
+			</div>
+			<div id="Content">
+            	<!-- 查询分销商 -->
+				<div id="query_bar">
+					<div class="label">分销商：</div>
+					<input class="text-field" id="txtkeyword" placeholder=""/>
+					<div class="seperater"></div>
+					<div class="button" id="pre_node">上一个</div>
+					<div class="seperater"></div>
+					<div class="button" id="next_node">下一个</div>
+				</div>
+                <!-- 分销商目录树 -->
+                <div id="leftTree">
+                    <ul id="dtree" class="ztree"></ul>
+                    <div id="rMenu" class="display: none;">
+                        <ul>
+                            <li id="m_disable">作废分销商</li>
+                            <li id="m_enable">恢复分销商</li>
+                            <li id="m_refresh">刷新目录树</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 分销商详细信息 -->
+                <div id="rightDetil">
+                	<!-- 分销商基本信息 -->
+                    <div class="info">
+                        <div class="label-title" style="width:150px;float:left;">分销商基本信息:</div>
+                        <div id="infotoolbar" style="padding-top:5px; margin:0px 0px 0px 660px">
+                        	<div id="btn_Save" class="button" type="save">保存</div>  <!-- 按钮类型:add为添加 save为修改 -->
+                            <div class="label"></div>
+                            <div id="btn_Cancel" class="button">取消</div>
+                        </div>
+                        <div class="row">
+                            <div class="label">分销商名称：</div>
+                            <input type="text" class="text-field" id="txtName"/>
+                            <div class="label">联系人：</div>
+                            <input type="text" class="text-field" id="txtLinkMan" style="width:100px"/>
+                            <div class="label">联系电话：</div>
+                            <input type="text" class="text-field" id="txtLinkTele" style="width:130px"/>
+                            <div class="label">手机：</div>
+                            <input type="text" class="text-field" id="txtMobileNo" style="width:130px"/>
+                        </div>
+                        <div class="row">
+                            <div class="label">省：</div>
+                            <input type="text" class="text-field" id="txtState" style="width:100px"/>
+                            <div class="label">市：</div>
+                        	<input type="text" class="text-field" id="txtCity" style="width:100px"/>
+                            <div class="label">区：</div>
+                        	<input type="text" class="text-field" id="txtDistrict" style="width:100px"/>
+                            <div class="label">地址：</div>
+                        	<input type="text" class="text-field" id="txtAddress" style="width:370px"/>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="label">备注：</div>
+                            <textarea rows="3" cols="110" class="text-field" style="width:auto;height:auto;" id="txtMemo"/></textarea>
+                        </div>
+                    </div>
+                    <!-- 分销商价格表 -->
+                    <div class="form">
+                        <div class="label-title" style="width:100px;float:left;">分销价格表:</div>
+                        <!-- 价格表查询条件 -->
+                        <div style="padding-top:5px;">
+                        	<div class="label">每页数：</div><input class="num-field" id="pageSize" value="100" />
+                            <div class="label">商品层级：</div>
+                            <div class="select_wraper select_short">
+                                <div class="select_offset_right"></div>
+                                <div class="select_arrow"></div>
+                                <select class="select_body" id="selectGoodsLevel">
+                                    <option value="-1">请选择层级</option>
+                                    <option value="1">按品牌</option>
+                                    <option value="2">按品类</option>
+                                    <option value="3">按款</option>
+                                    <option value="4">按SKU</option>
+                                </select>
+                            </div>
+                            <div class="label">设置类型：</div>
+                            <div class="select_wraper select_short">
+                                <div class="select_offset_right"></div>
+                                <div class="select_arrow"></div>
+                                <select class="select_body" id="selectSetType">
+                                    <option value="-1">请选择类型</option>
+                                    <option value="0">折扣(%)</option>
+                                    <option value="1">一口价(元)</option>
+                                </select>
+                            </div>
+                            <div class="label">关键字：</div>
+                            <input class="text-field" id="txtGoodsKey" placeholder="" style="width:126px"/>
+                            <div class="button" id="searchPrice" style="margin-left:20px;">查询</div>
+                        </div>
+                        <!-- 价格表 -->
+                        <div id="gridPrice" class="grid">
+                            <table id="Price_list">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:3%"><input type="checkbox" class="checkbox" id="all_check"/></th>
+                                            <!-- <th style="width:10%">客户ID</th>
+                                            <th style="width:15%">上级客户ID</th> -->
+                                            <th style="width:15%">商品层级</th>
+                                            <th style="width:45%">商品关键字</th>
+                                            <th style="width:15%">设置类型</th>
+                                            <th style="width:12%">设置值</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                        <div class="page_num">
+                            <div>
+                                <span>1</span>
+                                <span>..</span>
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                                <span>4</span>
+                                <span>5</span>
+                                <span>6</span>
+                                <span>7</span>
+                                <span>8</span>
+                                <span>9</span>
+                                <span>10</span>
+                                <span>...</span>
+                                <span>0</span>
+                            </div>
+                        </div>
+                        <div class="Price_list_foot">
+                            <div id="formtoolbar" class="foot_wraper_left">
+                                <div class="seperater"></div>
+                                <div class="button" id="btnAdd">增加</div>
+                                <div class="seperater"></div>
+                                <div class="button" id="btnSave">保存</div>
+                                <div class="seperater"></div>
+                                <div class="button_red" id="btnDel">删除</div>
+                                <div class="seperater"></div>
+                                <div class="button_red" id="btnCancel">取消</div>
+                            </div>
+                            <div class="foot_wraper_right">
+                                <div class="button" id="btnHistroy">历史</div>
+                                <div class="seperater"></div>
+                                <div class="button" id="btnUploadPrice">导入</div>
+                                <div class="seperater"></div>
+                                <div class="button" id="btnDownloadDistributors">导出分销商</div>
+                                <div class="seperater"></div>
+                                <div class="button" id="btnDownloadPrice">导出价格</div>
+                                <div class="seperater"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+        <!-- 分销价格历史 -->
+		<div id="PriceHistory_dialog" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body" style="width:860px; height:650px;">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">查看分销价格历史</div>
+				<div class="dlg_content" style="width:97%">
+                    <div style="margin-bottom: 10px; float: left;">
+                        <div class="label">每页数：</div><input class="num-field" id="HistoryPageSize" value="100" />
+                        <div class="label">商品层级：</div>
+                        <div class="select_wraper select_short">
+                            <div class="select_offset_right"></div>
+                            <div class="select_arrow"></div>
+                            <select class="select_body" id="HistorySelectGoodsLevel">
+                                <option value="-1">请选择层级</option>
+                                <option value="1">按品牌</option>
+                                <option value="2">按品类</option>
+                                <option value="3">按款</option>
+                                <option value="4">按SKU</option>
+                            </select>
+                        </div>
+                        <div class="label">设置类型：</div>
+                        <div class="select_wraper select_short">
+                            <div class="select_offset_right"></div>
+                            <div class="select_arrow"></div>
+                            <select class="select_body" id="HistorySelectSetType">
+                                <option value="-1">请选择类型</option>
+                                <option value="0">折扣(%)</option>
+                                <option value="1">一口价(元)</option>
+                            </select>
+                        </div>
+                        <div class="label">关键字：</div>
+                        <input class="text-field" id="HistoryTxtGoodsKey" placeholder="" style="width:126px"/>
+                        <div class="button" id="SearchHistoryPrice" style="margin-left:20px;">查询</div>
+                    </div>
+                    <div class="grid" style="overflow: auto; height: 450px;">
+                        <table id="PriceHistory_List">
+                            <thead>
+                                <tr>
+                                	<!-- <th>客户ID</th>
+                                    <th>上级客户ID</th> -->
+                                    <th>商品层级</th>
+                                    <th>商品关键字</th>
+                                    <th>设置类型</th>
+                                    <th>设置值</th>
+                                    <th>操作人</th>
+                                    <th>操作类型</th>
+                                    <th>操作时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="page_num_detail">
+                        <div>
+                            <span>1</span>
+                            <span>..</span>
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>10</span>
+                            <span>...</span>
+                            <span>0</span>
+                        </div>
+                    </div>
+				</div>
+				<div class="dlg_button_row">
+                	<div class="dlg_button_panel"><div class="button btn_dlgclose">关闭</div></div>
+                </div>
+			</div>
+		</div>
+        <!-- 导入 -->
+		<div id="uploadPrice_dlg" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body" style="width:422px; height:179px;">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">上传导入分销价格</div>
+				<div class="dlg_content">
+					<form id="uploadForm" action="importDistributorPrice.do" method="post" enctype="multipart/form-data">
+					<div class="seperater">&nbsp;</div><input type="file" name="xlsfile" accept="application/vnd.ms-excel" class="file_field" id="file_for_import"/>
+					</form>
+					<div><a href="./分销价格导入模板.xls">导入模板下载</a></div>
+				</div>
+				<div class="dlg_button_row">
+					<div class="dlg_button_panel"><div class="button" id="btnUpload">上传</div></div>
+				</div>
+			</div>
+		</div>
+        <!-- 提示对话框 -->
+		<div id="tips_dlg" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">提示消息</div>
+				<div class="tips"></div>
+				<div class="dlg_button_row">
+					<div class="dlg_button_panel"><div class="button btn_dlgclose">确定</div></div>
+				</div>
+			</div>
+		</div>
+        <!-- 等待对话框 -->
+		<div id="Wait_dlg" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body">
+				<div class="dialog_caption">正在处理请求,请稍候</div>
+				<div class="tips">
+                	<img src="./images/wait.gif" id="imgWait"/>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

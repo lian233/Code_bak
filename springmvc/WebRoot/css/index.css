@@ -1,0 +1,439 @@
+/* 
+    Document   : index
+    Created on : 2015-4-16, 20:41:16
+    Author     : lzy
+    Description:
+        Purpose of the stylesheet follows.
+*/ 
+html,body{
+	margin: 0;
+	width: 100%;
+	font-family: "Microsoft YaHei";
+	font-size: 14px;
+}
+
+.top_bar{
+	width: 100%;
+	height: 50px;
+	background: rgb(50,50,120);
+}
+.main{
+	width: 100%;
+	margin-bottom: 70px;
+	overflow-x: hidden;
+}
+.foot{
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 45px;
+	background: rgb(50,50,120);
+}
+.query_bar{
+	width: 100%;
+	height: 35px;
+	margin-top:10px;
+}
+.logo{
+	float:left;
+	width:200px;
+	height:100%;
+	line-height: 50px;
+	background:orange;
+	color:white;
+	font-weight:800;
+	font-size:20px;
+	text-align: center;
+}
+.logo img{
+	float:left;
+	margin-left:20px;
+	margin-top:10px;
+	height:30px;
+}
+.logo span{
+	float:left;
+	margin-left:10px;
+}
+.menu{
+	position: relative;
+	float:right;
+	height:100%;
+	line-height:50px;
+	color:white;
+}
+.menu span{
+	float:left;
+	margin-left:30px;
+	height:100%;
+	cursor: pointer;
+}
+.active_menu{
+	color:orange;
+}
+.active_menu_arrow{
+	position: absolute;
+	left: 452px;
+	bottom: 0px;
+	width:0px;
+	height:0px;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: none;
+	border-bottom: 8px solid white;
+}
+.sub_menu{
+	width:100%;
+	height:26px;
+	line-height: 26px;
+	color:rgb(50,50,150);
+	background:rgb(150,150,250);
+	display: none;
+}
+.sub_menu span{
+	float:right;
+	margin-right:30px;
+	height:100%;
+	cursor: pointer;
+}
+.select_wraper{
+	position:relative;
+	float:left;
+	margin-left:0px;
+	margin-top:5px;
+	width:150px;
+	height:25px;
+	border-radius:5px;
+	background: white;
+}
+.select_arrow{
+	float:right;
+	width:0px;
+	height:0px;
+	margin-top:11px;
+	border-left:5px solid transparent;
+	border-right:5px solid transparent;
+	border-top:5px solid rgb(50,50,120);
+	border-bottom:none;
+}
+.select_offset_right{
+	float:right;
+	width:6px;
+	height:100%;
+}
+.select_body{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+	padding-left:2px;
+	padding-right:20px;
+	-webkit-appearance:none;
+	border:1px solid rgb(50,50,120);
+	border-radius:5px;
+	background:transparent;
+	color:rgb(50,50,120);
+	font-family: "MicroSoft YaHei";
+}
+.select_short{
+	width:100px;
+}
+.select_small{
+	width:65px;
+}
+.label{
+	float:left;
+	margin-left:10px;
+	margin-top:5px;
+	height:25px;
+	line-height:25px;
+	color:rgb(50,50,120);
+}
+.seperater{
+	float:left;
+	width:20px;
+	height:100%;
+}
+.text-field{
+	float:left;
+	margin-left:0px;
+	margin-top:5px;
+	width:170px;
+	height:22px;
+	border-radius: 5px;
+	border:1px solid rgb(50,50,120);
+}
+.num-field{
+	float:left;
+	margin-left:0px;
+	margin-top:5px;
+	width:30px;
+	height:22px;
+	border-radius: 5px;
+	border:1px solid rgb(50,50,120);
+}
+.button{
+	float:left;
+	width:90px;
+	height:26px;
+	line-height: 26px;
+	margin-top:5px;
+	background: rgb(50,150,250);
+	border-radius: 5px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+}
+.button_red{
+	float:left;
+	width:90px;
+	height:26px;
+	line-height: 26px;
+	margin-top:5px;
+	background: rgb(255,0,0);
+	border-radius: 5px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+}
+.button_green{
+	float:left;
+	width:90px;
+	height:26px;
+	line-height: 26px;
+	margin-top:5px;
+	background: rgb(84,139,84);
+	border-radius: 5px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+}
+.grid{
+	margin-top:10px;
+	width:100%;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #dddddd;
+    width:100%;
+}
+table th{
+    background: #f0f0f0;
+}
+table tr{
+    border:1px solid #dddddd;
+}
+table td, table, th{
+    padding:5px;
+    vertical-align: middle;
+    text-align: left;
+}
+table thead{
+    width:100%;
+    border:1px solid white;
+    background:#f9f9f9;
+}
+table td{
+	font-size:12px;
+}
+.tb_fix_width{
+	width:310px;
+}
+.tb_fix_width_short{
+	width:160px;
+}
+.tb_fix_width_small{
+	width:20px;
+}
+.checkbox{
+	
+}
+.goods_photo{
+	float:left;
+	height:40px;
+	margin-right:10px;
+}
+.page_num{
+	margin-top:20px;
+	width:100%;
+	height:30px;
+	line-height: 30px;
+	color:rgb(50,50,120);
+	text-align: center;
+}
+.page_num div{
+	margin: auto;
+	width:560px;
+	height:100%;
+}
+.page_num span{
+	float:left;
+	margin-left:10px;
+	width: 30px;
+	height: 100%;
+	border:1px solid rgb(150,150,150);
+	box-sizing: border-box;
+	cursor: pointer;
+}
+.foot_wraper{
+	float:right;
+	height:100%;
+	margin-top:5px;
+}
+.dialog{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	display: none;
+}
+.dialog_bg{
+	width:100%;
+	height:100%;
+	opacity: 0.6;
+	background: black;
+}
+.dialog_body{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: auto;
+	height: auto;
+	background: white;
+	border-radius: 10px;
+	border: 1px solid rgb(100,100,100);
+	box-shadow: 0px 0px 10px rgb(80,80,80);
+}
+.dialog_caption{
+	width:97%;
+	height:35px;
+	line-height: 35px;
+	padding-left: 3%;
+	border-bottom: 1px solid rgb(100,100,100);
+}
+.dialog_close{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	/*background: #dddddd;
+	border-radius: 13px;*/
+	cursor: pointer;
+	font-size: 20px;
+	text-align: center;
+}
+.pop_frame{
+	margin-bottom: 5px;
+	width:790px;
+	height:580px;
+	border:none;
+}
+.pop_frame_edit_bill{
+	margin-bottom: 5px;
+	width:1000px;
+	height:600px;
+	border:none;
+}
+.tips{
+	margin: 10px;
+	width:400px;
+	height:auto;
+	min-height: 80px;
+	line-height: 20px;
+	text-align: center;
+}
+.tips_left{
+	margin: 10px;
+	width:500px;
+	height:auto;
+	min-height: 80px;
+	line-height: 20px;
+	text-align: left;
+}
+.acount_info{
+	float:right;
+	width:150px;
+	height:100%;
+	line-height: 50px;
+	color:gray;
+	overflow:hidden;
+}
+.menu_seperate_line{
+	float:right;
+	width: 1px;
+	height: 30px;
+	margin-top:10px;
+	background: gray;
+}
+.dlg_button_row{
+	width: 100%;
+	height: 41px;
+	text-align: center;
+}
+.dlg_button_panel{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 90px;
+	height: 31px;
+}
+.seperate_row{
+	width:100%;
+	height:20px;
+}
+.seperate_row_short{
+	width:100%;
+	height:10px;
+}
+.full_fill{
+	width: 100%;
+	height: 100%;
+}
+.no_border{
+	border: none;
+}
+.select_multi{}
+.select_multi option{
+	height: 20px;
+	line-height: 20px;
+	padding-top: 5px;
+}
+.label_multi_line{
+	line-height:20px;
+	overflow:hidden;
+}
+.goods_content{
+	width:100%;
+	height:auto;
+	min-height:40px;
+}
+.file_field{
+	float:left;
+	width:200px;
+	height:25px;
+}
+.row_icon{
+	width:25px;
+	cursor:pointer;
+}
+.dlg_content{
+	margin: 10px;
+	width:400px;
+	height:auto;
+	min-height: 80px;
+	line-height: 20px;
+	text-align: center;
+}
+.printer{
+	width:1px;
+	height:1px;
+	position: absolute;
+	right:10px;
+	bottom:60px;
+}

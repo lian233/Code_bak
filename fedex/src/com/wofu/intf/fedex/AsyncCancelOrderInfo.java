@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.jws.WebParam;
 import javax.xml.ws.Holder;
+
+import org.example.servicefororder.CancelOrder;
 import org.example.servicefororder.ErrorType;
 import org.example.servicefororder.HeaderRequest;
 import org.example.servicefororder.OrderInfo;
@@ -22,7 +26,7 @@ public class AsyncCancelOrderInfo extends Thread {
 	public void run() {
 		Log.info(jobname, "启动[" + jobname + "]模块");
 
-		do {		
+		do {
 			Connection conn = null;
 			try {
 				conn = PoolHelper.getInstance().getConnection(Params.dbname);	
@@ -51,23 +55,24 @@ public class AsyncCancelOrderInfo extends Thread {
 					Integer serialid = (Integer)ht.get("SerialID");
 					Log.info("sheetid: "+sheetid);
 					//skuCategory 产品分类   这个还没有表数据关联的
-					String sql = "select CustomPurSheetID from outstock0 a where a.sheetid='"+sheetid+"'";
+					String sql = "select CustomPurSheetID as orderCode from outstock0 a where a.sheetid='"+sheetid+"'";
 					boolean isSuccess = false;
 					Vector vtsku=SQLHelper.multiRowSelect(conn, sql);
-					OrderInfo orderInfo = new OrderInfo();
+					CancelOrder cancelorder = new CancelOrder();
 					for (int i=0;i<vtsku.size();i++)
 					{
 						Hashtable htsku=(Hashtable) vtsku.get(i);
-						orderInfo.getMapData(htsku);
+						cancelorder.getMapData(htsku);
+						info.updateOrderStatus(request, cancelorder.getOrderStatus(),2, ask, message, error);
 					}
-					info.createOrder(request, orderInfo, ask, message, orderCode, error, referenceNo);
+					
 					if("1".equals(ask.value)){
 						isSuccess=true;
 						conn.setAutoCommit(false);
 						FedexUtil.bakcUpDownNote(conn,serialid);
 						conn.commit();
 						conn.setAutoCommit(true);
-						Log.info("取消订单成功,订单号: "+orderInfo.getReferenceNo());
+						Log.info("取消订单成功,订单号: "+cancelorder.getOrderCode());
 					}else{
 						isSuccess=false;
 						Log.info("取消订单成功失败: "+message.value);

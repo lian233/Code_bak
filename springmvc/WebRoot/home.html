@@ -1,0 +1,54 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css"/>
+		<link rel="stylesheet" href="./css/home.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+		<script type="text/javascript" src="./js/menu.js"></script>
+		<script type="text/javascript" src="./iniLoginPartData.do"></script>
+		<script type="text/javascript" src="./js/home.js"></script>		
+	</head>
+	<body>
+		<div class="top_bar">
+			<div class="logo"><img src="./images/print.png" id="systemLogo"/><span id="systemName" >E快递电商系统</span></div>
+			<div class="menu">
+				<span id="mi_off">&nbsp;</span>
+				<div class="active_menu_arrow"></div>
+			</div>
+			<div class="menu_seperate_line"></div>
+			<div class="acount_info">11站管理员02</div>
+		</div>
+		<div class="main">
+			<div id="lblAccount" class="query_bar">
+				<div class="label">帐户余额：</div>
+				<div id="account" class="label"></div>
+			</div>
+			<div id="lblUseAccount" class="query_bar">
+				<div class="label">可用余额：</div>
+				<div id="useAccount" class="label"></div>
+			</div>
+			<div id="lblCreditAccount" class="query_bar">
+				<div class="label">信用额度：</div>
+				<div id="creditAccount" class="label"></div>
+			</div>
+			<div class="query_bar">
+				<div class="label">未确认订单：</div>
+				<div id="decCount" class="label"></div>
+			</div>
+			<div class="query_bar">
+				<div class="label">未处理订单：</div>
+				<div id="orderCount" class="label"></div>
+			</div>
+			<div class="query_bar">
+				<div class="label">未出库订单：</div>
+				<div id="checkCount" class="label"></div>
+			</div>
+		</div>
+	</body>
+</html>

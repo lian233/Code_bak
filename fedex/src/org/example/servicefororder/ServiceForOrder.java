@@ -37,6 +37,8 @@ public interface ServiceForOrder {
 			@WebParam(name = "orderCode", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<String> orderCode,
 			@WebParam(name = "error", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<List<ErrorType>> error,
 			@WebParam(name = "referenceNo", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<List<ErrorType>> referenceNo);
+	
+
 
 	/**
 	 * 
@@ -62,7 +64,7 @@ public interface ServiceForOrder {
 	 * 
 	 * @param orderStatus
 	 * @param ask
-	 * @param orderCode
+	 * @param string
 	 * @param message
 	 * @param headerRequest
 	 * @param error
@@ -72,10 +74,10 @@ public interface ServiceForOrder {
 	@ResponseWrapper(localName = "updateOrderStatusResponse", targetNamespace = "http://www.example.org/ServiceForOrder/", className = "org.example.servicefororder.UpdateOrderStatusResponse")
 	public void updateOrderStatus(
 			@WebParam(name = "HeaderRequest", targetNamespace = "") HeaderRequest headerRequest,
-			@WebParam(name = "orderCode", targetNamespace = "", mode = WebParam.Mode.INOUT) Holder<String> orderCode,
+			@WebParam(name = "orderCode", targetNamespace = "", mode = WebParam.Mode.INOUT) String string,
 			@WebParam(name = "orderStatus", targetNamespace = "") int orderStatus,
-			@WebParam(name = "ask", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<List<String>> ask,
-			@WebParam(name = "message", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<List<String>> message,
+			@WebParam(name = "ask", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<String> ask,
+			@WebParam(name = "message", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<String> message,
 			@WebParam(name = "error", targetNamespace = "", mode = WebParam.Mode.OUT) Holder<List<ErrorType>> error);
 
 	/**

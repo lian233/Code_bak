@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>上传文件</title>
+</head>
+<script type="text/javascript" src="js/jquery1.11.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+$(function(){
+$("#upload").click(function(){
+ var datasent = $("#uploadForm").serializeObject();
+ params = JSON.stringify(datasent);
+ alert(params);
+ $("#uploadForm").ajaxSubmit({
+		url : "importDistributeGoods.do",
+		secureuri:false,
+		fileElementId:'file',
+		dataType:'json',
+		success : function(data) {
+			var ss=eval(data);
+			
+			alert(JSON.stringify(ss));
+				if(data.errorCode == 0){   //登录成功
+				alert("上传文件成功");
+				}else{
+				alert("上传文件失败: "+data.msg);
+			}
+			
+		},error:function(data){
+			var ss=eval(data);
+			//alert(data.toString());
+			alert(JSON.stringify(ss));
+			//alert(data.flag);
+		}
+	});
+});
+ 
+ 
+});
+
+</script>
+<body>
+<form id="uploadForm" action="adduser.do" method="post" enctype="multipart/form-data">
+<table>
+<td>
+	<tr>方案名:</tr><tr><input id="file" name="group" type="input" /></tr>
+</td>
+
+<td>
+	<tr>文件名:</tr><tr><input id="name" name="name" type="text" /></tr>
+</td>
+<td>
+	<tr>请选择文件:</tr><tr><input id="file" name="file1" type="file" /></tr>
+</td>
+
+
+
+<td>
+	<td>上传</td><td><input id="upload" type="button" value="上传" /></td>
+</td>
+</table>
+</form>
+</body>
+</html>

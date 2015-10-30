@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> New Document </title>
+<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+  <script>
+	  
+	  function onFlashCall(msg){
+		  setTimeout(function(){
+			  $("#tips").html(msg);
+		  },100);
+	  }
+	  
+	  $(function(){
+		  
+		  $("#load").click(function(){
+			$.ajax({
+				url:"printConfrimDecOrder.do",
+				dataType:"json",
+				type:"post",
+				data:JSON.stringify({LocalCode:"HTKY", Flag:10}),
+				success:function(rsp){
+					if (rsp.errorCode!=0) alert(rsp.msg);
+					else{
+						var tpl = JSON.stringify(rsp.data.printFormat);
+						//alert(tpl);
+						
+						document["printer"].startPrint(rsp.data.session, 10, tpl, "http://wolfdhc.eicp.net:8003/springmvc/getDecOrderPrintInfo.do");
+					}
+				},error:function(xhr, msg){
+					alert(msg);
+				}
+			});
+		  });
+	  });
+  </script>
+ </head>
+
+ <body style="margin: 0; margin-left:2%; width:98%;height:100%;background:#f0f0f0;">
+	 <div id="tips" style="width:100%;height:30px;line-height:30px;">&nbsp;</div>
+	<OBJECT id="printer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" WIDTH="820" HEIGHT="600"> 
+		<PARAM NAME="movie" VALUE="./plugin/ReceiptsPrinter.swf?v=8"> 
+		<PARAM NAME="quality" VALUE="high"> 
+		<PARAM NAME="bgcolor" VALUE="#FFFFFF"> 
+		<EMBED src="./plugin/ReceiptsPrinter.swf?v=8" quality="high" bgcolor="#FFFFFF" WIDTH="820" HEIGHT="600" NAME="printer" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+	</OBJECT>
+	 <button id="load">加载</button>
+	 <button id="go">打印</button>
+ </body>
+</html>

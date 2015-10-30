@@ -1,0 +1,199 @@
+html,body{
+	height:100%;
+	width:100%;
+	margin:0px;
+	padding: 0px;
+	overflow:hidden;
+}
+
+#Content
+{
+	width: 100%;
+    position: absolute;
+    top: 76px;
+    bottom: 0px;
+    left: 0px;
+	background: rgb(245,245,245);
+}
+
+#query_bar{
+	width: 100%;
+	height: 35px;
+	margin-top:10px;
+	margin-bottom:10px;
+	overflow:hidden;
+}
+
+/* 目录树 */
+div#leftTree
+{
+	float:left;
+	width:220px;
+	margin-right: 5px;
+}
+
+ul.ztree
+{
+	border: 1px solid #617775;
+	overflow-y:scroll;
+	overflow-x:auto;
+	/*background: #f0f6e4;*/
+}
+
+
+/* 分销商信息 */
+div#rightDetil
+{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	position:absolute;
+	overflow-y:auto;
+}
+
+#rightDetil .info
+{
+	height:220px;
+	overflow:hidden;
+}
+
+#rightDetil .form
+{
+	margin:0px 5px 0px 0px;
+	overflow:hidden;
+}
+a{text-decoration:blink;}
+
+/* 右键菜单 */
+div#rMenu
+{
+	position:absolute;
+	visibility:visible;
+	top:0px;
+	background-color: #FFB951;
+	text-align: left;
+	padding: 2px;
+}
+div#rMenu ul li{
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: #FFE6B0;
+	border: 0;
+}
+div#rMenu ul{
+	border:0;
+	font-family:inherit;
+	font-size:90%;
+	font-style:inherit;
+	font-weight:inherit;
+	margin:0;
+	outline:0;
+	padding:0;
+	vertical-align:baseline;
+}
+
+
+
+.row{
+	width: 100%;
+	height: 35px;
+	clear: both;
+}
+
+.select_arrow{
+	float:right;
+	width:0px;
+	height:0px;
+	margin-top:11px;
+	border-left:5px solid transparent;
+	border-right:5px solid transparent;
+	border-top:5px solid rgb(50,50,120);
+	border-bottom:none;
+}
+
+.button{
+	float:left;
+	width:90px;
+	height:26px;
+	line-height: 26px;
+	margin-top:5px;
+	background: rgb(50,150,250);
+	border-radius: 5px;
+	text-align: center;
+	color:white;
+	cursor: pointer;
+}
+
+.label-title
+{
+	font-family:"黑体";
+	font-size:18px;
+	margin:10px;
+	line-height:30px;
+	color:rgb(50,50,120);
+	text-shadow:0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 15px #ff00de, 0 0 30px #ff00de;
+}
+
+.grid
+{
+	overflow-y:auto;
+}
+
+.tr_high_light{
+    background: rgb(235,235,255);
+}
+
+.Price_list_foot
+{
+	margin: 15px 5px 0px 0px;
+	width: 100%;
+	height: 45px;
+	background: rgb(50,50,120);
+}
+
+
+.foot_wraper_left{
+	margin-top:5px;
+	position:inherit;
+	float:left;
+	height:100%;
+}
+.foot_wraper_right{
+	margin-top:5px;
+	position:inherit;
+	float:right;
+	height:100%;
+}
+
+.text{
+	margin-top:5px;
+	width:98%;
+	height:22px;
+	/*border-radius: 3px;*/
+	border: none;
+}
+
+.page_num_detail{
+	margin-top:20px;
+	width:100%;
+	height:30px;
+	line-height: 30px;
+	color:rgb(50,50,120);
+	text-align: center;
+}
+.page_num_detail div{
+	margin: auto;
+	width:560px;
+	height:100%;
+}
+.page_num_detail span{
+	float:left;
+	margin-left:10px;
+	width: 30px;
+	height: 100%;
+	border:1px solid rgb(150,150,150);
+	box-sizing: border-box;
+	cursor: pointer;
+}

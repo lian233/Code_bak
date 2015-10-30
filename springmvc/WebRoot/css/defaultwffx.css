@@ -1,0 +1,195 @@
+//摘自网络
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+    background-color: #C1CFE9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebeef2), to(#d9dee2));
+    background-image: -webkit-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -moz-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -ms-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -o-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: linear-gradient(top, #ebeef2, #d9dee2);    
+    background-image: url(../images/login_wfbgfx.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+/*--------------------*/
+
+#loginForm
+{
+	position: absolute;
+	top: 38%;
+	left: 60%;
+	z-index: 1;
+}
+
+#loginForm .form_div{
+    height: 100%;
+    /*width: 100%;*/
+    background-color: rgb(0, 36, 93);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;  
+}
+
+/*--------------------*/
+
+fieldset
+{
+    border: 0;
+    margin: 0;
+}
+
+/*--------------------*/
+
+#inputs{
+    padding: 5% 5% 1%;
+}
+
+#inputs input
+{
+	width: 65%;
+	border: 1px solid #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+	box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 3%;
+	margin-left: 0;
+	padding-top: 6%;
+	padding-right: 0;
+	padding-bottom: 3%;
+	padding-left: 6%;
+}
+
+#username
+{
+    background-position: 5px -2px !important;
+}
+
+#password
+{
+    background-position: 5px -52px !important;
+}
+
+#inputs input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+/*--------------------*/
+#actions
+{
+    margin: 0 0 3% 0;
+}
+
+#loginbtn
+{		
+    background-color: #98002e;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(176, 20, 65)), to(#98002e));
+    background-image: -webkit-linear-gradient(top, rgb(176, 20, 65), #98002e);
+    background-image: -moz-linear-gradient(top, rgb(176, 20, 65), #98002e);
+    background-image: -ms-linear-gradient(top, rgb(176, 20, 65), #98002e);
+    background-image: -o-linear-gradient(top, rgb(176, 20, 65), #98002e);
+    background-image: linear-gradient(top, rgb(176, 20, 65), #498AE4);
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+
+    
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(127, 139, 155);
+
+    float: left;
+    height: 40px;
+    padding: 0;
+    width: 120px;
+    cursor: pointer;
+    font: bold 15px Arial, Helvetica;
+    color: white;
+}
+
+#loginbtn:hover,#loginbtn:focus
+{		
+    border-color: #498AE4;
+}	
+
+#loginbtn:active
+{		
+    outline: none;
+     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#loginbtn::-moz-focus-inner
+{
+  border: none;
+}
+
+#actions a
+{
+    color: #3151A2;    
+    float: right;
+    line-height: 35px;
+    margin-left: 10px;
+}
+
+/*--------------------*/
+
+#back
+{
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 60px;
+    color: #999;
+}
+
+/*--------------------*/
+
+#qr{
+    font-family: "微软雅黑";
+	color: #fff;
+    font-size: 14px;
+	width:380px;
+	background-color:rgba(0,0,0,0.7);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#qr p{
+      margin-top: 8px;
+	  margin-left: 15px;
+      margin-bottom: 0;
+      width: 100%;
+	  
+}
+.s {
+	font-weight: bold;
+}

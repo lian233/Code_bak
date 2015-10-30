@@ -1,0 +1,218 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/index.css"/>
+    <link rel="stylesheet" href="./css/inputSelect.css"/>
+    <link rel="stylesheet" href="./css/goodsManager.css"/>
+    <link rel="stylesheet" href="./css/editBill.css"/>
+    <script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.form.js"></script>
+    <script type="text/javascript" src="./js/inputSelect.js"></script>
+    <script type="text/javascript" src="./js/pageCtrl.js"></script>
+    <script type="text/javascript" src="./js/menu.js"></script>
+    <script type="text/javascript" src="./iniCustomerServiceData.do"></script>
+    <script type="text/javascript" src="./js/problemTracking.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+</head>
+<body>
+<div class="top_bar">
+    <div class="logo"><img src="./images/print.png"  id="systemLogo" /><span  id="systemName">E快递电商系统</span></div>
+    <div class="menu">
+        <span id="mi_off">&nbsp;</span>
+        <div class="active_menu_arrow"></div>
+    </div>
+    <div class="menu_seperate_line"></div>
+    <div class="acount_info"></div>
+</div>
+<div class="main">
+    <div class="query_bar">
+        <div class="label">客户：</div>
+        <div class="select_wraper select_short">
+            <div class="select_offset_right"></div>
+            <div class="select_arrow"></div>
+            <select class="select_body" id="customer">
+                <option value="-1">请选择</option>
+            </select>
+        </div>
+        <div class="label">问题类型：</div>
+        <div class="select_wraper select_short">
+            <div class="select_offset_right"></div>
+            <div class="select_arrow"></div>
+            <select class="select_body" id="selProblem">
+                <option value="-1">请选择</option>
+                <option value="1">快递问题</option>
+                <option value="2">使用问题</option>
+                <option value="3">结算问题</option>
+                <option value="100">其他问题</option>
+            </select>
+        </div>
+        <div class="label">问题：</div>
+        <input class="text-field" id="problem" style="width:120px" placeholder="请输入问题"/>
+        <div class="label">提问人：</div>
+        <input class="text-field" id="quiz" style="width:120px" placeholder="请输入提问人"/>
+        <div class="label">答复人：</div>
+        <input class="text-field" id="reply" style="width:130px" placeholder="请输答复人"/>
+        <div class="label">状态：</div>
+        <div class="select_wraper select_short">
+            <div class="select_offset_right"></div>
+            <div class="select_arrow"></div>
+            <select class="select_body" id="state">
+                <option value="-1">请选择</option>
+                <option value="0">编辑</option>
+                <option value="10">问题已确认</option>
+                <option value="20">问题已解答</option>
+                <option value="100">完结</option>
+                <option value="99">取消</option>
+            </select>
+        </div>
+        <div class="seperater"></div>
+        <div class="button" id="search">查询</div>
+    </div>
+    <div class="grid">
+
+        <table id="Goods_List">
+            <thead>
+            <tr>
+                <th style="width:9.5%">客户</th>
+                <th style="width:9.5%">类型</th>
+                <th style="width:9.5%">问题</th>
+                <th style="width:9.5%">提问人</th>
+                <th style="width:9.5%">提问人电话</th>
+                <th style="width:9.5%">提问人电子邮件</th>
+                <th style="width:9.5%">答复人</th>
+                <th style="width:9.5%">答复内容</th>
+                <th style="width:9.5%">状态</th>
+                <th style="width:9.5%">备注</th>
+                <th style="width:5%">修改</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="page_num">
+        <div>
+            <span>1</span>
+            <span>..</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>...</span>
+            <span>0</span>
+        </div>
+    </div>
+</div>
+<div class="foot">
+
+    <div class="foot_wraper_right">
+        <div class="button" id="up">提交</div>
+        <div class="seperater"></div>
+        <div class="button" id="cancel">取消</div>
+        <div class="seperater"></div>
+        <div class="button" id="over">完结</div>
+        <div class="seperater"></div>
+        <div class="button" id="answer">答复</div>
+        <div class="seperater"></div>
+    </div>
+</div>
+
+
+<div id="upProblem" class="dialog">
+    <div class="dialog_bg"></div>
+    <div class="dialog_body" style="width: 1000px">
+        <div class="dialog_close">×</div>
+        <div class="dialog_caption">提交问题</div>
+        <div>
+            <div class="bill_block" style="margin-top: 10px">
+                  <div class="block_row">
+                    <div class="label_align_right">类型：</div>
+                    <div class="select_wraper select_fix_width">
+                        <div class="select_offset_right"></div>
+                        <div class="select_arrow"></div>
+                        <select class="select_body" id="mode">
+                            <option value="-1" selected="">请选择</option>
+                            <option value="1">快递问题</option>
+                            <option value="2">使用问题</option>
+                            <option value="3">结算问题</option>
+                            <option value="100">其他问题</option>
+                        </select>
+                    </div>
+                    <div class="label_align_right">提问人</div>
+                    <input type="text" class="input_field" id="question">
+                    <div class="label_align_right">提问电话：</div>
+                    <input type="text" class="input_field" id="questionPhone">
+                </div>
+
+                <div class="block_row">
+                    <div class="label_align_right">提问人电子邮箱：</div>
+                    <input type="text" class="input_field" id="questEmail">
+                    <div class="label_align_right">备注：</div>
+                    <input type="text" class="input_field" id="note">
+
+
+                </div>
+                <div style="margin-top: 10px">
+                <textarea name="textarea" id="questContent" cols="45" rows="5" style="margin: 0px; width: 953px; height: 398px; border-left-width: 1px; border-right-width: 1px;" placeholder="这里写您提问的内容"></textarea>
+                </div>
+            </div>
+
+            <div>
+
+
+                <div class="dlg_button_panel"><div class="button" id="qConfirm">确定</div></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="answer_q" class="dialog">
+    <div class="dialog_bg"></div>
+    <div class="dialog_body">
+        <div class="dialog_close">×</div>
+        <div class="dialog_caption">答复问题</div>
+        <div>
+            <form id="uploadForm" action="adduser.do" method="post" enctype="multipart/form-data">
+                <div style="margin-left: auto;margin-right: auto; display: inline-block">
+                <div style="margin-left: 20px; margin-right: 20px;margin-top: 5px;">
+                    <textarea name="textarea" id="answerContent" cols="45" rows="5" style="margin: 0px; width: 900px; height: 400px; border-left-width: 1px; border-right-width: 1px;"  placeholder="这里写您答复的内容"></textarea>
+                </div>
+            </div>
+            </form>
+
+            <div>
+
+
+                <div class="dlg_button_panel"><div class="button" id="aConfirm">确定</div></div>
+            </div>
+        </div>
+       </div>
+</div>
+<!--提示消息-->
+<div id="tips_dlg" class="dialog">
+    <div class="dialog_bg"></div>
+    <div class="dialog_body">
+        <div class="dialog_close">×</div>
+        <div class="dialog_caption">提示消息</div>
+        <div class="tips"></div>
+        <div class="dlg_button_row">
+            <div class="dlg_button_panel"><div class="button dlg_Close_btn">确定</div></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

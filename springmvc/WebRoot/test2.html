@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Test</title>
+</head>
+<script type="text/javascript" src="js/jquery1.11.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+$("#btn").click(function(){
+ var datasent = $("#postForm").serializeObject();
+ params = JSON.stringify(datasent);
+ 
+ //alert(params);
+ //alert(datasent.param);
+
+ $.ajax({
+		type : "POST",
+		url : datasent.doname,
+		//dataType:'json',
+		dataType:'text',
+		contentType:"application/json;charset=UTF-8",
+		data:datasent.param,
+		async : false,
+		success : function(data) {
+			  alert("成功："+data);
+			  /*
+				if(data.errorcode == 0){   //登录成功
+				alert("登录成功");
+				}else{
+				alert("出错："+ data.msg);
+			}*/
+			
+		},error:function(data){
+			  alert("失败："+data);
+			var ss=eval(data);
+			//alert(data.toString());
+			alert(JSON.stringify(ss));
+			//alert(data.flag);
+		}
+	});
+});
+ 
+$("#btnLogin").click(function(){
+ var datasent = $("#loginForm").serializeObject();
+ params = JSON.stringify(datasent);
+// alert(params);
+ $.ajax({
+		type : "POST",
+		url : "login.do",
+		dataType:'json',
+		contentType:"application/json;charset=UTF-8",
+		data:params,
+		async : false,
+		success : function(data) {
+				if(data.errorCode == 0){   //登录成功
+				alert("登录成功");
+				}else{
+				alert(data.msg);
+			}
+			
+		},error:function(data){
+			var ss=eval(data);
+			//alert(data.toString());
+			alert(JSON.stringify(ss));
+			//alert(data.flag);
+		}
+	});
+});
+ 
+});
+
+</script>
+<body>
+<dir>http://127.0.0.1:8003/springmvc/test2.html</div>
+<dir>http://wolfdhc.eicp.net:8003/springmvc/test2.html</div>
+<form id="loginForm" action="login.do" method="post">
+<table>
+<tr>
+	<td>用户名:</td><td><input id="username" name="name" type="text" value="system"  /></td>
+	<td>密码:</td><td width=300><input id="password"  name="password" type="text" value='123'  width=300 /></td>
+	<td></td><td><input id="btnLogin" type="button" value="登录" /></td>
+</tr>
+</table>
+</form>
+
+<form id="postForm" action="login.do" method="post">
+<table>
+<tr>
+	<td>调用名:</td><td><input id="doname" name="doname" type="text" value="qryLogin.do"  /></td>
+	<td>参数:</td><td width=300><input id="param"  name="param" type="text" value='{"cName":"系统","pn":1}'  width=300 /></td>
+	<td></td><td><input id="btn" type="button" value="调用" /></td>
+</tr>
+</table>
+
+<textarea name="test" cols="100" rows="20" id="test" width="700">查角色: qryPart.do {"name":"员"}  或 {}
+登录： login.do {"name":"system","password":"123"}
+初始化数据： iniLoginPartData.do
+查帐号数据： qryLogin.do {"cName":"系统","pn":1} 或{}  
+查帐号对应的角色： qryPartMember.do {"loginID":1}
+修改帐号的角色： modifyPartMember.do {"loginID":1,"PartID":[1,2,3]}
+查客户数据： qryCustomerList.do {"key":"站"}  或{}
+
+保存帐号数据： saveLogin.do  
+{logins:[{"ID":-1,"Name":"Lemon","CName":"梁","CustomerID":0,"Password":"1234","Status":1,"Note":"备注"},{"ID":1,"Name":"sys","CName":"系统","CustomerID":0,"Password":"1234xx","Status":1,"Note":"备注xx"},{"ID":3}]}
+增加：{logins:[{"ID":-1,"Name":"Lemon","CName":"梁","CustomerID":0,"Password":"1234","Status":1,"Note":"备注"}]}
+修改：{{"ID":1,"Name":"sys","CName":"系统","CustomerID":0,"Password":"1234xx","Status":1,"Note":"备注xx"}]}
+删除：{logins:[{"ID":3}]}
+
+
+------------
+iniCustomerDeliveryData.do
+qryCustomerDeliveryNum.do  {"customerName":"站","deliverycode":"汇"}
+{"customerID":0,"deliveryID":2,"qty":101} 
+删除帐号数据 removeLogin.do {"loginID":[3,4,5]}
+
+
+</textarea>
+</form>
+</body>
+</html>

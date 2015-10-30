@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<project basedir="." default="deploy" name="wofu.ecommerce">
+  <property name="jdk.home" value="D:/java/jdk1.6.0_22"/>
+    
+  <property name="build" value="bin"/>
+  <property name="build.file" value="ecommerce" />
+  <property name="ant.tmp" value="${build}/building"/>
+  <property name="preobf.file" value="${build}/${build.file}_PreObf.jar"/>
+  <property name="obf.file" value="${build}/${build.file}.jar"/>
+  <property name="Obfuscate.File" value="E:/java/jdk1.6.0_22/lib/yguard.jar"/>
+
+  <property name="src" value="src"/>
+  <property name="build.classes" value="${ant.tmp}/classes"/>
+  <property name="deploy.home" value="./deploy" />
+
+  <property name="version.file" value="version" />
+  <property name="version.number" value="1.0.1" />
+  <property name="version.prop" value="${src}/${version.file}" />
+
+  <path id="project.class.path">
+    <pathelement location="${build.classes}"/>  
+    <pathelement location="../../lib/yjutil.jar"/>
+    <pathelement location="../../lib/yjpool.jar"/>
+    <pathelement location="../../lib/wofu.base.jar"/>   
+    <pathelement location="../../lib/retail.jar"/>    
+	<pathelement location="../../lib/service.jar"/>
+	<pathelement location="../../lib/servlet-api.jar"/>
+	<pathelement location="../../lib/commons-fileupload-1.2.2.jar"/>
+  	<pathelement location="../../lib/wofu.intf.jar"/>
+  	<pathelement location="../../lib/wofu.right.jar"/>
+  	<pathelement location="../../lib/jxl.jar"/>
+  	<pathelement location="../../lib/json.jar"/>
+  	<pathelement location="../../lib/open-api-sdk-2.0.jar"/>
+  	<pathelement location="../../lib/public.jar"/>
+  	<pathelement location="../../lib/taobao-sdk-java-online_standard-20131023.jar" />    	
+ 	<pathelement location="../../lib/amazon.jar" />
+  	<pathelement location="../../lib/dangdang.jar" />
+  	<pathelement location="../../lib/360buy.jar" />
+  	<pathelement location="../../lib/public.jar" />
+  	<pathelement location="../../lib/vjia.jar" />
+  	<pathelement location="../../lib/json.jar" />
+  	<pathelement location="../../lib/yhd.jar" />
+  	<pathelement location="../../lib/taobao.jar" />
+  	<pathelement location="../../lib/lefeng.jar" />
+  	<pathelement location="../../lib/aoauthpaipai.jar" />
+  	<pathelement location="../../lib/MaWSJavaClientLibrary-1.0.jar" />
+  	<pathelement location="../../lib/MaWSOrdersJavaClientLibrary-1.0.jar" />
+  	<pathelement location="../../lib/commons-fileupload-1.2.2.jar" />
+  	<pathelement location="../../lib/jackson-core-asl-1.8.1.jar" />
+  	<pathelement location="../../lib/jackson-mapper-asl-1.8.1.jar" />
+  	<pathelement location="../../lib/suning.jar" />
+  	<pathelement location="../../lib/bestlogistcs.jar" />
+  	<pathelement location="../../lib/mgj.jar" />
+  	<pathelement location="../../lib/MaWSJavaClientLibrary-1.1.jar" />
+  	<pathelement location="../../lib/MWSClientJavaRuntime-1.0.jar" />
+  	<pathelement location="../../lib/MWSOrders_2013-09-01_v2015-03-05.jar" />
+  </path>
+
+  <target name="cleanup" description="清理临时目录">
+    <delete failonerror="false" includeemptydirs="true">
+      <fileset dir="${ant.tmp}"/>
+    </delete>
+  </target>
+
+  <target name="init" description="建立编译,发布目录">
+    <delete failonerror="false" includeemptydirs="true">
+      <fileset dir="${ant.tmp}"/>
+    </delete>
+    <mkdir dir="${build.classes}"/>
+  </target>
+
+  <target name="javacompile" depends="init" description="编译">
+    <javac bootclasspathref="project.class.path" debug="true" 
+    	deprecation="true" destdir="${build.classes}" nowarn="false" target="1.6">
+      <src path="${src}"/>
+    </javac>
+
+	<!-- 版本号和编译号信息 -->
+    <propertyfile file="${version.prop}" comment="发布版本号">
+  	  <entry key="version.number" value="${version.number}" />
+    </propertyfile>
+	<buildnumber file="${version.prop}" />
+	<copyfile src="${version.prop}" dest="${build.classes}/${version.file}" />
+	
+	<!-- 加入properties文件 -->
+    <copy todir="${build.classes}">
+      <fileset dir="${src}">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="archive" depends="javacompile" description="编译加密版本">
+    <!--jar compress="true" destfile="${preobf.file}" -->
+    <jar compress="true" destfile="${obf.file}">
+      <fileset dir="${build.classes}">
+        <include name="**/*"/>
+      </fileset>
+    </jar>
+    
+   	<!--taskdef name="obfuscate" 
+		classname="com.yworks.yguard.ObfuscatorTask" 
+  		classpath="${Obfuscate.File}"/>
+	<obfuscate mainclass="" logfile="${build}/log.xml"
+		replaceclassnamestrings="true" conservemanifest="true">
+		<inoutpair in="${preobf.file}" out="${obf.file}"/>
+		<property name="error-checking" value="pedantic"/>
+		<expose linenumbertable="true">			
+	    	<class classes="protected" methods="protected" fields="protected">
+				<patternset>
+				  <include name="tinyserver.**.*"/>
+			    </patternset>
+	  			</class>
+		</expose>
+		<adjust replaceContent="true" replacePath="false" replaceName="true">
+		    <include name="**/*.properties"/>
+		</adjust>
+	</obfuscate -->
+  </target>
+
+  <target name="package" depends="archive" description="打包发布文件">
+	<!--
+	加入SWT包及运行dll
+    <mkdir dir="${deploy.home}"/>
+	<zip destfile="${deploy.home}/${build.file}-${version.number}-b${build.number}.zip">
+	  <zipfileset dir="${build}" includes="*.ini" />
+	  <zipfileset dir="${build}" includes="*.properly" />
+	  <zipfileset dir="${build}" includes="*.cmd" />
+	  <zipfileset dir="${build}" includes="${obf.file}" />
+	  <zipfileset dir="${build}" includes="*.exe" />
+	</zip>
+	-->
+  </target>
+  
+  <target name="deploy" depends="package,cleanup" description="完整执行">
+  	<copy todir="X:/Code/Imp/lib" overwrite="true" file="${obf.file}" />
+  	<copy todir="X:/Code/Imp/View/wofu.99fashion/WebRoot/WEB-INF/lib" overwrite="true" file="${obf.file}" />
+  	<copy todir="X:/Code/Imp/Back/extjs/WebRoot/WEB-INF/lib" overwrite="true" file="${obf.file}" />
+  	<copy todir="D:/ecommerce/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
+  </target>
+</project>

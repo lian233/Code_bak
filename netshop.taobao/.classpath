@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjutil.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjpool.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/service.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/member.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/wofu.base.jar" sourcepath="X:/Code/Imp/Back"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-examples-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-excelant-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/json.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/ecommerce.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_22"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/public.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-rt.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-extra.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-extra-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/taobao-sdk-java-auto_1427433235701-20150327.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

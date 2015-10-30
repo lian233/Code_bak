@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.LoginMapper">
+
+	<!--mybatis ehcache缓存配置 -->
+	<!--
+		以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache
+		type="org.mybatis.caches.ehcache.LoggingEhcache" />
+	-->
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+	<!-- 以下与实体类的中字段一致    关联字段也一起查出来   这里只保持实体跟sql语句的一致，没有跟数据库字段保存一致-->
+
+	<!-- 用户的映射    没有角色信息-->
+	<resultMap type="Login" id="loginMap">
+		<id column="ID" property="id" />
+		<result column="Name" property="name" />
+		<result column="CName" property="cName" />
+		<result column="CustomerID" property="customerID" />
+		<result column="Password" property="password" />
+		<result column="IP" property="ip" />
+		<result column="Status" property="status" />
+		<result column="Note" property="note" />
+	</resultMap>
+
+	<!-- 用户的映射    有角色信息-->
+	<resultMap type="Login" id="loginPartMap" extends="loginMap">
+		<!-- ofType  指明集合的类型为Group类对象 -->
+		<collection property="part" ofType="Part">
+			<id column="ID" property="id" />
+			<result column="Name" property="name" />
+			<result column="Status" property="status" />
+			<result column="Note" property="note" />
+		</collection>
+	</resultMap>
+
+
+
+
+	<!-- 返回的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultcallMap">
+		<result column="name" property="name" />
+		<result column="cname" property="cName" />
+	</resultMap>
+
+	<!-- 返回的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultqryLoginMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="CName" property="CName" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="CustomerName" property="CustomerName" />
+		<result column="Password" property="Password" />
+		<result column="Status" property="Status" />
+		<result column="Note" property="Note" />
+	</resultMap>
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		id,
+		rtrim(Name) Name,
+		cName,
+		CustomerID,
+		password,
+		IP,
+		Status,
+		Note
+	</sql>
+	
+	<sql id="pageSelect">
+	row_number() over(order by id) as page,
+	<include refid="selectId"/>
+	</sql>
+	
+
+	<!--resultType="Account" 每返回一条结果封装到List中里      like中取变量属性要用‘$’,而不用#-->
+	<select id="queryAll" resultMap="loginMap" parameterType="com.wofu.fenxiao.domain.Login">
+		select
+		<include refid="selectId" />
+		from login
+		<where>
+			<if test="name != null and name != ''">
+				Name like '%${name}%'
+			</if>
+		</where>
+	</select>
+
+	<select id="isExist" resultType="com.wofu.fenxiao.domain.Login" parameterType="String">
+		select
+		<include refid="selectId" />
+		from login
+		where Name = #{accountName}
+	</select>
+
+	<!--resultType="Account" 每返回一条结果封装到Account里 -->
+	<select id="query" resultType="com.wofu.fenxiao.domain.Login" parameterType="java.util.HashMap">
+		select
+		<include refid="selectId" />
+		from login
+		<where>
+			<if test="t.accountName != null and t.accountName != ''">
+				Name like '%${t.accountName}%'
+			</if>
+		</where>
+	</select>
+
+	<select id="queryNoMatch" resultType="com.wofu.fenxiao.domain.Login" parameterType="java.util.HashMap">
+		select
+		a.id,
+		a.accountName,
+		a.password,
+		a.accountType,
+		a.description,
+		a.state,
+		a.createTime,
+		(SELECT dp.name from department dp where dp.id =
+		d.subdep_id) depName
+		from login a LEFT JOIN dep_account d on
+		a.id=d.account_id
+		<where>
+			<if test="t.accountName != null and t.accountName != ''">
+				accountName like '%${t.accountName}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 增加用户 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.Login">
+		insert into login (
+		id,
+		name,
+		CName,
+		CustomerID,
+		Password,
+		IP,
+		Status,
+		Note )
+		values (#{id},
+		#{name}, #{cName},
+		#{customerID},
+		#{password},
+		#{ip},
+		#{status},
+		#{note}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from login where
+		id=#{id}
+	</delete>
+
+	<select id="getById" parameterType="int" resultType="com.wofu.fenxiao.domain.Login">
+		select
+		<include refid="selectId" />
+		from login where id=#{id}
+	</select>
+
+	<update id="update" parameterType="com.wofu.fenxiao.domain.Login">
+		update Login
+		<set>
+			<if test="name != null and name != ''">
+				Name=#{name},
+			</if>
+			<if test="cName != null and cName != ''">
+				CName=#{cName},
+			</if>
+			<if test="customerID >=0 ">
+				CustomerID=#{customerID},
+			</if>
+			<if test="password != null and password != ''">
+				Password=#{password},
+			</if>
+			<if test="ip != null ">
+				IP=#{ip},
+			</if>			
+			<if test="note != null ">
+				Note=#{note},
+			</if>
+			<if test="status >= 0 ">
+				Status=#{status},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 验证用户登陆   这里的id跟mapping接口的方法名一样-->
+	<select id="countAccount" parameterType="com.wofu.fenxiao.domain.Login" resultType="com.wofu.fenxiao.domain.Login">
+		select
+		<include refid="selectId" /><!-- 引入另外的查询语句 -->
+		from login where
+		accountName=#{accountName} and password=#{password}<!-- #{}表示一个mapping方法参数account实体的属性 -->
+	</select>
+	
+	<!-- 验证用户登陆  这里传两个参数过来    动态sql-->
+	<select id="queryByName" resultType="Login">
+		select
+		<include refid="selectId" /><!-- 引入另外的查询语句 -->
+		from login where
+		<if test="name!=null">
+			name=#{name}
+		</if>
+		<if test="password!=null">
+		and password=#{password}
+		</if>
+	</select>
+
+	<!-- 分页查询帐号列表 -->
+	<select id="qryLoginOnPage" parameterType="java.util.HashMap" resultMap="resultqryLoginMap">
+	<![CDATA[
+	select ID,Name,CName,CustomerID,CustomerName,Password,Status,Note 
+	from (select row_number() over(order by a.ID) as row ,a.ID,a.Name,a.CName,a.CustomerID,b.Name CustomerName,a.Password,a.Status,a.Note
+	 		from Login a , DecCustomer b
+			<where>
+				a.CustomerID = b.ID
+				<if test="customerID != null">
+					and CustomerID like ${customerID}
+				</if>
+				<if test="cName != null and cName != ''">
+					and (a.CName like '%${cName}%' or a.Name like '%${cName}%')
+				</if>
+			</where>) as a
+	<where>
+		1=1
+		<if test="startRow !=null and startRow!=''">
+			and row>=#{startRow}
+		</if>
+		<if test="endRow !=null and endRow!=''">
+			and Row<=#{endRow}
+		</if>
+	</where>
+	]]>
+	</select>
+	
+	
+	<!-- 根据条件查用户数据 qryLogin{customerID,cName}  -->
+	<select id="qryLogin" parameterType="java.util.HashMap" resultMap="resultqryLoginMap">
+		select a.ID,rtrim(a.Name) Name,a.CName,a.CustomerID,rtrim(b.Name) CustomerName,a.Password,a.Status,a.Note
+ 			from Login a , DecCustomer b 
+		<where>
+			a.CustomerID = b.ID
+			<if test="customerID != null">
+				and a.CustomerID = #{customerID}
+			</if>
+			<if test="cName != null and cName != ''">
+				and (a.CName like '%${cName}%' or a.Name like '%${cName}%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据条件查用户数据 qryLogin{customerID,cName}  -->
+	<select id="qryDLogin" parameterType="java.util.HashMap" resultMap="resultqryLoginMap">
+		select a.ID,rtrim(a.Name) Name,a.CName,a.CustomerID,rtrim(b.Name) CustomerName,a.Password,a.Status,a.Note
+ 			from Login a , V_DCustomer b 
+		<where>
+			a.CustomerID = b.CustomerID
+			<if test="customerID != null">
+				and a.CustomerID like ${customerID}
+			</if>
+			<if test="cName != null and cName != ''">
+				and (a.CName like '%${cName}%' or a.Name like '%${cName}%')
+			</if>
+		</where>
+	</select>
+		
+	<!-- 根据条件查用户数据 qryLoginCount{customerID,cName}  -->
+	<select id="qryLoginCount" parameterType="java.util.HashMap" resultType="int">
+		select count(ID)
+ 			from Login 
+		<where>
+			<if test="customerID != null">
+				and CustomerID like ${customerID}
+			</if>
+			<if test="cName != null and cName != ''">
+				and (CName like '%${cName}%' or Name like '%${cName}%')
+			</if>
+		</where>
+	</select>	
+
+	
+	
+	<!-- 根据用户名查出id -->
+	<select id="querySingleAccount" parameterType="String"
+		resultType="com.wofu.fenxiao.domain.Login">
+		select
+		<include refid="selectId" />
+		from login where accountName=#{accountName}
+	</select>
+	
+	<!-- 调用存储过程   output参数-->
+	<select id="test" statementType="CALLABLE">
+	<![CDATA[
+	{call test (#{name,mode=IN,jdbcType=VARCHAR},#{back,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>
+	
+	<!-- 调用存储过程   有return返回值     C为retrun的值-->
+	<select id="testhasReturn" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=VARCHAR}=call test(#{name,mode=IN,jdbcType=VARCHAR},#{back,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>
+
+	<!-- 调用存储过程   有return返回值     C为retrun的值-->
+	<select id="tlGetNewSerial" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_GetNewSerial(#{SerialID,mode=IN,jdbcType=INTEGER},#{Value,mode=OUT,jdbcType=INTEGER},#{dDate,mode=OUT,jdbcType=DATE})}
+	]]>
+	</select>
+
+	<!-- 取新单据号-->
+	<select id="tlGetNewDecSheetID" statementType="CALLABLE">
+	<![CDATA[
+	{#{err,mode=OUT,jdbcType=INTEGER}=call TL_GetNewDecSheetID(
+		#{SheetType,mode=IN,jdbcType=INTEGER},
+		#{SheetID,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>
+	
+	
+	<!-- 取客户配置-->	
+	<select id="tlGetCustomerConfig" parameterType="String" resultType="String">
+		select dbo.TL_GetCustomerConfig('${Name}' , '${DefaultValue}', ${CustomerID},${SubSystemID})		
+	</select>
+	
+	<!-- 设置客户配置-->
+	<select id="tlSetCustomerConfig" statementType="CALLABLE">
+	<![CDATA[
+	{#{err,mode=OUT,jdbcType=INTEGER}=call TL_SetCustomerConfig(
+		#{Name,mode=IN,jdbcType=VARCHAR},
+		#{SetValue,mode=IN,jdbcType=VARCHAR},
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{SubSystemID,mode=IN,jdbcType=INTEGER}
+		)}
+	]]>
+	</select>
+	
+		
+	<!-- 返回一个hashmap -->
+	<select id="returnHashMap" parameterType="java.util.HashMap" resultMap="resultcallMap">
+	select name,cname from login where name like '%test%' 
+	</select>
+	<!-- 把用户加入指定的角色中 -->
+	<insert id="saveRelativity" parameterType="PartMember">
+	insert into partmember(
+	LoginID,
+	PartID)
+	values(
+	#{login.id},<!-- 这里直接取属性的属性用"." -->
+	#{part.id}
+	)
+	</insert>
+	
+</mapper>

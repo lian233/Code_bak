@@ -1,0 +1,179 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css"/>
+		<link rel="stylesheet" href="./css/privilege.css"/>
+		<link rel="stylesheet" href="./css/inputSelect.css"/>
+		<script type="text/javascript" src="./js/jquery1.11.1.min.js"></script>
+		<script type="text/javascript" src="./js/inputSelect.js"></script>
+		<script type="text/javascript" src="./js/pageCtrl.js"></script>
+		<script type="text/javascript" src="./iniLoginPartData.do"></script>
+		<script type="text/javascript" src="./js/privilege.js"></script>
+	</head>
+	<body>
+		<div class="top_bar">
+			<div class="logo"><img src="./images/print.png"/><span>E快递电商系统</span></div>
+			<div class="menu">
+				<span id="mi_0">首页</span>
+				<span id="mi_1">打印发货</span>
+				<span id="mi_2">设置打印模板</span>
+				<span id="mi_3" class="active_menu">权限管理</span>
+				<span id="mi_4">注销</span>
+				<span>&nbsp;</span>
+				<div class="active_menu_arrow active_menu_arrow_priv"></div>
+			</div>
+			<div class="menu_seperate_line"></div>
+			<div class="acount_info">11站管理员02</div>
+		</div>
+		<div class="this_main">
+			<div class="query_bar">
+				<div class="seperater"></div>
+				<div class="label">客户：</div>
+				<div class="input_select_wraper">
+					<div class="input_select_down_btn">
+						<div class="input_select_down_arrow"></div>
+					</div>
+					<div class="input_select_text_wraper">
+						<input type="text" class="input_select_text_field" id="customers"/>
+					</div>
+					<div class="input_select_list_wraper"></div>
+				</div>
+				<div class="seperater"></div>
+				<div class="label">名字：</div>
+				<input class="text-field" id="customer_name" placeholder="请输入帐号名字"/>
+				<div class="seperater"></div>
+				<div class="button" id="search">查询</div>
+			</div>
+			<div class="grid">
+				<table id="account_list">
+					<thead>
+					<tr>
+						<th><input type="checkbox" id="all_check"/></th>
+						<th>帐号</th>
+						<th>中文名</th>
+						<!--th>密码</th-->
+						<th>状态</th>
+						<th>客户</th>
+						<th>备注</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><input type="checkbox"/></td>
+						<td><input type="text" class="text" placeholder="请输入账号"></td>
+						<td><input type="text" class="text" placeholder="请输入中文名"></td>
+						<!--td><input type="text" class="text" placeholder="请输入密码"></td-->
+						<td class="tb_fix_width_short">
+							<div class="select_wraper remove_left_margin">
+								<div class="select_offset_right"></div>
+								<div class="select_arrow"></div>
+								<select class="select_body">
+									<option value="0">停用</option>
+									<option value="1">正常</option>
+								</select>
+							</div>
+						</td>
+						<td class="tb_fix_width_short">
+							<div class="input_select_wraper remove_left_margin">
+								<div class="input_select_down_btn">
+									<div class="input_select_down_arrow"></div>
+								</div>
+								<div class="input_select_text_wraper">
+									<input type="text" class="input_select_text_field"/>
+								</div>
+								<div class="input_select_list_wraper"></div>
+							</div>
+						</td>
+						<td class="tb_fix_width"><input type="text" class="text" placeholder="请输入备注"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<!--td>&nbsp;</td-->
+						<td>&nbsp;</td>
+						<td>
+							<div class="button float_right" id="btn_add">增加</div>
+						</td>
+						<td class="tb_fix_width">
+							<div class="button_red" id="btn_remove">删除</div>
+							<div class="seperater">&nbsp;</div>
+							<div class="button" id="btn_save">保存</div>
+							<div class="seperater">&nbsp;</div>
+							<div class="button" id="btn_cancel">取消</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="page_num">
+				<div>
+					<span>1</span>
+					<span>..</span>
+					<span>1</span>
+					<span>2</span>
+					<span>3</span>
+					<span>4</span>
+					<span>5</span>
+					<span>6</span>
+					<span>7</span>
+					<span>8</span>
+					<span>9</span>
+					<span>10</span>
+					<span>...</span>
+					<span>0</span>
+				</div>
+			</div>
+		</div>
+		<div class="tab_row">
+			<div class="tab_off"></div>
+			<div class="tab">权限分配</div>
+			<div class="tab_line"></div>
+		</div>
+		<div class="seperate_row"></div>
+		<div class="align_center_row">
+			<div class="role_panel_title">
+				<div class="role_title">未有角色：</div>
+				<div class="button_panel"></div>
+				<div class="role_title">已有角色：</div>
+			</div>
+			<div class="role_panel">
+				<div class="list_container">
+					<select id="list1" multiple="multiple" class="select_multi full_fill no_border">
+					</select>
+				</div>
+				<div class="button_panel">
+					<div class="v_off"></div>
+					<div class="button remove_float"  id="btn_move_right">添加</div>
+					<div class="seperate_row"></div>
+					<div class="button_red remove_float" id="btn_move_left">删除</div>
+					<div class="seperate_row"></div>
+					<div class="button remove_float" id="btn_save_role">保存</div>
+				</div>
+				<div class="list_container">
+					<select id="list2" multiple="multiple" class="select_multi full_fill no_border">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="seperate_row"></div>
+		<div class="seperate_row"></div>
+		<div id="tips_dlg" class="dialog">
+			<div class="dialog_bg"></div>
+			<div class="dialog_body">
+				<div class="dialog_close">×</div>
+				<div class="dialog_caption">提示消息</div>
+				<div class="tips"></div>
+				<div class="dlg_button_row">
+					<div class="dlg_button_panel"><div class="button" id="dlg_btn">确定</div></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

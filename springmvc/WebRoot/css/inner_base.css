@@ -1,0 +1,701 @@
+/* 
+    Document   : inner_base
+    Created on : 2015-4-19, 2:51:25
+    Author     : zxw
+    Description:
+        Purpose of the stylesheet follows.
+*/
+﻿* {
+    vertical-align: baseline;
+    font-size: 14px;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+ul,li,a
+{
+    list-style: none;
+    text-decoration: none;
+}
+body{margin:0px;margin-left:20px;margin-right:20px;font-size:12px;font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;}
+.title_bar{width:100%;height:35px;border-bottom:1px solid #dddddd;}
+.seperate_row{width:100%;height:15px;line-height:15px;}
+.tips{width:100%;height:100%;background:#E5F5FF;border:1px solid #40B3FF;color:#40B3FF;text-align:left;}
+.red_tips{width:100%;height:100%;background:#FFE5F5;border:1px solid #FF40B3;color:#FF40B3;text-align:left;}
+.green_tips{width:100%;height:100%;background:#d9f7e6;border:1px solid green;color:green;text-align:left;}
+.clearfix:after {content:"\200B"; display:block; height:0; clear:both; }
+.clearfix { *zoom:1; }
+
+.title_bar_logo
+{
+    float:left;
+    width:18px;
+    height:18px;
+    margin-top:8px;
+}
+
+#bread_crumb
+{
+    float:left;
+    width:400px;
+    height:100%;
+    line-height:35px;
+}
+
+#message_wraper
+{
+    width:100%;
+    height:40px;
+    line-height:40px;
+    margin: 10px 0px;
+}
+
+.form_out
+{
+    width:100%;
+    height:38px;
+    border-bottom:1px solid #dddddd;
+}
+.form_in
+{
+    width:100%;
+    height:37px;
+    background:#f9f9f9;
+}
+
+.form_block{
+    float:left;
+    width:20px;
+    height:100%;
+}
+
+.form_info
+{
+    float:left;
+    width:70px;
+    height:100%;
+    line-height: 37px;
+
+}
+
+.form_top_input
+{
+    float:left;
+    width:120px;
+    color:gray;
+    border:1px solid #dddddd;
+    text-indent: 4px;
+    line-height: 25px;
+    height:25px;
+    margin-top: 6px;
+}
+.little_short_input
+{
+    float:left;
+    width:45px;
+    color:gray;
+    border:1px solid #dddddd;
+    text-indent: 4px;
+    line-height: 30px;
+    height:30px;
+}
+
+.short_input
+{
+    float:left;
+    width:195px;
+    color:gray;
+    border:1px solid #dddddd;
+    text-indent: 4px;
+    line-height: 30px;
+    height:30px;
+}
+.normal_input
+{
+    float:left;
+    width:250px;
+    color:gray;
+    border:1px solid #dddddd;
+    text-indent: 4px;
+    line-height: 30px;
+    height:30px;
+}
+
+.long_input
+{
+    float:left;
+    width:300px;
+    color:gray;
+    border:1px solid #dddddd;
+    text-indent: 4px;
+    line-height: 30px;
+    height:30px;
+}
+
+.select
+{
+    float:left;
+    margin-top:6px;
+    width:200px;
+    height:25px;
+    color:gray;
+    border:1px solid #dddddd;
+}
+
+.normal_select
+{
+    float:left;
+    width:250px;
+    height:30px;
+    color:gray;
+    border:1px solid #dddddd;
+}
+.form_button
+{
+    float:left;
+    width:120px;
+    color:#ffffff;
+    cursor:pointer;
+    padding:1px;
+    background: #ffffff;
+    border:1px solid #cccccc;
+    margin:0px 10px;
+    margin-top: 6px;
+    text-align: center;
+}
+.form_button:hover
+{
+}
+
+.form_button>span
+{
+    display: block;
+    background: #cccccc;
+    padding:4px;
+}
+
+
+
+.gray_button
+{
+    margin:0px 10px;
+    float:left;
+    margin-top:6px;
+    width:120px;
+    color:#ffffff;
+    cursor:pointer;
+    padding:1px;
+    background: #ffffff;
+    border:1px solid #CCCCCC;
+    text-align: center;
+}
+.gray_button:hover
+{
+}
+
+.gray_button>span
+{
+    display: block;
+    background: #cccccc;
+    padding:4px;
+}
+
+.yellow_button
+{
+    margin:0px 10px;
+    float:left;
+    margin-top:6px;
+    width:120px;
+    color:#ffffff;
+    cursor:pointer;
+    padding:1px;
+    background: #ffffff;
+    border:1px solid #FF7400;
+    text-align: center;
+}
+.yellow_button:hover
+{
+    border:1px solid #E66800;
+}
+
+.yellow_button:hover>span
+{
+    background: #E66800;
+}
+
+.yellow_button>span
+{
+    display: block;
+    background: #FF7400;
+    padding:4px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #dddddd;
+    width:100%;
+}
+
+table th
+{
+    background: #f6f6f6;
+}
+table tr
+{
+    border:1px solid #dddddd;
+}
+table td, table, th {
+    padding:10px;
+    vertical-align: middle;
+    text-align: center;
+}
+table thead
+{
+    width:100%;
+    border:1px solid white;
+    background:#f9f9f9;
+}
+.blue
+{
+    color:#40B3FF;
+}
+
+i{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-top: 1px;
+    line-height: 14px;
+    vertical-align: text-top;
+}
+i.phone
+{
+    background: url("../images/phone.png") no-repeat left top;
+}
+i.pc
+{
+    background: url("../images/pc.png") no-repeat left top;
+}
+
+#page_wraper
+{
+    padding:20px;
+    text-align: center;
+
+}
+
+#page_wraper>a{
+    display: inline-block;
+    height:30px;
+    line-height: 30px;
+    padding:0px 10px;
+    margin:0px 5px;
+    border:1px solid #cccccc;
+    color:#DACAB2;
+}
+
+.table_title
+{
+    position:relative;
+    font-size: 16px;
+    font-weight: bold;
+    height:45px;
+    line-height: 45px;
+    border:1px solid #dddddd;
+    border-bottom: none;
+    background: #f6f6f6;
+    padding-left:10px;
+}
+.movement_wrper
+{
+    position:relative;
+    margin-bottom: 6px;
+    padding:10px 0px;
+}
+
+.last_page,.next_page
+{
+    display: block;
+    position: absolute;
+    top: 5px;
+    width:80px;
+
+}
+
+.last_page
+{
+    right:100px;
+}
+
+.next_page
+{
+    right:5px;
+}
+
+.last_page,.next_page
+{
+    margin:0px 10px;
+    color:#ffffff;
+    cursor:pointer;
+    padding:1px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    background: #ffffff;
+    border:1px solid #cccccc;
+    text-align: center;
+}
+
+.last_page>span,.next_page>span
+{
+    display: block;
+    background: #cccccc;
+    padding: 5px 0px;
+}
+
+.last_page:hover,.next_page:hover
+ {
+     color:#ffffff;
+     background: #ffffff;
+     border:1px solid #BFBFBF;
+ }
+
+.last_page:hover>span,.next_page:hover>span
+{
+    display: block;
+    background: #BFBFBF;
+}
+
+.last_page.unable,.next_page.unable
+{
+    color:#cccccc;
+    background: #ffffff;
+    border:1px solid #e5e5e5;
+}
+
+.last_page.unable>span,.next_page.unable>span
+{
+    display: block;
+    background: #f6f6f6;
+}
+
+
+.last_page strong{
+    padding-right:4px;
+}
+.next_page strong
+{
+    padding-left:4px;
+}
+
+
+#page_wraper>a.active,#page_wraper>a:hover
+{
+    color:#ffffff;
+    background:#cccccc;
+}
+
+a
+{
+    color:#333333;
+}
+
+.line_colum
+{
+    padding:10px 20px;
+}
+
+.line_info
+{
+    display: block;
+    width:150px;
+    float:left;
+    text-align: right;
+    padding-right: 20px;
+    line-height: 30px;
+}
+.must_wri
+{
+    float:left;
+    padding:0px 20px;
+    color:red;
+    line-height: 30px;
+
+}
+
+.info_tips
+{
+    float:left;
+    padding:0px 0px 0px 20px;
+    line-height: 30px;
+    color:gray;
+}
+
+.bar_tips
+{
+    float:left;
+    height:30px;
+    line-height: 30px;
+    padding:0px 10px;
+}
+.wraper
+{
+    position: relative;
+    padding-top:20px;
+}
+
+.top_right
+{
+    position: fixed;
+    right:10px;  
+    top:150px;
+}
+
+.checkbox {
+    display: inline-block;
+    min-height: 20px;
+    height:30px;
+    line-height: 30px;
+    cursor:pointer;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+}
+
+.logo_upload
+{
+    float:left;
+    display: block;
+    width:200px;
+    height:200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 100px;
+    border:3px dashed #dddddd;
+    color:#dddddd;
+    clear: both;
+}
+
+.logo_upload img
+{
+    display: block;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    line-height:200px;
+
+}
+
+.logo_wraper_upload
+{
+    float:left;
+    width:206px;
+}
+
+.img_tips
+{
+    float:left;
+    width:100%;
+    text-align: center;
+    height:35px;
+    line-height: 35px;
+    color: #333333;
+}
+
+.img_line_colum
+{
+    padding:10px 20px;
+}
+
+.long_wraper_upload
+{
+    float:left;
+    max-width: 500px;
+}
+
+.long_upload
+{
+    float:left;
+    display: block;
+    width:400px;
+    min-height:200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 100px;
+    border:3px dashed #dddddd;
+    color:#dddddd;
+    clear: both;
+
+}
+
+.long_upload img
+{
+    display: block;
+    width:100%;
+
+}
+
+
+
+.serial_number
+{
+    display: block;
+    width:60px;
+    color:#5a5a5a;
+    padding:1px;
+    background: #ffffff;
+    border:1px solid #e5e5e5;
+    margin:0 auto;
+    text-align: center;
+
+}
+
+
+.serial_number>span
+{
+    display: block;
+    background: #f6f6f6;
+    padding:2px;
+}
+
+.td_img_wraper
+{
+    display: block;
+    width:80px;
+    height:80px;
+    overflow:hidden;
+    border:1px solid #e5e5e5;
+    padding:2px;
+}
+
+.td_img_wraper img
+{
+    width:100%;
+}
+
+.td_img_wraper_out
+{
+    position:relative;
+    margin:0 auto;
+    width: 86px;
+}
+
+.td_big_img_wraper
+{
+    display: none;
+    position: absolute;
+    right:-270px;
+    top:0px;
+    width:240px;
+    height:240px;
+    overflow:hidden;
+    z-index: 10;
+    padding:2px;
+    border:1px solid #e5e5e5;
+}
+.td_big_img_wraper img
+{
+    width:100%;
+}
+
+.td_img_wraper_out:hover .td_big_img_wraper
+{
+    display: block;
+    cursor: pointer;
+}
+
+.td_img_wraper_span
+{
+    display: block;
+    height:84px;
+    line-height: 84px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #c4d5e0;
+}
+
+.center_bu
+{
+    float:none!important;
+    margin: 0 auto!important;
+}
+
+.marbt_20
+{
+    margin:20px 0px;
+}
+
+.table_button_wraper
+{
+    text-align: center;
+}
+
+.tar_move
+{
+    margin:0px 10px;
+    padding:6px 15px;
+    border: 1px solid #cccccc;
+    background: #f6f6f6;
+}
+.tar_move i
+{
+    display: inline-block;
+    width:18px;
+    height:18px;
+    background-size: 15px;
+}
+
+.tar_move i.shel_add
+{
+    background: url("../images/shelves_add.png") no-repeat center center;
+}
+.tar_move i.shel_edit
+{
+    background: url("../images/shelves_edit.png") no-repeat center center;
+}.tar_move i.shel_delete
+{
+    background: url("../images/shelves_delete.png") no-repeat center center;
+}
+
+ .tar_move:hover
+ {
+     background: #E9E9E9;
+ }
+ .tar_move.first
+ {
+     margin-left:0px;
+ }
+
+ .input_file
+ {
+     display: block;
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin: 0;
+     opacity: 0;
+     -ms-filter: 'alpha(opacity=0)';
+     font-size: 200px;
+     direction: ltr;
+     cursor: pointer;
+ }
+
+ .input_file_wraper
+ {
+     position: relative;
+     overflow: hidden;
+ }
+
+ .select2-container
+ {
+     margin-top: 6px!important;
+ }
+
+ .left_line_info {
+     padding-left: 40px;
+ }

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.RefundSheetMapper">
+
+	<resultMap type="RefundSheet" id="RefundSheetMap">
+		<result column="ID" property="ID" />
+		<result column="SheetID" property="SheetID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="Delivery" property="Delivery" />
+		<result column="DeliverySheetID" property="DeliverySheetID" />
+		<result column="Flag" property="Flag" />
+		<result column="Editor" property="Editor" />
+		<result column="EditTime" property="EditTime" />
+		<result column="Checker" property="Checker" />
+		<result column="CheckTime" property="CheckTime" />
+		<result column="Ender" property="Ender" />
+		<result column="EndTime" property="EndTime" />
+		<result column="TotalQty" property="TotalQty" />
+		<result column="TotalAmount" property="TotalAmount" />
+		<result column="TotalRefundAmount" property="TotalRefundAmount" />
+		<result column="Note" property="Note" />
+	</resultMap>
+
+
+	<!-- 增加退货单 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.RefundSheet">
+		insert into RefundSheet0 (
+			ID,				
+			SheetID,			
+			CustomerID,		
+			Delivery,		
+			DeliverySheetID,	
+			Flag,			
+			Editor,			
+			EditTime,		
+			Checker,			
+			CheckTime,		
+			Ender,			
+			EndTime,			
+			TotalQty,		
+			TotalAmount,		
+			TotalRefundAmount,
+			Note			
+		)
+		values (
+			#{ID},				
+			#{SheetID},		
+			#{CustomerID},		
+			#{Delivery},		
+			#{DeliverySheetID},	
+			#{Flag},			
+			#{Editor},			
+			#{EditTime},		
+			#{Checker},			
+			#{CheckTime},		
+			#{Ender},			
+			#{EndTime},			
+			#{TotalQty},		
+			#{TotalAmount},		
+			#{TotalRefundAmount},
+			#{Note}					
+		)
+	</insert>
+
+	<!-- 删除退货单-->
+	<delete id="delete" parameterType="int">
+		delete from RefundSheet0 where ID=#{ID} 
+	</delete>
+
+	<!-- 修改退货单-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.RefundSheet">
+		update RefundSheet0
+		<set>
+			<if test="Delivery != null ">
+				Delivery=#{Delivery},
+			</if>
+			<if test="DeliverySheetID != null ">
+				DeliverySheetID=#{DeliverySheetID},
+			</if>
+			<if test="Editor != null ">
+				Editor=#{Editor},
+			</if>
+			<if test="EditTime != null ">
+				EditTime=#{EditTime},
+			</if>
+			<if test="Checker != null ">
+				Checker=#{Checker},
+			</if>
+			<if test="CheckTime != null ">
+				CheckTime=#{CheckTime},
+			</if>
+			<if test="Ender != null ">
+				Ender=#{Ender},
+			</if>
+			<if test="EndTime != null ">
+				EndTime=#{EndTime},
+			</if>
+			<if test="TotalQty != null ">
+				TotalQty=#{TotalQty},
+			</if>
+			<if test="TotalAmount != null ">
+				TotalAmount=#{TotalAmount},
+			</if>
+			<if test="TotalRefundAmount != null ">
+				TotalRefundAmount=#{TotalRefundAmount},
+			</if>
+			<if test="Note != null ">
+				Note=#{Note},
+			</if>
+		</set>
+		where ID=#{ID} 
+	</update>
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+			ID,				
+			SheetID,			
+			CustomerID,		
+			Delivery,		
+			DeliverySheetID,	
+			Flag,			
+			Editor,			
+			EditTime,		
+			Checker,			
+			CheckTime,		
+			Ender,			
+			EndTime,			
+			TotalQty,		
+			TotalAmount,		
+			TotalRefundAmount,
+			Note	
+	</sql>
+	
+	<select id="getById" parameterType="int" resultType="com.wofu.fenxiao.domain.RefundSheet">
+		select
+		<include refid="selectId" />
+		from RefundSheet0 where ID=#{ID}
+	</select>
+
+
+	<!-- 查询退货单   -->
+	<select id="queryRefundSheet" parameterType="java.util.HashMap" resultMap="RefundSheetMap">
+			select <include refid="selectId" />
+			from RefundSheet${bak}
+		<where>
+			1=1
+			<if test="customID != null">
+				and CustomerID = #{customID} 
+			</if>			
+			<if test="flag != null">
+				and Flag = #{flag} 
+			</if>			
+			<if test="delivery != null ">
+				and Delivery like '%${delivery}%'
+			</if>
+			<if test="deliverySheetID != null ">
+				and DeliverySheetID like '%${deliverySheetID}%'
+			</if>
+			
+			<if test="begintime != null ">
+				<if test="timeType == 1 ">
+					and EditTime >= '${begintime}'
+				</if>
+				<if test="timeType == 2 ">
+					and CheckTime >= '${begintime}'
+				</if>
+				<if test="timeType == 3 ">
+					and EndTime >= '${begintime}'
+				</if>
+			</if>
+			<if test="endtime != null ">
+				<if test="timeType == 1 ">
+					and EditTime &lt;= '${endtime}'
+				</if>
+				<if test="timeType == 2 ">
+					and CheckTime &lt;= '${endtime}'
+				</if>
+				<if test="timeType == 3 ">
+					and EndTime &lt;= '${endtime}'
+				</if>
+			</if>
+		</where>		
+	</select>		
+	
+	
+		
+</mapper>

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DecShopMapper">
+
+	<resultMap type="DecShop" id="decShopMap">
+		<id column="ID" property="id" />
+		<result column="Name" property="name" />
+		<result column="CustomerID" property="customerID" />
+		<result column="ChannelID" property="channelID" />
+		<result column="Code" property="code" />
+		<result column="NetAddr" property="netAddr" />
+		<result column="Tele" property="tele" />
+		<result column="LinkMan" property="linkMan" />
+		<result column="CanMerge" property="canMerge" />
+		<result column="CanSeparate" property="canSeparate" />
+		<result column="SynFlag" property="synFlag" />
+		<result column="Nick" property="nick" />
+		<result column="AppKey" property="appKey" />
+		<result column="Session" property="session" />
+		<result column="Token" property="token" />
+		<result column="IsGetOrder" property="isGetOrder" />
+		<result column="GetOrderSpan" property="getOrderSpan" />
+		<result column="LastOrderTime" property="lastOrderTime" />
+		<result column="LastRefundTime" property="lastRefundTime" />
+		<result column="LastRefundTime" property="lastRefundTime" />
+		<result column="lasttokenTime" property="lastTokenTime" />
+		<result column="Status" property="status" />
+		<result column="Note" property="note" />
+		<result column="user_id" property="user_id" />
+	</resultMap>
+
+	<!-- 店铺的映射    有客户和渠道信息-->
+	<resultMap type="java.util.HashMap" id="decShopExMap" extends="decShopMap">
+		<result column="CustomerName" property="CustomerName" />
+		<result column="ChannelName" property="ChannelName" />
+	</resultMap>
+
+	<!-- 商品资料的映射    -->
+	<resultMap type="java.util.HashMap" id="decItemMap" >
+		<result column="sku_id" property="sku_id" />
+		<result column="ShopID" property="ShopID" />
+		<result column="ShopName" property="ShopName" />
+		<result column="OuterSkuID" property="OuterSkuID" />
+		<result column="CustomBC" property="CustomBC" />
+		<result column="Title" property="Title" />
+		<result column="Name" property="Name" />
+		<result column="props_name" property="props_name" />
+		<result column="Vender" property="Vender" />
+		<result column="BasePrice" property="BasePrice" />
+		<result column="Cost" property="Cost" />
+		<result column="price" property="price" />
+		<result column="Note" property="Note" />
+		<result column="pic_url" property="pic_url" />
+	</resultMap>
+	
+	
+
+	<!-- 返回渠道列表的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultChannelListMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="Code" property="Code" />
+		<result column="AppUrl" property="AppUrl" />
+	</resultMap>
+
+	<!-- 返回店铺列表的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="resultqryShopListMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="Code" property="Code" />
+		<result column="LinkMan" property="LinkMan" />
+		<result column="Tele" property="Tele" />
+	</resultMap>
+	
+	<!-- channel映射 -->
+	<resultMap type="Channel" id="channel">
+	<id column="ID" property="id"/>
+	<result column="Name" property="name"/>
+	<result column="Code" property="code"/>
+	<result column="Status" property="status"/>
+	<result column="url" property="url"/>
+	<result column="Note" property="note"/>
+	</resultMap>
+
+	<!-- 增加店铺 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DecShop">
+		insert into DecShop (
+		ID,
+		Name,
+		CustomerID,
+		ChannelID,
+		Code,
+		NetAddr,
+		Tele,
+		LinkMan,
+		CanMerge,
+		CanSeparate,
+		SynFlag,
+		Nick,
+		AppKey,
+		Session,
+		Token,
+		IsGetOrder,
+		GetOrderSpan,
+		LastOrderTime,
+		Status,
+		isNeedDelivery,
+		isUpdateStock,
+		isgenCustomerRet,
+		Note
+		)
+		values (#{id},
+		#{name},
+		#{customerID},
+		#{channelID},
+		#{code},
+		#{netAddr},
+		#{tele},
+		#{linkMan},
+		#{canMerge},
+		#{canSeparate},
+		#{synFlag},
+		#{nick},
+		#{appKey},
+		#{session},
+		#{token},
+		#{isGetOrder},
+		#{getOrderSpan},
+		#{LastOrderTime},
+		#{status},
+		#{isNeedDelivery},
+		#{isUpdateStock},
+		#{isgenCustomerRet},
+		#{note}
+		)
+	</insert>
+
+	<!-- 删除店铺-->
+	<delete id="delete" parameterType="int">
+		delete from DecShop where
+		ID=#{id}
+	</delete>
+
+	<!-- 修改店铺-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DecShop">
+		update DecShop
+		<set>
+			<if test="name != null and name != ''">
+				Name=#{name},
+			</if>
+			<if test="code != null and code != ''">
+				Code=#{code},
+			</if>
+			<if test="customerID >= 0 ">
+				CustomerID=#{customerID},
+			</if>
+			<if test="channelID >0 ">
+				ChannelID=#{channelID},
+			</if>
+			<if test="netAddr != null ">
+				NetAddr=#{netAddr},
+			</if>					
+			<if test="tele != null ">
+				Tele=#{tele},
+			</if>					
+			<if test="linkMan != null ">
+				LinkMan=#{linkMan},
+			</if>					
+			<if test="canMerge >=0 ">
+				CanMerge=#{canMerge},
+			</if>
+			<if test="canSeparate >=0 ">
+				CanSeparate=#{canSeparate},
+			</if>
+			<if test="synFlag >=0 ">
+				SynFlag=#{synFlag},
+			</if>
+			<if test="nick != null ">
+				Nick=#{nick},
+			</if>
+			<if test="appKey != null ">
+				AppKey=#{appKey},
+			</if>
+			<if test="session != null ">
+				Session=#{session},
+			</if>
+			<if test="token != null ">
+				Token=#{token},
+			</if>
+			<if test="isGetOrder >=0 ">
+				IsGetOrder=#{isGetOrder},
+			</if>
+			<if test="getOrderSpan >=0 ">
+				GetOrderSpan=#{getOrderSpan},
+			</if>
+			<if test="note != null ">
+				Note=#{note},
+			</if>					
+			<if test="status >=0 ">
+				Status=#{status},
+			</if>
+			<if test="LastOrderTime!=null ">
+				LastOrderTime=#{LastOrderTime},
+			</if>
+			<if test="isNeedDelivery>=0 ">
+				isNeedDelivery=#{isNeedDelivery},
+			</if>
+			<if test="isUpdateStock>=0 ">
+				isUpdateStock=#{isUpdateStock},
+			</if>
+			<if test="isgenCustomerRet>=0 ">
+				isgenCustomerRet=#{isgenCustomerRet},
+			</if>
+		</set>
+		where ID=#{id}
+	</update>
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		ID,
+		rtrim(Name) Name,
+		CustomerID,
+		ChannelID,
+		rtrim(Code) Code,
+		NetAddr,
+		Tele,
+		LinkMan,
+		CanMerge,
+		CanSeparate,
+		SynFlag,
+		Nick,
+		AppKey,
+		Session,
+		Token,
+		IsGetOrder,
+		GetOrderSpan,
+		Status,
+		Note,
+		user_id,
+		Lastordertime,
+		isNeedDelivery,
+		isUpdateStock,
+		isgenCustomerRet
+	</sql>
+	<!-- 根据主键查询 -->
+	<select id="getById" parameterType="java.lang.Integer" resultType="DecShop">
+	select <include refid="selectId"/> from decshop 
+	 where id=#{id}
+	</select>
+
+
+	<!-- 取得渠道列表   -->
+	<select id="qryChannelList" parameterType="java.util.HashMap"
+		resultMap="resultChannelListMap">
+		select ID,rtrim(Name) Name,rtrim(Code) Code , AppUrl
+		from Channel
+		<where>
+			Status=1
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 取得店铺列表   -->
+	<select id="qryShopList" parameterType="java.util.HashMap" resultMap="resultqryShopListMap">
+		select ID,rtrim(Name) Name,rtrim(Code) Code ,Tele,LinkMan
+		from DecShop
+		<where>
+			Status=1
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+			<if test="customerID >0 ">
+				and CustomerID = #{customerID}
+			</if>
+		</where>		
+	</select>		
+
+
+	
+	<!-- 查询店铺资料  { customerID,Name}  -->
+	<select id="qryShop" parameterType="java.util.HashMap" resultMap="decShopExMap">
+		select a.ID, rtrim(a.Name) Name, a.CustomerID, ChannelID, rtrim(a.Code) Code, NetAddr,a.Tele,a.LinkMan, CanMerge, CanSeparate, SynFlag, Nick, AppKey, Session, 
+			Token, IsGetOrder, GetOrderSpan, a.Status, a.Note ,a.lastordertime,a.lasttokenTime,rtrim(b.Name) CustomerName , rtrim(c.Name) ChannelName, 
+		a.isNeedDelivery,a.isUpdateStock,a.isgenCustomerRet from DecShop a, DecCustomer b , Channel c 
+		<where>
+			a.CustomerID = b.ID and a.ChannelID = c.ID
+			<if test="customerID != null">
+				and a.CustomerID = #{customerID}
+			</if>
+			<if test="name != null and name != ''">
+				and a.Name like '%${name}%'
+			</if>
+		</where>		
+	</select>		
+
+	<!-- 查询店铺资料  { customerID,Name}  -->
+	<select id="qryDShop" parameterType="java.util.HashMap" resultMap="decShopExMap">
+		select a.ID, rtrim(a.Name) Name, a.CustomerID, ChannelID, rtrim(a.Code) Code, NetAddr,a.Tele,a.LinkMan,  CanMerge, CanSeparate, SynFlag, Nick, AppKey, Session, 
+			Token, IsGetOrder, GetOrderSpan, a.Status, a.Note ,a.lastordertime,a.lasttokenTime,
+			a.isNeedDelivery,a.isUpdateStock,a.isgenCustomerRet, rtrim(b.Name) CustomerName , rtrim(c.Name) ChannelName 
+		from DecShop a, Customer b , Channel c 
+		<where>
+			a.CustomerID = b.CustomerID and a.ChannelID = c.ID
+			<if test="customerID != null">
+				and a.CustomerID = #{customerID}
+			</if>
+			<if test="name != null and name != ''">
+				and a.Name like '%${name}%'
+			</if>
+		</where>		
+	</select>		
+	
+	
+	<!-- 查询商品数据 {ShopID、OuterSkuID、CustomBC、Title、Name、Props、Vender} -->
+	<select id="qryDecItem" parameterType="java.util.HashMap" resultMap="decItemMap">
+		select sku_id , a.ShopID , b.Name ShopName , isnull(OuterSkuID,ItemCode ) OuterSkuID , CustomBC , Title ,
+			a.Name , props_name , Vender , BasePrice , Cost , price , a.Note , a.pic_url		
+		from DecItem a , DecShop b  
+		<where>
+			a.ShopID = b.ID 
+			and a.CustomerID =  #{CustomerID}
+			<if test="ShopID != null">
+				and a.ShopID = #{ShopID}
+			</if>
+			<if test="OuterSkuID != null ">
+				and (a.OuterSkuID like '%${OuterSkuID}%' or a.ItemCode like '%${OuterSkuID}%')
+			</if>
+			<if test="CustomBC != null ">
+				and a.CustomBC like '%${CustomBC}%'
+			</if>
+			<if test="Title != null ">
+				and a.Title like '%${Title}%'
+			</if>
+			<if test="Name != null ">
+				and a.Name like '%${Name}%'
+			</if>
+			<if test="Props != null ">
+				and a.props_name like '%${Props}%'
+			</if>
+			<if test="Vender != null ">
+				and a.Vender like '%${Vender}%'
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 修改商品资料-->
+	<update id="updateDecItem" parameterType="java.util.HashMap">
+		update DecItem
+		<set>
+			<if test="CustomBC != null ">
+				CustomBC=#{CustomBC},
+			</if>
+			<if test="Name != null ">
+				Name=#{Name},
+			</if>
+			<if test="BasePrice != null ">
+				BasePrice=#{BasePrice},
+			</if>
+			<if test="Cost != null ">
+				Cost=#{Cost},
+			</if>
+			<if test="Vender != null ">
+				Vender=#{Vender},
+			</if>
+			<if test="Note != null ">
+				Note=#{Note},
+			</if>
+		</set>
+		where sku_id=#{sku_id} and ShopID = #{ShopID}
+	</update>	
+		
+	
+	<!-- 调用存储过程  生成店铺编码-->
+	<select id="tlMakeShopCode" statementType="CALLABLE">
+	<![CDATA[
+	{#{err,mode=OUT,jdbcType=INTEGER}=call TL_MakeShopCode(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{Code,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+	
+	<!-- 获取指定channel的code -->     
+	<select id="getChannelById" parameterType="java.lang.Integer" resultType="Channel">
+	select id,name,code,status,url,notes,appurl from channel where id=#{channelid}
+	</select>
+	
+	<!-- 更新 token tokentime  user_id为淘宝菜鸟物流所用的  -->
+	<update id="updateToken">
+		update decshop
+	<set>
+		<if test="#{token}!=''">
+		lasttokenTime=getdate(),token=#{token},
+		</if>
+		<if test="#{refreshtoken}!=''">
+		refreshtoken=#{refreshtoken},
+		</if>
+		<if test="#{user_id}!=''">
+		user_id= #{user_id}
+		</if>
+	</set>
+	 where id=#{id}
+	</update>
+</mapper>

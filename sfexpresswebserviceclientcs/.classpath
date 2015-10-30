@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-rt.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-extra.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/webservices-extra-api.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/wofu.base.jar" sourcepath="X:/Code/Imp/Back"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjutil.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/yjpool.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/public.jar"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_JAXWS_API"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_METRO_IMPL"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

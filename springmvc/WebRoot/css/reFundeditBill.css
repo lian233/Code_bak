@@ -1,0 +1,79 @@
+/* 
+    Document   : editBill
+    Created on : 2015-5-6, 17:57:49
+    Author     : lzy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.bill_block{
+	width:96%;
+	margin-left:2%;
+	background:white;
+	border-top: 1px solid #d0d0d0;
+}
+.block_row{
+	width:100%;
+	height:30px;
+	border-right: 1px solid #d0d0d0;
+	border-bottom: 1px solid #d0d0d0;
+}
+.label_align_right{
+	float:left;
+	width:120px;
+	height:100%;
+	line-height:30px;
+	border-left: 1px solid #d0d0d0;
+	border-right:1px solid #d0d0d0;
+	text-align:right;
+	font-weight: 800;
+	background:#f6f6f6;
+}
+.input_field{
+	float:left;
+	width:170px;
+	height:80%;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:3px;
+	padding:0px;
+	border:none;
+	color:rgb(50,50,120);
+}
+.with_margin{
+	margin-left:2%;
+	width:96%;
+}
+.select_fix_width{
+	width:170px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:3px;
+}
+.button_panel{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 310px;
+	height: 31px;
+}
+.text{
+	margin-top:5px;
+	width:98%;
+	height:22px;
+	/*border-radius: 3px;*/
+	border: 1px solid rgb(230,230,230);
+}
+.long_text{
+	width:300px;
+}
+.white_bkg{
+	background: white;
+	opacity: 0.3;
+}
+.goods_photo{
+	margin:5px;
+	width:80px;
+}
+.input_short{
+	width:50px;
+}

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DecDeliveryMapper">
+
+	<resultMap type="DecDelivery" id="decDeliveryMap">
+		<id column="ID" property="id" />
+		<result column="Name" property="name" />
+		<result column="Code" property="code" />
+		<result column="LocalCode" property="localCode" />
+		<result column="OrderNo" property="orderNo" />
+		<result column="DeliveryNoType" property="deliveryNoType" />
+		<result column="Status" property="status" />
+		<result column="Note" property="note" />
+	</resultMap>
+
+	<!-- 快递列表返回结果 -->
+	<resultMap type="java.util.HashMap" id="resultDeliveryList">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+		<result column="Code" property="Code" />
+		<result column="LocalCode" property="LocalCode" />
+	</resultMap>
+
+	<!-- 快递使用统计返回结果 -->
+	<resultMap type="java.util.HashMap" id="resultCustomerDeliveryNumSta">
+		<result column="ID" property="ID" />
+		<result column="CustomerID" property="CustomerID" />
+		<result column="DeliveryID" property="DeliveryID" />
+		<result column="STime" property="STime" />
+		<result column="StartQty" property="StartQty" />
+		<result column="InQty" property="InQty" />
+		<result column="OutQty" property="OutQty" />
+		<result column="EndQty" property="EndQty" />
+		<result column="CustomerName" property="CustomerName" />
+		<result column="DeliveryName" property="DeliveryName" />
+	</resultMap>
+	
+
+	<!-- 查询快递跟单汇总返回结果 -->
+	<resultMap type="java.util.HashMap" id="deliveryTraceStaMap">
+		<result column="RouteFlag" property="RouteFlag" />
+		<result column="Qty" property="Qty" />
+	</resultMap>
+	
+	<!-- 查询快递跟单返回结果 -->
+	<resultMap type="java.util.HashMap" id="deliveryTraceMap">
+		<result column="ID" property="ID" />
+		<result column="DeliverySheetID" property="DeliverySheetID" />
+		<result column="State" property="State" />
+		<result column="City" property="City" />
+		<result column="District" property="District" />
+		<result column="Address" property="Address" />
+		<result column="LinkMan" property="LinkMan" />
+		<result column="Mobile" property="Mobile" />
+		<result column="Span" property="Span" />
+		<result column="SpanDays" property="SpanDays" />
+		<result column="BegingRouteTime" property="BegingRouteTime" />
+		<result column="Position" property="Position" />
+		<result column="RouteFlag" property="RouteFlag" />
+		<result column="EndRouteTime" property="EndRouteTime" />
+		<result column="FinishTime" property="FinishTime" />
+		<result column="Problem" property="Problem" />
+	</resultMap>
+	
+	
+	
+	<!-- 快递区域返回结果 -->
+	<resultMap type="java.util.HashMap" id="decDeliveryZoneMap">
+		<result column="DeliveryGroupID" property="DeliveryGroupID" />
+		<result column="DeliveryID" property="DeliveryID" />
+		<result column="State" property="State" />
+		<result column="City" property="City" />
+		<result column="District" property="District" />
+		<result column="ReceivedZone" property="ReceivedZone" />
+		<result column="NoReceivedZone" property="NoReceivedZone" />
+		<result column="PartReceivedZone" property="PartReceivedZone" />
+		<result column="NoReceivedZoneEx" property="NoReceivedZoneEx" />
+		<result column="Status" property="Status" />		
+	</resultMap>
+	
+	
+	
+	<!-- 快递路由查询 -->
+	<resultMap id="queryDeliveryRoute" type="DecDelivery">
+	<result column="clientID" property="clientID"/>
+	<result column="partnerkey" property="partnerkey"/>
+	<result column="url" property="url"/>
+	<result column="v" property="v"/>
+	<result column="userid" property="UserId"/>
+	<result column="appkey" property="appkey"/>
+	<result column="queryurl" property="queryurl"/>
+	<result column="secretKey" property="secretKey"/>
+	</resultMap>
+
+	<!-- 客户快递单剩余数量返回结果 -->
+	<resultMap type="java.util.HashMap" id="resultCustomerDeliveryNum">
+		<result column="CustomerID" property="CustomerID" />
+		<result column="DeliveryID" property="DeliveryID" />
+		<result column="CustomerName" property="CustomerName" />
+		<result column="DeliveryName" property="DeliveryName" />
+		<result column="DeliveryCode" property="DeliveryCode" />
+		<result column="Qty" property="Qty" />
+	</resultMap>
+
+	<!-- 快递单记录流水返回结果 -->
+	<resultMap type="java.util.HashMap" id="resultCustomerDeliveryNumBook">
+		<result column="CustomerID" property="CustomerID" />
+		<result column="DeliveryID" property="DeliveryID" />
+		<result column="CustomerName" property="CustomerName" />
+		<result column="DeliveryName" property="DeliveryName" />
+		<result column="Qty" property="Qty" />
+		<result column="CloseQty" property="CloseQty" />
+		<result column="SheetType" property="SheetType" />
+		<result column="STime" property="STime" />
+		<result column="Note" property="Note" />
+		<result column="DeliveryCode" property="DeliveryCode" />
+		<result column="SheetID" property="SheetID" />
+		<result column="DeliverySheetID" property="DeliverySheetID" />
+		<result column="RouteFlag" property="RouteFlag" />
+		<result column="BegingRouteTime" property="BegingRouteTime" />
+		<result column="EndRouteTime" property="EndRouteTime" />
+		<result column="RouteSpan" property="RouteSpan" />
+		<result column="Position" property="Position" />
+		<result column="Problem" property="Problem" />
+		<result column="State" property="State" />
+		<result column="City" property="City" />
+		<result column="District" property="District" />
+		<result column="Address" property="Address" />
+		<result column="LinkMan" property="LinkMan" />
+		<result column="Mobile" property="Mobile" />
+	</resultMap>
+
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		ID,
+		rtrim(Name) Name,
+		rtrim(Code) Code,
+		OrderNo,
+		DeliveryNoType,
+		Status,
+		Note
+	</sql>
+
+	<!-- 查询快递区域的字段 -->
+	<sql id="selectZonde">
+		DeliveryGroupID,
+		DeliveryID,
+		State,
+		City,
+		District,
+		ReceivedZone,
+		NoReceivedZone,
+		PartReceivedZone,
+		NoReceivedZoneEx,
+		Status,
+		Note
+	</sql>
+	
+	
+
+	<!-- 查询快递数据-->
+	<select id="queryDelivery" resultMap="decDeliveryMap"
+		parameterType="DecDelivery">
+		select
+		<include refid="selectId" />
+		from DecDelivery
+		<where>
+			<if test="name != null and name != ''">
+				Name like '%${name}%'
+			</if>
+			<if test="code != null and code != ''">
+				Code like '%${code}%'
+			</if>
+		</where>
+		order by OrderNo
+	</select>	
+	
+	<select id="getById" parameterType="int" resultType="com.wofu.fenxiao.domain.DecDelivery">
+		select
+		<include refid="selectId" />
+		from DecDelivery where id=#{id}
+	</select>
+	
+	
+	<select id="stCustomerDeliveryNumSta" statementType="CALLABLE"   resultMap="resultCustomerDeliveryNumSta">  
+    	{call ST_CustomerDeliveryNumSta('${BeginTime}' , '${EndTime}' , ${CustomerID} , ${DeliveryID})}  
+   </select>  	
+
+	
+	<!-- 增加客户快递单数量，调用存储过程  -->
+	<select id="addCustomerDeliveryNum" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_CustomerDecDeliveryBook(#{SID,mode=IN,jdbcType=INTEGER},
+		#{SheetType,mode=IN,jdbcType=INTEGER},
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{DeliveryID,mode=IN,jdbcType=INTEGER},
+		#{Qty,mode=IN,jdbcType=INTEGER},
+		#{Note,mode=IN,jdbcType=VARCHAR},
+		#{OutMsg,mode=OUT,jdbcType=VARCHAR}
+		,#{DeliverySheetID,mode=IN,jdbcType=VARCHAR}
+		,#{State,mode=IN,jdbcType=VARCHAR}
+		,#{City,mode=IN,jdbcType=VARCHAR}
+		,#{District,mode=IN,jdbcType=VARCHAR}
+		,#{Address,mode=IN,jdbcType=VARCHAR}
+		,#{LinkMan,mode=IN,jdbcType=VARCHAR}
+		,#{Mobile,mode=IN,jdbcType=VARCHAR}
+		)}
+	]]>
+	</select>
+	
+	<!-- 选择快递  -->
+	<select id="tlChooseDecDelivery" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_ChooseDecDelivery(
+		#{InState,mode=IN,jdbcType=VARCHAR},
+		#{InCity,mode=IN,jdbcType=VARCHAR},
+		#{InDistrict,mode=IN,jdbcType=VARCHAR},
+		#{InAddress,mode=IN,jdbcType=VARCHAR},
+		#{InShopID,mode=IN,jdbcType=INTEGER},
+		#{PayMode,mode=IN,jdbcType=INTEGER},
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{OutDeliveryID,mode=OUT,jdbcType=INTEGER},
+		#{OutMsg,mode=OUT,jdbcType=VARCHAR},
+		#{Note,mode=IN,jdbcType=VARCHAR})}
+	]]>
+	</select>
+
+	<!-- 取得快递列表   -->
+	<select id="qryDeliveryList" parameterType="java.util.HashMap" resultMap="resultDeliveryList">
+		select ID,rtrim(Name) Name,rtrim(Code) Code ,LocalCode 
+		from DecDelivery
+		<where>
+			Status=1
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+			<if test="code != null and code != ''">
+				and Code like '%${code}%'
+			</if>
+		</where>		
+	</select>		
+
+	<!-- 取得快递分组   -->
+	<select id="qryDeliveryGroupList" parameterType="java.util.HashMap" resultMap="resultDeliveryList">
+		select ID,rtrim(Name) Name 
+		from DeliveryGroup
+		<where>
+			Status=1
+			<if test="name != null and name != ''">
+				and Name like '%${name}%'
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 查询客户快递单剩余数量 {customerId, customerName , deliverycode}   -->
+	<select id="qryCustomerDeliveryNum" parameterType="java.util.HashMap" resultMap="resultCustomerDeliveryNum">
+		select a.CustomerID,a.DeliveryID,rtrim(b.Name) CustomerName, rtrim(c.Name) DeliveryName ,rtrim(c.Code) DeliveryCode, Qty 
+		from CustomerDeliveryNum a, DecCustomer b , DecDelivery c  
+		<where>
+			a.CustomerID = b.ID and a.DeliveryID = c.ID
+			<if test="customerId != null">
+				and a.CustomerID like #{customerId}
+			</if>
+			<if test="customerName != null and customerName != ''">
+				and b.Name like '%${customerName}%'
+			</if>
+			<if test="deliverycode != null and deliverycode != ''">
+				and (c.Code like '%${deliverycode}%' or c.Name like '%${deliverycode}%' )
+			</if>
+		</where>		
+	</select>	
+
+	<!-- 查询客户快递单剩余数量 {customerID, deliveryID}   -->
+	<select id="queryCustomerDeliveryNum" parameterType="java.util.HashMap" resultMap="resultCustomerDeliveryNum">
+		select CustomerID,DeliveryID, Qty 
+		from CustomerDeliveryNum   
+		<where>
+			1=1			
+			<if test="customerID != null">
+				and CustomerID = #{customerID}
+			</if>
+			<if test="deliveryID != null">
+				and DeliveryID = #{deliveryID}
+			</if>
+		</where>		
+	</select>	
+	
+	<!-- 查询快递单记录流水 {customerID, deliveryID, beginTime,endTime}   -->
+	<select id="qryCustomerDeliveryNumBook" parameterType="java.util.HashMap" resultMap="resultCustomerDeliveryNumBook">
+		select a.ID,a.CustomerID,a.DeliveryID,rtrim(b.Name) CustomerName, rtrim(c.Name) DeliveryName ,rtrim(c.Code) DeliveryCode , 
+			Qty ,CloseQty, SheetType , STime , a.Note , SID, a.DeliverySheetID , a.RouteFlag , a.BegingRouteTime , a.EndRouteTime, 
+			a.RouteSpan , a.Position ,a.Problem ,a.State,a.City,a.District,a.Address,a.LinkMan,a.Mobile 
+		from CustomerDeliveryNumBook a, DecCustomer b , DecDelivery c  
+		<where>
+			a.CustomerID = b.ID and a.DeliveryID = c.ID
+			<if test="sheetType != null">
+				and a.SheetType = #{sheetType}
+			</if>
+			<if test="customerID != null">
+				and a.CustomerID = #{customerID}
+			</if>
+			<if test="deliveryID != null">
+				and a.DeliveryID = #{deliveryID}
+			</if>
+		  	<if test="deliverySheetID != null">
+				and a.DeliverySheetID like '%${deliverySheetID}%'
+			</if>			
+		  	<if test="address != null">
+				and (a.State like '%${address}%' or a.City like '%${address}%' or a.District like '%${address}%' 
+					or a.Address like '%${address}%'  ) 
+			</if>
+		  	<if test="linkMan != null">
+				and a.LinkMan like '%${linkMan}%'
+			</if>			
+			<if test="beginTime != null">
+				and a.STime >= '${beginTime}'
+			</if>
+			<if test="endTime != null">
+				and a.STime &lt;= '${endTime}'
+			</if>			
+			<if test="routeFlag != null">
+				and a.RouteFlag  = #{routeFlag}
+			</if>			
+			<if test="canReturn != null">
+				and a.RouteFlag in (0,3,4)
+			</if>			
+			<if test="outDays != null">
+				and a.Stime &lt;= dateadd(dd , -${outDays} , getdate())
+			</if>			
+		</where>			
+	</select>			
+	
+	<!-- 增加快递区域  传入一个map -->
+	<insert id="addDecDeliveryZone" parameterType="java.util.HashMap">
+		insert into DecDeliveryZone(
+			DeliveryGroupID,DeliveryID,State,City,District,
+				ReceivedZone,NoReceivedZone,PartReceivedZone,NoReceivedZoneEx,Status)
+		values (#{deliveryGroupID},#{deliveryID},#{state},#{city},#{district},
+			#{receivedZone},#{noReceivedZone},#{partReceivedZone},#{noReceivedZoneEx},#{status})
+	</insert>
+		
+	<!-- 删除某个分组的快递区域 -->
+	<delete id="deleteDecDeliveryZone" parameterType="int">
+		delete from DecDeliveryZone where DeliveryGroupID=#{deliveryGroupID}
+	</delete>
+	
+	<!-- 取得快递编码（大头笔） -->
+	<select id="tlGetDecDeliveryAddressID" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_GetDecDeliveryAddressID(
+		#{deliveryid,mode=IN,jdbcType=INTEGER},
+		#{state,mode=IN,jdbcType=VARCHAR},
+		#{city,mode=IN,jdbcType=VARCHAR},
+		#{district,mode=IN,jdbcType=VARCHAR},
+		#{addressid,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+	<!-- 根据code查询快递公司参数 -->
+	<select id="getByCode"  parameterType="String" resultMap="queryDeliveryRoute">
+	select clientID,partnerkey,url,v,userid,appkey,secretKey,queryurl from decdelivery where code=#{companyCode}
+	</select>
+		
+		
+	<!-- 查询快递区域数据-->
+	<select id="queryDecDeliveryZone" resultMap="decDeliveryZoneMap" parameterType="java.util.HashMap">
+		select 		a.DeliveryGroupID,
+		a.DeliveryID,
+		State,
+		City,
+		District,
+		ReceivedZone,
+		NoReceivedZone,
+		PartReceivedZone,
+		NoReceivedZoneEx,
+		a.Status,
+		b.Name DeliveryGroupName , c.Name DeliveryName
+		from DecDeliveryZone a, DeliveryGroup b ,  DecDelivery c
+		<where>
+			a.DeliveryGroupID = b.ID and a.DeliveryID = c.ID
+			<if test="DeliveryGroupID != null ">
+				and DeliveryGroupID = #{DeliveryGroupID}
+			</if>
+			<if test="DeliveryID != null ">
+				and DeliveryID = #{DeliveryID}
+			</if>
+			<if test="State != null ">
+				and State like '%${State}%'
+			</if>
+			<if test="City != null ">
+				and City like '%${City}%'
+			</if>
+			<if test="District != null ">
+				and District like '%${District}%'
+			</if>
+			<if test="Status != null ">
+				and a.Status = #{Status}
+			</if>
+		</where>		
+	</select>
+	
+	<!-- 查询快递跟单汇总-->
+	<select id="qryDeliveryTraceSta" resultMap="deliveryTraceStaMap" parameterType="java.util.HashMap">
+		select RouteFlag, count(*) Qty from CustomerDeliveryNumBook
+		<where>
+			 SheetType =400100
+			<if test="BeginTime != null">
+				and STime >= '${BeginTime}'
+			</if>
+			<if test="EndTime  != null">
+				and STime &lt;= '${EndTime }'
+			</if>			
+		</where>	
+		group by RouteFlag	
+	</select>	
+	
+	<!-- 查询快递跟单-->
+	<select id="qryDeliveryTrace" resultMap="deliveryTraceMap" parameterType="java.util.HashMap">
+		select a.* , b.Span , convert(dec(4,1) , a.RouteSpan / 86400) Days , 
+		convert(dec(10,1),datediff(hour,BegingRouteTime, getdate())/24.0) SpanDays
+		from CustomerDeliveryNumBook a , DeliverySpan b 
+		<where>
+		  a.DeliveryID *= b.DeliveryID 
+		  and a.State *= b.State
+		  and a.City *= b.City
+		  and a.District *= b.District
+		  and SheetType =400100
+		  	<if test="BeginTime != null">
+				and STime >= '${BeginTime}'
+			</if>
+			<if test="EndTime  != null">
+				and STime &lt;= '${EndTime }'
+			</if>			
+		  	<if test="DeliveryID != null">
+				and a.DeliveryID = #{DeliveryID}
+			</if>
+		  	<if test="DeliverySheetID != null">
+				and a.DeliverySheetID like '%${DeliverySheetID}%'
+			</if>
+		  	<if test="Position != null">
+				and a.Position like '%${Position}%'
+			</if>
+		  	<if test="Address != null">
+				and (a.State like '%${Address}%' or a.City like '%${Address}%' or a.District like '%${Address}%' 
+					or a.Address like '%${Address}%'  ) 
+			</if>
+		  	<if test="LinkMan != null">
+				and a.LinkMan like '%${LinkMan}%'
+			</if>
+		  	<if test="IsFinish != null">
+				and a.RouteFlag = 2
+			</if>
+		  	<if test="IsOverTime != null">
+				and datediff(hour,BegingRouteTime, getdate())/24.0 > Span
+			</if>
+		</where>
+
+	</select>		
+	
+	<!-- 修改快递区域资料-->
+	<update id="updateDecDeliveryZoneStatus" parameterType="java.util.HashMap">
+		update DecDeliveryZone
+		<set>
+			<if test="ReceivedZone != null ">
+				ReceivedZone=#{ReceivedZone},
+			</if>
+			<if test="NoReceivedZone != null ">
+				NoReceivedZone=#{NoReceivedZone},
+			</if>					
+			<if test="PartReceivedZone != null ">
+				PartReceivedZone=#{PartReceivedZone},
+			</if>
+			<if test="NoReceivedZoneEx != null ">
+				NoReceivedZoneEx=#{NoReceivedZoneEx},
+			</if>
+			<if test="Status != null ">
+				Status=#{Status},
+			</if>
+		</set>
+		where DeliveryGroupID=#{DeliveryGroupID}
+		  and DeliveryID=#{DeliveryID}
+		  and State=#{State}
+		  and City=#{City}
+		  and District=#{District}
+	</update>				
+
+	<!-- 修改快递区域快递-->
+	<update id="updateDecDeliveryZoneDelivery" parameterType="java.util.HashMap">
+		update DecDeliveryZone set DeliveryID = #{DeliveryID}		
+		where DeliveryGroupID=#{DeliveryGroupID}
+		  and State=#{State}
+		  and City=#{City}
+		  and District=#{District}
+	</update>	
+	
+	<!-- 快递单号回收 -->
+	<select id="tlReturnDelivery" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_ReturnDelivery(
+		#{DeliveryID,mode=IN,jdbcType=INTEGER},
+		#{DeliverySheetID,mode=IN,jdbcType=VARCHAR},
+		#{Msg,mode=OUT,jdbcType=VARCHAR}
+		)}
+	]]>
+	</select>
+	
+</mapper>

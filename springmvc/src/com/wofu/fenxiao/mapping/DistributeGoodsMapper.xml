@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DistributeGoodsMapper">
+
+	<resultMap type="DistributeGoods" id="distributeGoodsMap">
+		<result column="ProductLineID" property="ProductLineID" />
+		<result column="GoodsID" property="GoodsID" />
+		<result column="Title" property="Title" />
+		<result column="ImaUrl" property="ImaUrl" />
+		<result column="GoodsUrl" property="GoodsUrl" />
+		<result column="Status" property="Status" />
+		<result column="BasePrice" property="BasePrice" />
+		<result column="Price" property="Price" />
+		<result column="Note" property="Note" />
+	</resultMap>
+
+	<!-- 商品资料的映射    -->
+	<resultMap type="java.util.HashMap" id="distributeGoodsExMap"  extends="distributeGoodsMap" >
+		<result column="CustomBC" property="CustomBC" />
+		<result column="GoodsName" property="GoodsName" />
+		<result column="BrandID" property="BrandID" />
+		<result column="Dept" property="Dept" />		
+		<result column="Price" property="Price" />
+		<result column="StockQty" property="StockQty" />
+	</resultMap>
+
+	<!-- 分销客户分销产品线    -->
+	<resultMap type="java.util.HashMap" id="customerProductGradeMap" >
+		<result column="CustomerID" property="CustomerID" />
+		<result column="ProductLineID" property="ProductLineID" />
+		<result column="GradeID" property="GradeID" />
+		<result column="DetailID" property="DetailID" />		
+		<result column="CustomerName" property="CustomerName" />
+		<result column="ChainTypeID" property="ChainTypeID" />
+		<result column="ProductLineName" property="ProductLineName" />
+		<result column="GradeName" property="GradeName" />
+	</resultMap>
+	
+	
+
+	<resultMap type="java.util.HashMap" id="skuInventoryMap">
+		<result column="BarcodeID" property="BarcodeID" />
+		<result column="CustomBC" property="CustomBC" />
+		<result column="Color" property="Color" />
+		<result column="Size" property="Size" />
+		<result column="Qty" property="Qty" />
+		<result column="UseQty" property="UseQty" />
+		<result column="Note" property="Note" />
+	</resultMap>
+
+	<!-- 返回品牌列表的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="brandMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+	</resultMap>
+
+	<!-- 返回商品资料的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="goodsMap">
+		<result column="GoodsID" property="GoodsID" />
+		<result column="Name" property="Name" />
+		<result column="CustomNo" property="CustomNo" />
+	</resultMap>
+
+
+	<!-- 返回线条列表的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="productLineMap">
+		<result column="ID" property="ID" />
+		<result column="Name" property="Name" />
+	</resultMap>
+
+	<!-- 返回等级列表的map字段定义 -->
+	<resultMap type="java.util.HashMap" id="gradeMap">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+	</resultMap>
+	
+
+
+	<!-- 增加分销商品 -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DistributeGoods">
+		insert into DistributeGoods (
+		ProductLineID,
+		GoodsID,
+		Title,
+		ImaUrl,
+		BasePrice,
+		Price,
+		GoodsUrl,		
+		Status,
+		Note
+		)
+		values (#{ProductLineID},
+		#{GoodsID},
+		#{Title},
+		#{ImaUrl},
+		#{BasePrice},
+		#{Price},
+		#{GoodsUrl},
+		#{Status},
+		#{Note}
+		)
+	</insert>
+
+	<!-- 客户加入分销 -->
+	<insert id="addCustomerProductGrade" parameterType="java.util.HashMap">
+		insert into CustomerProductGrade (
+		CustomerID,
+		ProductLineID,
+		GradeID
+		)
+		values (#{CustomerID},
+		#{ProductLineID},
+		#{GradeID}
+		)
+	</insert>
+
+	<!-- 客户退出分销 -->
+	<delete id="removeCustomerProductGrade" parameterType="java.util.HashMap">
+		delete from CustomerProductGrade where CustomerID = #{CustomerID} and ProductLineID = #{ProductLineID}
+	</delete>
+
+	<!-- 删除分销商品-->
+	<delete id="delete" parameterType="java.util.HashMap">
+		delete from DistributeGoods where ProductLineID=#{ProductLineID} and GoodsID=#{GoodsID}
+	</delete>
+
+	<!-- 修改分销商品-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DistributeGoods">
+		update DistributeGoods
+		<set>
+			<if test="Title != null ">
+				Title=#{Title},
+			</if>
+			<if test="ImaUrl != null ">
+				ImaUrl=#{ImaUrl},
+			</if>
+			<if test="BasePrice != null ">
+				BasePrice=#{BasePrice},
+			</if>
+			<if test="Price != null ">
+				Price=#{Price},
+			</if>
+			<if test="GoodsUrl != null ">
+				GoodsUrl=#{GoodsUrl},
+			</if>
+			<if test="Status != null ">
+				Status=#{Status},
+			</if>
+			<if test="Note != null ">
+				Note=#{Note},
+			</if>
+		</set>
+		where ProductLineID=#{ProductLineID} and GoodsID = #{GoodsID}
+	</update>
+	
+	<!-- 修改分销商品状态-->
+	<update id="updateStatus" parameterType="java.util.HashMap">
+		update DistributeGoods set Status = #{Status}
+		where ProductLineID=#{ProductLineID} and GoodsID = #{GoodsID}
+	</update>	
+	
+	<!-- 修改分销商品图片链接-->
+	<update id="updateImaUrl" parameterType="java.util.HashMap">
+		update DistributeGoods set ImaUrl = null where GoodsID = #{GoodsID}
+	</update>	
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+		ProductLineID,		
+		GoodsID,
+		Title,		
+		ImaUrl,
+		BasePrice,
+		Price,
+		GoodsUrl,
+		Status,
+		Note
+	</sql>
+	
+	<select id="getById" parameterType="int" resultType="com.wofu.fenxiao.domain.DistributeGoods">
+		select
+		<include refid="selectId" />
+		from DistributeGoods where ProductLineID=#{ProductLineID} and GoodsID=#{GoodsID}
+	</select>
+
+	<select id="queryGoods" parameterType="int" resultMap="goodsMap">
+		select GoodsID , Name , CustomNo 		
+		from Goods 
+		<where>
+			1=1
+			<if test="GoodsID != null ">
+				and GoodsID = #{GoodsID}%
+			</if>
+			<if test="Name != null ">
+				and Name like '%${Name}%'
+			</if>
+			<if test="CustomNo != null ">
+				and CustomNo like '%${CustomNo}%'
+			</if>
+		</where>		
+	</select>
+	
+
+
+	<!-- 取得品牌列表   -->
+	<select id="qryBrand" parameterType="java.util.HashMap" resultMap="brandMap">
+		select ID,rtrim(Name) Name
+		from Brand
+		<where>
+			1=1
+			<if test="Name != null ">
+				and Name like '%${Name}%'
+			</if>
+		</where>		
+	</select>		
+	
+
+	<!-- 取得线条列表   -->
+	<select id="qryProductLine" parameterType="java.util.HashMap" resultMap="productLineMap">
+		select ID, Name
+		from ProductLine
+		<where>
+			1=1
+			<if test="Name != null ">
+				and Name like '%${Name}%'
+			</if>
+		</where>		
+	</select>	
+
+	<!-- 取得等级列表   -->
+	<select id="qryGrade" parameterType="java.util.HashMap" resultMap="gradeMap">
+		select id, name
+		from ShopGrade
+	</select>	
+	
+	<!-- 查询商品资料    -->
+	<select id="queryDistributeGoods" parameterType="java.util.HashMap" resultMap="distributeGoodsExMap">
+			select a.* , d.Name Dept , ${useQty} StockQty , BasePrice DistributePrice 
+			from v_DistributeGoods  a, Dept d 
+		<where>
+			 a.DeptID = d.ID 
+			<if test="BrandID != null">
+				and a.BrandID = #{BrandID}
+			</if>
+			<if test="ProductLineID != null">
+				and a.ProductLineID = #{ProductLineID}
+			</if>			
+			<if test="GoodsID != null">
+				and a.GoodsID = #{GoodsID}
+			</if>			
+			<if test="GoodsName != null ">
+				and a.GoodsName like '%${GoodsName}%'
+			</if>
+			<if test="CustomNo != null ">
+				and a.CustomNo like '%${CustomNo}%'
+			</if>
+			<if test="Dept != null ">
+				and d.Name like '%${Dept}%'
+			</if>
+			<if test="Title != null ">
+				and a.Title like '%${Title}%'
+			</if>
+			<if test="Status != null ">
+				and a.Status = #{Status}
+			</if>
+			<if test="IsDistribute == 1 ">
+				and a.ProductLineID is not null
+			</if>
+			<if test="IsDistribute == 0 ">
+				and a.ProductLineID is null
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 分销商查询商品资料    -->
+	<select id="queryCustomerDistributeGoods" parameterType="java.util.HashMap" resultMap="distributeGoodsExMap">
+			select a.* , d.Name Dept , ${useQty} StockQty 
+			from v_CustomerDistributeGoods  a, Dept d 
+		<where>
+			 a.DeptID = d.ID 
+			<if test="BrandID != null">
+				and a.BrandID = #{BrandID}
+			</if>
+			<if test="ProductLineID != null">
+				and a.ProductLineID = #{ProductLineID}
+			</if>			
+			<if test="GoodsID != null">
+				and a.GoodsID = #{GoodsID}
+			</if>			
+			<if test="GoodsName != null ">
+				and a.GoodsName like '%${GoodsName}%'
+			</if>
+			<if test="CustomNo != null ">
+				and a.CustomNo like '%${CustomNo}%'
+			</if>
+			<if test="Dept != null ">
+				and d.Name like '%${Dept}%'
+			</if>
+			<if test="Title != null ">
+				and a.Title like '%${Title}%'
+			</if>
+			<if test="Status != null ">
+				and a.Status = #{Status}
+			</if>
+			<if test="IsDistribute == 1 ">
+				and a.CustomerID = ${CustomerID}
+			</if>
+			<if test="IsDistribute == 0 ">
+				and a.CustomerID is null
+			</if>
+		</where>		
+	</select>		
+	
+	<!-- 查询分销客户分销产品线    -->
+	<select id="queryCustomerProductGrade" parameterType="java.util.HashMap" resultMap="customerProductGradeMap">
+			select a.* , b.Name ProductLineName , c.name GradeName
+			from v_CustomerProductGrade  a, ProductLine b , ShopGrade c 
+		<where>
+			 a.ProductLineID *= b.ID and a.GradeID *= c.id
+			<if test="customerID != null">
+				and a.customerID = #{customerID}
+			</if>												 
+			<if test="customerName != null ">
+				and a.CustomerName like '%${customerName}%'
+			</if>			 
+			<if test="gradeID != null">
+				and a.GradeID = #{gradeID}
+			</if>
+			<if test="ProductLineID != null">
+				and a.ProductLineID = #{ProductLineID}
+			</if>			
+						
+			<if test="IsDistribute == 1 ">
+				and a.ProductLineID is not null
+			</if>
+			<if test="IsDistribute == 0 ">
+				and a.ProductLineID is null
+			</if>
+		</where>		
+	</select>			
+	
+	<!-- 查询商品SKU库存   -->
+	<select id="querySkuInventory" parameterType="java.util.HashMap" resultMap="skuInventoryMap">
+			select b.BarcodeID , CustomBC , c.Name Color , s.Name Size, Qty * ${rate} , 
+				dbo.TL_GetUseableStock(i.ShopID , i.BarcodeID, 0 ) * ${rate} UseQty
+			from Goods g , Barcode b , Size s , Color c , InventoryBC i 
+		<where>
+			 g.GoodsID = b.GoodsID and b.ColorID = c.ID and b.SizeID = s.ID and g.MeasureType = s.MeasureTypeID 
+			 and b.BarcodeID *= i.BarcodeID 
+			<if test="GoodsID != null">
+				and g.GoodsID = #{GoodsID}
+			</if>
+			<if test="dc != null ">
+				and i.ShopID in (${dc})
+			</if>
+		</where>		
+	</select>		
+	
+	
+		
+</mapper>
