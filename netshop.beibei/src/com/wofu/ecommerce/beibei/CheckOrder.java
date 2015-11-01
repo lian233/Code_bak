@@ -49,7 +49,7 @@ public class CheckOrder extends Thread {
 				//获取上次抓订单的时间
 				lasttime=PublicUtils.getConfig(connection,lasttimeconfvalue,Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
 				//开始抓单
-				sleep(10000L);
+				sleep(100000L);
 				getOrderList(connection);
 				
 			} catch (Exception e) {

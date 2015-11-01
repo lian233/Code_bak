@@ -29,7 +29,7 @@ public class AsynOrderInfo extends Thread {
 						Hashtable ht = (Hashtable)it.next();
 						Integer serialID = (Integer)ht.get("SerialID");
 						String operData = (String)ht.get("OperData");
-						
+						System.out.println("operData"+operData);
 						String sql ="SELECT * from Inf_downNotebak where operdata='"+operData+"' AND SheetType='900000' AND result='success' and opertype='100'";
 						Vector duplicateNum  = SQLHelper.multiRowSelect(conn, sql);
 						if(duplicateNum!=null && duplicateNum.size()>0){
@@ -40,7 +40,7 @@ public class AsynOrderInfo extends Thread {
 							Log.info("此单已发送,删除重复的单成功,订单号: "+order.getOrderCode());
 							continue;
 						}
-						
+						System.out.println("测试");
 							sql ="select a.custompursheetid orderCode,a.custompursheetid orderDetailCode,a.tax "
 							+"orderTax,convert(varchar,a.notifydate,20) createDate,convert(varchar,a.notifydate,20) "+
 							"updateDate,convert(varchar,a.notifydate,20) payTime,a.postfee postPrice,a.CustomsOrderNo "+
