@@ -40,7 +40,7 @@ public class UpdateAsnStatusProcessor extends BizProcessor {
 		String asnCode=DOMHelper.getSubElementVauleByName(updateAsnStatusele, "asnCode");
 		//补货单外部类型  有两种-来货计划单  调拨入库单
 		String extOrderType=DOMHelper.getSubElementVauleByName(updateAsnStatusele, "extOrderType");
-		System.out.println("ttt");
+		System.out.println("补货单类型 "+extOrderType+"补货单号 "+asnCode);
 		String udf1=null;
 		if(DOMHelper.ElementIsExists(updateAsnStatusele, "udf1"))
 			udf1= DOMHelper.getSubElementVauleByName(updateAsnStatusele, "udf1");
@@ -59,8 +59,10 @@ public class UpdateAsnStatusProcessor extends BizProcessor {
 			}else{
 				System.out.println("ddd");
 				//取得百世仓的数据库连接  
+				System.out.println("获取连接");
 				extconn=PoolHelper.getInstance().getConnection(
 					BestUtil.getDSName(this.getConnection(), customerCode,warehouseCode));
+				System.out.println("连接"+extconn);
 			}
 			
 			extconn.setAutoCommit(false);
@@ -241,7 +243,8 @@ public class UpdateAsnStatusProcessor extends BizProcessor {
 	
 	//处理调拨入库单  调拨入库，也就是从其它库存把货物调入到百世库，也是入库的一个形式，数据也是写入到wms_instock0 wms_instockitem0 it_upnote表   transfertype=2342
 	private void processTransferInStatus(Element updateAsnStatusele,Boolean isBarCodeId) throws Exception
-	{
+	{	
+		System.out.println("开始处理调拨数据");
 		String warehouseCode=DOMHelper.getSubElementVauleByName(updateAsnStatusele, "warehouseCode");
 		String asnStatus=DOMHelper.getSubElementVauleByName(updateAsnStatusele, "asnStatus");
 		String asnCode=DOMHelper.getSubElementVauleByName(updateAsnStatusele, "asnCode");
@@ -249,7 +252,7 @@ public class UpdateAsnStatusProcessor extends BizProcessor {
 		
 		if (asnStatus.equalsIgnoreCase("FULFILLED"))		//收货完成
 		{
-			
+			System.out.println("收货完成");
 			sql="select count(*) from wms_instock0 (nolock) where refsheetid='"+asnCode+"' and transfertype=2342 and flag=100";
 			if (SQLHelper.intSelect(this.getExtconnection(), sql)>0) return;
 			
