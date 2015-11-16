@@ -67,6 +67,10 @@ public class Params {
 
 	public static boolean isEc;//是否是ec类型数据
 	public static boolean isDistrictMode;//是否是分销模式 存储过程调用purchasetype参数为'c'
+
+	public static String start;
+
+	public static int endTime=3600;//分销用
 	
 	public Params() {
 	}
@@ -102,6 +106,7 @@ public class Params {
 		isc = Boolean.valueOf(properties.getProperty("isc", "true")).booleanValue();
 		isrds = Boolean.valueOf(properties.getProperty("isrds", "false")).booleanValue();
 		isDelay = Integer.valueOf(properties.getProperty("isDelay", "0"));
+		endTime = Integer.valueOf(properties.getProperty("endTime", "0"));
 		SocketwaitMinute = Integer.valueOf(properties.getProperty("SocketwaitMinute", "0"));
 		tableType = Integer.valueOf(properties.getProperty("tableType", "0"));
 		isStopStockSyn = Boolean.valueOf(properties.getProperty("isStopStockSyn", "false")).booleanValue();

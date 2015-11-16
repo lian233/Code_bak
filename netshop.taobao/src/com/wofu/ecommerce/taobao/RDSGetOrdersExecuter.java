@@ -255,10 +255,10 @@ public class RDSGetOrdersExecuter extends Executer {
 		//step="处理分销订单";
 			sql="if object_id( 'tempdb..##"+sellernick+"_tmp_fx_trade') is not null  drop table ##"+sellernick+"_tmp_fx_trade";
 			this.getDao().execute(sql);
-			
-			sql="select "+-1+" as batchid,cast(fenxiao_id as varchar(32)) as fenxiao_id,status,cast(tc_order_id as varchar(32)) as tc_order_id,supplier_username,"
+			System.out.println("开始时间 "+lastfxordertime);
+			sql="select top 300 "+-1+" as batchid,cast(fenxiao_id as varchar(32)) as fenxiao_id,status,cast(tc_order_id as varchar(32)) as tc_order_id,supplier_username,"
 				+"distributor_username,created,modified,jdp_hashcode,isnull(jdp_response,'') as jdp_response,jdp_created,"+
-				"jdp_modified,0 as flag into ##"+sellernick+"_tmp_fx_trade from sys_info..jdp_fx_trade where supplier_username='"+sellernick+"' and  jdp_modified>'"+lastfxordertime+"'";
+				"jdp_modified,0 as flag into ##"+sellernick+"_tmp_fx_trade from sys_info..jdp_fx_trade where supplier_username='"+sellernick+"' and status='WAIT_SELLER_SEND_GOODS' and jdp_modified>'"+lastfxordertime+"' ORDER BY jdp_modified";
 			this.getDao().execute(sql);
 			int fxtradecount=this.getDao().intSelect("select count(*) from ##"+sellernick+"_tmp_fx_trade");
 			if (fxtradecount>0){
@@ -278,7 +278,7 @@ public class RDSGetOrdersExecuter extends Executer {
 				sql="update eco_seller_config set lastfxordertime='"+lastfxordertime
 				+"' where sellernick='"+sellernick+"'";
 				this.getDao().execute(sql);
-			
+				System.out.println("更新抓单时间 "+lastfxordertime);
 			Log.info(jobName+","+sellernick+",本次处理的分销订单数据是:　"+fxtradecount);
 		}
 		

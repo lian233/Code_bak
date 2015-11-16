@@ -26,9 +26,9 @@ public class AsynTansferIn extends Thread {
 
 	public void run() {
 		Log.info(jobname, "启动[" + jobname + "]模块");
-		do {		
+		do {
 			Connection conn = null;
-			try {					
+			try {
 				conn = PoolHelper.getInstance().getConnection(Params.dbname);	
 				//取得要处理的数据的单据号:　对应transfer0表的sheetid
 				List infsheetlist=IntfUtils.getintfsheetlist(conn,Params.interfacesystem,sheettype);

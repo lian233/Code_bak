@@ -148,7 +148,7 @@ public class OrderDelivery extends Thread {
 			String message=responseproduct.optString("message");
 			boolean success = responseproduct.optBoolean("success");
 			if(!success){
-				Log.warn("订单发货失败,订单号:["+orderid+"],快递公司:["+post_company+"],快递单号:["+post_no+"] 错误信息:"+message);
+				Log.warn("订单发货失败,订单号:["+orderid+"],快递公司:["+post_company+";"+postcompanyid+"],快递单号:["+post_no+"] 错误信息:"+message);
 				if (message.equals("订单状态不是待发货"))
 				{
 					conn.setAutoCommit(false);

@@ -63,7 +63,7 @@ public class GetOrders extends Thread {
 			}
 			System.gc();
 			long startwaittime = System.currentTimeMillis();
-//			while (System.currentTimeMillis() - startwaittime < (long) (Params.waittime * 1000))		
+			while (System.currentTimeMillis() - startwaittime < (long) (Params.waittime * 1000))		
 				try {
 					sleep(1000L);
 				} catch (Exception e) {

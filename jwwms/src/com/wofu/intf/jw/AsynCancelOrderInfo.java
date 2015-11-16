@@ -118,7 +118,8 @@ public class AsynCancelOrderInfo extends Thread {
 							Log.info("同步取消订单成功,订单号: "+order.getOrderCode());
 							
 						}else{
-							if("推送订单错误:当前没有推送订单信息!".equals(re.getString("body"))){
+							
+							if(re.getString("body").contains("当前没有推送订单信息")){
 								conn.setAutoCommit(false);
 								JwUtil.backUpIntsheetData(conn,serialID);
 								conn.commit();

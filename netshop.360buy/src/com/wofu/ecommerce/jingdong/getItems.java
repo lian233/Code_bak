@@ -78,6 +78,7 @@ public class getItems extends Thread {
 	 */
 	private void getOnSaleItems(Connection conn) throws Exception
 	{		
+		Log.error("连接池数监测,getItems连接数为"+conn.getMetaData(),"");
 		int i=0;
 		int j=0;
 		int m=0;

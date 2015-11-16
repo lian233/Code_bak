@@ -215,7 +215,7 @@ public class UpdateSalesOrderStatusProcessor extends BizProcessor {
 			getDeliveryDetail(commsheetid,updatesaleorderstatusele,this.getIsBarcodeId());
 			System.out.println("创建发货单明细执行耗时 : "+(System.currentTimeMillis()-time)/1000f+" 秒 ");
 			//写入箱号
-			getOutPackageItem(orderCode,updatesaleorderstatusele);
+//			getOutPackageItem(orderCode,updatesaleorderstatusele);
 			//写入百世仓it_upnote表--由存储过程处理  sheetid为wms_outstock0表的sheetid it_upnote
 			time=System.currentTimeMillis();
 			IntfUtils.upNote(this.getExtconnection(),this.getVertifycode(), commsheetid, 2209, this.getInterfaceSystem(), this.getWarehouseMulti()?BestUtil.getShopID(this.getExtconnection(),customerCode,warehouseCode,"SyncSalesOrderInfo"):BestUtil.getShopID(this.getExtconnection(),customerCode,warehouseCode));

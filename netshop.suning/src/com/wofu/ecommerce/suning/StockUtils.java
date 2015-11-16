@@ -91,6 +91,10 @@ public class StockUtils {
 			String app_key,String app_Secret,ECS_StockConfig stockconfig,ECS_StockConfigSku stockconfigsku,int qty,Boolean isLast){
 		try{
 			//方法名
+			if(stockconfig.getItemcode().equals("")||stockconfigsku.getSkuid().equals("")||stockconfigsku.getSku().equals("")){
+				System.out.println("sku为空,跳过同步");
+				return;
+			}
 			String apimethod="suning.custom.inventory.modify";
 			HashMap<String,String> reqMap = new HashMap<String,String>();
 			reqMap.put("productCode", stockconfigsku.getSkuid());
@@ -105,6 +109,7 @@ public class StockUtils {
 	        map.put("appKey", app_key);
 	        map.put("resparams", ReqParams);
 	        //发送请求
+	        System.out.println("苏宁店同步库存发送的参数  "+map);
 			String responseText = CommHelper.doRequest(map,url);
 			if(responseText.indexOf("sn_responseContent")!=-1){
 				//把返回的数据转成json对象

@@ -159,8 +159,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 				//取接口表
 		
 		List infsheetlist=DtcTools.getInfDownNote(conn,sheetType);
+		if(infsheetlist.size()>0){
 		System.out.println("本次要上传的支付单数为"+infsheetlist.size());
-		
+		}
+		System.out.println("参数输出"+Params.EshopEntCode);
 		//商品
 		for(Iterator it=infsheetlist.iterator();it.hasNext();){
 			//
@@ -170,7 +172,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 			
 			String sql = "select * from OutStockNote where sheetID = '"+ sheetID+"'";
-			Vector vt=SQLHelper.multiRowSelect(conn, sql);
+			Vector  vt=SQLHelper.multiRowSelect(conn, sql);
 			for (int i=0;i<vt.size();i++){	
 			Hashtable ht=(Hashtable) vt.get(i);
 			String outOrderNo = ht.get("CustomPurSheetID").toString();

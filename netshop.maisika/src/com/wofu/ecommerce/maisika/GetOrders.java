@@ -41,11 +41,8 @@ public class GetOrders extends Thread {
 			try {
 				
 				connection = PoolHelper.getInstance().getConnection(Params.dbname);	
-				System.out.println("开始获取麦斯卡订单1");
 				lasttime=PublicUtils.getConfig(connection,lasttimeconfvalue,Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
-				System.out.println("开始获取麦斯卡订单2");
 				getOrderList(connection) ;
-				System.out.println("开始获取麦斯卡订单");
 				
 			} catch (Exception e) {
 				try {
@@ -116,7 +113,7 @@ public class GetOrders extends Thread {
 
 
 
-					int totalCount=responseproduct.getInt("count");					
+					int totalCount=responseproduct.getInt("totalcount");					
 					Log.info("订单总数："+totalCount);
 					if (totalCount==0)
 					{

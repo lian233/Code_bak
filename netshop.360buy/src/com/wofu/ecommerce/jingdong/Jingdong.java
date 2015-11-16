@@ -130,9 +130,11 @@ public class Jingdong extends Service {
 		CheckGetItemThread checkGetItemThread= new CheckGetItemThread();
 		checkGetItemThread.start();
 		// 检测更新库存线程
-		CheckUpdateStockThread checkUpdateStockThread = new CheckUpdateStockThread();
-		checkUpdateStockThread.start();
+//		CheckUpdateStockThread checkUpdateStockThread = new CheckUpdateStockThread();
+//		checkUpdateStockThread.start();
 		
+		UpdateStatus updateStatus = new UpdateStatus();
+		updateStatus.start();
 		
 	}
 }

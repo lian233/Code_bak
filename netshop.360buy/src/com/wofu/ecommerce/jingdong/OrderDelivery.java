@@ -105,6 +105,7 @@ public class OrderDelivery extends Thread {
 	
 	private void doDelivery(Connection conn,Vector<Hashtable> vdeliveryorder) throws Throwable
 	{
+		Log.error("连接池数监测,OrderDelivery的连接数为"+conn.getMetaData(),"");
 		Log.info("本次发货数量 为："+vdeliveryorder.size());
 		String sql = "" ;
 		for (int i = 0; i < vdeliveryorder.size(); i++) 

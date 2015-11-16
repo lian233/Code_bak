@@ -83,7 +83,10 @@ public class StockUtils
 	{
 		try
 		{
-			
+			if(stockconfigsku.getSku().equals("")){
+				System.out.println("sku为空,跳过同步");
+				return;
+			}
 			DefaultJdClient client = new DefaultJdClient(SERVER_URL,token,appKey,appSecret);
 			WareSkuStockUpdateRequest request = new WareSkuStockUpdateRequest();
 			request.setOuterId(stockconfigsku.getSku());

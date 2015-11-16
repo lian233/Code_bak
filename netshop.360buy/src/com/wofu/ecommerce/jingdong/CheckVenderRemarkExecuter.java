@@ -111,6 +111,8 @@ public class CheckVenderRemarkExecuter extends Executer {
 	
 	private void checkVenderRemarks() throws Exception
 	{
+		Log.error("连接池数监测,CheckVenderRemarkExecuter连接数为"+this.getDao().getConnection().getMetaData(),"");
+		Log.error("连接池数监测,CheckVenderRemarkExecuter Ex连接数为"+this.getExtdao().getConnection().getMetaData(),"");
 
 			try
 			{

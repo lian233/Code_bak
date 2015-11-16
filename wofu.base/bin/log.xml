@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yguard version="1.5">
+<!--
+  yGuard Bytecode Obfuscator, v2.4, a Product of yWorks GmbH - http://www.yworks.com
+
+  Logfile created on Fri Aug 21 13:05:52 CST 2015
+
+  Jar file to be obfuscated:           wofu.base_PreObf.jar
+  Target Jar file for obfuscated code: wofu.base.jar
+
+-->
+<!-- WARNING
+Methods are called which may break in obfuscated version at runtime.
+Please review your source code to ensure that the dangerous methods are not intended
+to act on classes which have been obfuscated.
+-->
+<!--
+     Your class com.wofu.base.dbmanager.ECSDao calls the java.lang.Class method java.lang.reflect.Method getMethod(java.lang.String, java.lang.Class[])
+-->
+<!--
+     Your class com.wofu.base.interfacemanager.InterfaceProcessor calls the java.lang.Class method java.lang.reflect.Method getMethod(java.lang.String, java.lang.Class[])
+-->
+<!--
+     Your class com.wofu.base.util.BusinessObject calls the java.lang.Class method java.lang.reflect.Method getMethod(java.lang.String, java.lang.Class[])
+-->
+<!-- WARNING - identifier from script file not found in JAR:  -->
+<!-- WARNING - identifier from script file not found in JAR: /main -->
+<!--
+  Memory in use after class data structure built: 10611496 bytes
+  Total memory available                        : 27930624 bytes
+-->
+<expose>
+  <class name="com.wofu.base.inventory.InvUtil"/>
+  <method class="com.wofu.base.inventory.InvUtil" name="void invbc_Account(com.wofu.base.dbmanager.DataCentre, com.wofu.base.inventory.ECS_InventoryBookBC, int)"/>
+  <method class="com.wofu.base.inventory.InvUtil" name="void inv_Stock(com.wofu.base.dbmanager.DataCentre, int, int, int)"/>
+  <method class="com.wofu.base.inventory.InvUtil" name="void inv_Account(com.wofu.base.dbmanager.DataCentre, com.wofu.base.inventory.ECS_InventoryBook, int)"/>
+  <class name="com.wofu.base.inventory.ECS_Inventory"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="orgid"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="lockbadqty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="lockqty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="lastmpnthqty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="lastdayqty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="badqty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="itemid"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="placeid"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="qty"/>
+  <field class="com.wofu.base.inventory.ECS_Inventory" name="avgcostvalue"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getLastmpnthqty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setItemid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getPlaceid()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getItemid()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setQty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setLockbadqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setPlaceid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="double getAvgcostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setLastdayqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getLastdayqty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setAvgcostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setBadqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getLockbadqty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setLastmpnthqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getBadqty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getOrgid()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getLockqty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="int getQty()"/>
+  <method class="com.wofu.base.inventory.ECS_Inventory" name="void setLockqty(int)"/>
+  <class name="com.wofu.base.inventory.InvOrderProcessor"/>
+  <method class="com.wofu.base.inventory.InvOrderProcessor" name="void execute()"/>
+  <class name="com.wofu.base.inventory.ECS_InventoryBook"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="pricevalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="busid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="orgid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="stime"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="sdate"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="serialid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="busidate"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="closeqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="notes"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="costvalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="itemid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="placeid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="closecostvalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="bustype"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="directflag"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBook" name="qty"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setDirectflag(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setItemid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setPricevalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="java.util.Date getSdate()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getBustype()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getPlaceid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setCloseqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setBusidate(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getItemid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setNotes(java.lang.String)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="double getClosecostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setQty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="java.util.Date getBusidate()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setStime(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="java.lang.String getNotes()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void account()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setCostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="double getCostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setBustype(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setBusid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="double getPricevalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setPlaceid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setClosecostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getBusid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getCloseqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="java.util.Date getStime()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setSdate(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getDirectflag()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getOrgid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getSerialid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="int getQty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBook" name="void setSerialid(int)"/>
+  <class name="com.wofu.base.inventory.ECS_InventoryBC"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="orgid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="lockbadqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="lockqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="lastmpnthqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="lastdayqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="badqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="placeid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="skuid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="qty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBC" name="avgcostvalue"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getLastmpnthqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getPlaceid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setQty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setLockbadqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setPlaceid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="double getAvgcostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setLastdayqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getLastdayqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getSkuid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setAvgcostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setBadqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getLockbadqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setLastmpnthqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getBadqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getOrgid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getLockqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="int getQty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setLockqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBC" name="void setSkuid(int)"/>
+  <class name="com.wofu.base.inventory.InventoryProcessor"/>
+  <field class="com.wofu.base.inventory.InventoryProcessor" name="bustype"/>
+  <field class="com.wofu.base.inventory.InventoryProcessor" name="dao"/>
+  <field class="com.wofu.base.inventory.InventoryProcessor" name="busid"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="void setBusid(int)"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="com.wofu.base.dbmanager.DataCentre getDao()"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="void setBustype(int)"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="int getBusid()"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="void setDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="int getBustype()"/>
+  <method class="com.wofu.base.inventory.InventoryProcessor" name="void execute()"/>
+  <class name="com.wofu.base.inventory.ECS_AccInventory"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="busid"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="orgid"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="cost"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="busidate"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="price"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="notes"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="itemid"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="placeid"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="skuid"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="directflag"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="bustype"/>
+  <field class="com.wofu.base.inventory.ECS_AccInventory" name="qty"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setDirectflag(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setItemid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getBustype()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getPlaceid()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="double getPrice()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setBusidate(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getItemid()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setNotes(java.lang.String)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setQty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="java.util.Date getBusidate()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="java.lang.String getNotes()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setCost(double)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setBusid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setPrice(double)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setBustype(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setPlaceid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getSkuid()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getBusid()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getDirectflag()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="double getCost()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getOrgid()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="int getQty()"/>
+  <method class="com.wofu.base.inventory.ECS_AccInventory" name="void setSkuid(int)"/>
+  <class name="com.wofu.base.inventory.ECS_InventoryBookBC"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="pricevalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="busid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="orgid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="stime"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="sdate"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="serialid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="busidate"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="closeqty"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="notes"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="costvalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="placeid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="skuid"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="closecostvalue"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="bustype"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="directflag"/>
+  <field class="com.wofu.base.inventory.ECS_InventoryBookBC" name="qty"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setDirectflag(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setPricevalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="java.util.Date getSdate()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getBustype()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getPlaceid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setCloseqty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setBusidate(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setNotes(java.lang.String)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="double getClosecostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setQty(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="java.util.Date getBusidate()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setStime(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="java.lang.String getNotes()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setCostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="double getCostvalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setBustype(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setBusid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="double getPricevalue()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setPlaceid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getSkuid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setClosecostvalue(double)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getBusid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getCloseqty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="java.util.Date getStime()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setSdate(java.util.Date)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getDirectflag()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getOrgid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getSerialid()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="int getQty()"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setSerialid(int)"/>
+  <method class="com.wofu.base.inventory.ECS_InventoryBookBC" name="void setSkuid(int)"/>
+  <class name="com.wofu.base.job.immediate.ImmediateJob"/>
+  <field class="com.wofu.base.job.immediate.ImmediateJob" name="orderflag"/>
+  <field class="com.wofu.base.job.immediate.ImmediateJob" name="sheetid"/>
+  <field class="com.wofu.base.job.immediate.ImmediateJob" name="executeproc"/>
+  <field class="com.wofu.base.job.immediate.ImmediateJob" name="transflag"/>
+  <field class="com.wofu.base.job.immediate.ImmediateJob" name="sheettype"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="void setTransFlag(boolean)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="void setSheetType(int)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="void setExecuteProc(java.lang.String)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="int getOrderFlag()"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="void setSheetID(java.lang.String)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="int getSheetType()"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="void setOrderFlag(int)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="java.lang.String getExecuteProc()"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="boolean getTransFlag()"/>
+  <method class="com.wofu.base.job.immediate.ImmediateJob" name="java.lang.String getSheetID()"/>
+  <class name="com.wofu.base.job.immediate.ImmediateRunner"/>
+  <field class="com.wofu.base.job.immediate.ImmediateRunner" name="jobname"/>
+  <field class="com.wofu.base.job.immediate.ImmediateRunner" name="job"/>
+  <field class="com.wofu.base.job.immediate.ImmediateRunner" name="is_running"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void UpdateImmediateJobErrMsg(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void ExcuteImmediateJob(java.sql.Connection, com.wofu.base.job.immediate.ImmediateJob)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void UpdateImmediateJobErrMsg(java.sql.Connection, com.wofu.base.job.immediate.ImmediateJob)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void ExcuteAllImmediateJob(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void UpdateImmediateJob(java.sql.Connection, com.wofu.base.job.immediate.ImmediateJob)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void UpdateImmediateJob(java.sql.Connection, com.wofu.base.job.immediate.ImmediateJob, java.lang.String)"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="void run()"/>
+  <method class="com.wofu.base.job.immediate.ImmediateRunner" name="java.lang.String toString()"/>
+  <class name="com.wofu.base.job.timer.TimerRunner"/>
+  <field class="com.wofu.base.job.timer.TimerRunner" name="jobname"/>
+  <field class="com.wofu.base.job.timer.TimerRunner" name="groupname"/>
+  <field class="com.wofu.base.job.timer.TimerRunner" name="errorVector"/>
+  <field class="com.wofu.base.job.timer.TimerRunner" name="job"/>
+  <field class="com.wofu.base.job.timer.TimerRunner" name="is_running"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void modifiedErrVect(int)"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="java.util.Vector getAllJob(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void ResetErr(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void run()"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="java.lang.String toString()"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void resetErrLarEle(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void resetErrVect(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.timer.TimerRunner" name="void ExecuteJob(java.sql.Connection)"/>
+  <class name="com.wofu.base.job.timer.ECS_TimerPolicy"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="dsid"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="errorcount"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="id"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="clock"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="active"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="params"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="clocktype"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="nextactive"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="notes"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="groupname"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="flag"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="activetimes"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="executer"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="skip"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="errormessage"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="maxretry"/>
+  <field class="com.wofu.base.job.timer.ECS_TimerPolicy" name="lastactive"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getMaxretry()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getFlag()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setMaxretry(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getErrormessage()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getDsid()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setSkip(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setClocktype(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setGroupname(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setDsid(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setNotes(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getClocktype()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getNotes()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getErrorcount()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setClock(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getExecuter()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setErrormessage(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setFlag(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getGroupname()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setLastactive(java.util.Date)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getActive()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.util.Date getNextactive()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setActivetimes(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setActive(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getParams()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setNextactive(java.util.Date)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getId()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.lang.String getClock()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setId(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getActivetimes()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setExecuter(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="int getSkip()"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setParams(java.lang.String)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="void setErrorcount(int)"/>
+  <method class="com.wofu.base.job.timer.ECS_TimerPolicy" name="java.util.Date getLastactive()"/>
+  <class name="com.wofu.base.job.TestTimer"/>
+  <method class="com.wofu.base.job.TestTimer" name="void run()"/>
+  <class name="com.wofu.base.job.JVMShow"/>
+  <field class="com.wofu.base.job.JVMShow" name="ps"/>
+  <method class="com.wofu.base.job.JVMShow" name="void run()"/>
+  <class name="com.wofu.base.job.TestListener"/>
+  <field class="com.wofu.base.job.TestListener" name="timer"/>
+  <method class="com.wofu.base.job.TestListener" name="void contextDestroyed(javax.servlet.ServletContextEvent)"/>
+  <method class="com.wofu.base.job.TestListener" name="void contextInitialized(javax.servlet.ServletContextEvent)"/>
+  <class name="com.wofu.base.job.Executer"/>
+  <field class="com.wofu.base.job.Executer" name="timeformat"/>
+  <field class="com.wofu.base.job.Executer" name="connection"/>
+  <field class="com.wofu.base.job.Executer" name="dao"/>
+  <field class="com.wofu.base.job.Executer" name="extdao"/>
+  <field class="com.wofu.base.job.Executer" name="datetimeformat"/>
+  <field class="com.wofu.base.job.Executer" name="extconnection"/>
+  <field class="com.wofu.base.job.Executer" name="extdsname"/>
+  <field class="com.wofu.base.job.Executer" name="dsname"/>
+  <field class="com.wofu.base.job.Executer" name="dateformat"/>
+  <field class="com.wofu.base.job.Executer" name="executeobj"/>
+  <method class="com.wofu.base.job.Executer" name="void UpdateTimerJob()"/>
+  <method class="com.wofu.base.job.Executer" name="void UpdateTimerJob(java.lang.String)"/>
+  <method class="com.wofu.base.job.Executer" name="boolean checkExtPool()"/>
+  <method class="com.wofu.base.job.Executer" name="void setDsname(java.lang.String)"/>
+  <method class="com.wofu.base.job.Executer" name="com.wofu.base.dbmanager.DataCentre getExtdao()"/>
+  <method class="com.wofu.base.job.Executer" name="void setExtconnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.Executer" name="com.wofu.base.job.timer.ECS_TimerPolicy getExecuteobj()"/>
+  <method class="com.wofu.base.job.Executer" name="com.wofu.base.dbmanager.DataCentre getDao()"/>
+  <method class="com.wofu.base.job.Executer" name="void updateJobFlag(int)"/>
+  <method class="com.wofu.base.job.Executer" name="java.lang.String getDsname()"/>
+  <method class="com.wofu.base.job.Executer" name="java.sql.Connection getConnection()"/>
+  <method class="com.wofu.base.job.Executer" name="void setDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.job.Executer" name="void setConnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.job.Executer" name="void setExtdsname(java.lang.String)"/>
+  <method class="com.wofu.base.job.Executer" name="void setExecuteobj(com.wofu.base.job.timer.ECS_TimerPolicy)"/>
+  <method class="com.wofu.base.job.Executer" name="java.lang.String getExtdsname()"/>
+  <method class="com.wofu.base.job.Executer" name="java.sql.Connection getExtconnection()"/>
+  <method class="com.wofu.base.job.Executer" name="void setExtdao(com.wofu.base.dbmanager.DataCentre)"/>
+  <class name="com.wofu.base.job.JobManager"/>
+  <field class="com.wofu.base.job.JobManager" name="useableInventory"/>
+  <method class="com.wofu.base.job.JobManager" name="void main(java.lang.String[])"/>
+  <method class="com.wofu.base.job.JobManager" name="void process()"/>
+  <method class="com.wofu.base.job.JobManager" name="java.lang.String description()"/>
+  <method class="com.wofu.base.job.JobManager" name="void createCacheOject()"/>
+  <method class="com.wofu.base.job.JobManager" name="void init(java.util.Properties)"/>
+  <method class="com.wofu.base.job.JobManager" name="void loadExtDS()"/>
+  <method class="com.wofu.base.job.JobManager" name="void end()"/>
+  <method class="com.wofu.base.job.JobManager" name="void start()"/>
+  <class name="com.wofu.base.job.Params"/>
+  <field class="com.wofu.base.job.Params" name="groupname"/>
+  <field class="com.wofu.base.job.Params" name="waittime"/>
+  <field class="com.wofu.base.job.Params" name="isNeedCache"/>
+  <field class="com.wofu.base.job.Params" name="dbname"/>
+  <method class="com.wofu.base.job.Params" name="void init(java.util.Properties)"/>
+  <class name="com.wofu.base.job.TimerBusinessHandler"/>
+  <field class="com.wofu.base.job.TimerBusinessHandler" name="params"/>
+  <method class="com.wofu.base.job.TimerBusinessHandler" name="void setParams(java.util.Map)"/>
+  <method class="com.wofu.base.job.TimerBusinessHandler" name="java.util.Map getParams()"/>
+  <method class="com.wofu.base.job.TimerBusinessHandler" name="void run()"/>
+  <class name="com.wofu.base.job.ServiceManagerListener"/>
+  <field class="com.wofu.base.job.ServiceManagerListener" name="timer"/>
+  <method class="com.wofu.base.job.ServiceManagerListener" name="void contextDestroyed(javax.servlet.ServletContextEvent)"/>
+  <method class="com.wofu.base.job.ServiceManagerListener" name="void contextInitialized(javax.servlet.ServletContextEvent)"/>
+  <class name="com.wofu.base.file.ECS_File"/>
+  <field class="com.wofu.base.file.ECS_File" name="smallpath"/>
+  <field class="com.wofu.base.file.ECS_File" name="filesize"/>
+  <field class="com.wofu.base.file.ECS_File" name="name"/>
+  <field class="com.wofu.base.file.ECS_File" name="filetype"/>
+  <field class="com.wofu.base.file.ECS_File" name="note"/>
+  <field class="com.wofu.base.file.ECS_File" name="path"/>
+  <field class="com.wofu.base.file.ECS_File" name="fileid"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setSmallpath(java.lang.String)"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setFilesize(int)"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setName(java.lang.String)"/>
+  <method class="com.wofu.base.file.ECS_File" name="java.lang.String getSmallpath()"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setFiletype(java.lang.String)"/>
+  <method class="com.wofu.base.file.ECS_File" name="java.lang.String getFiletype()"/>
+  <method class="com.wofu.base.file.ECS_File" name="int getFileid()"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setFileid(int)"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setPath(java.lang.String)"/>
+  <method class="com.wofu.base.file.ECS_File" name="java.lang.String getNote()"/>
+  <method class="com.wofu.base.file.ECS_File" name="void setNote(java.lang.String)"/>
+  <method class="com.wofu.base.file.ECS_File" name="java.lang.String getName()"/>
+  <method class="com.wofu.base.file.ECS_File" name="java.lang.String getPath()"/>
+  <method class="com.wofu.base.file.ECS_File" name="int getFilesize()"/>
+  <class name="com.wofu.base.report.ECS_ReportItems"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="flag"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="createtime"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="name"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="creator"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="updatetime"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="updator"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="itemid"/>
+  <field class="com.wofu.base.report.ECS_ReportItems" name="folderid"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setCreator(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setUpdatetime(java.util.Date)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setName(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="java.lang.String getCreator()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="java.util.Date getUpdatetime()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="int getFlag()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setFolderid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="java.util.Date getCreatetime()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="int getFolderid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="java.lang.String getName()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setCreatetime(java.util.Date)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setFlag(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="java.lang.String getUpdator()"/>
+  <method class="com.wofu.base.report.ECS_ReportItems" name="void setUpdator(java.lang.String)"/>
+  <class name="com.wofu.base.report.ECS_ReportItemSQL"/>
+  <field class="com.wofu.base.report.ECS_ReportItemSQL" name="clearsql"/>
+  <field class="com.wofu.base.report.ECS_ReportItemSQL" name="presql"/>
+  <field class="com.wofu.base.report.ECS_ReportItemSQL" name="itemid"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="void setPresql(java.io.InputStream)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="void setClearsql(java.io.InputStream)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="java.io.InputStream getClearsql()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemSQL" name="java.io.InputStream getPresql()"/>
+  <class name="com.wofu.base.report.ECS_ReportFolder"/>
+  <field class="com.wofu.base.report.ECS_ReportFolder" name="flag"/>
+  <field class="com.wofu.base.report.ECS_ReportFolder" name="foldername"/>
+  <field class="com.wofu.base.report.ECS_ReportFolder" name="groupid"/>
+  <field class="com.wofu.base.report.ECS_ReportFolder" name="parentid"/>
+  <field class="com.wofu.base.report.ECS_ReportFolder" name="folderid"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="java.lang.String getFoldername()"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="int getGroupid()"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="int getParentid()"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="void setParentid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="void setGroupid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="int getFlag()"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="void setFolderid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="int getFolderid()"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="void setFlag(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportFolder" name="void setFoldername(java.lang.String)"/>
+  <class name="com.wofu.base.report.ECS_ReportTemplate"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="presql"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="name"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="updatetime"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="creator"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="condofitems"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="updator"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="querysqlofitems"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="createtime"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="itemid"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="clearsql"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="flag"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="merchantid"/>
+  <field class="com.wofu.base.report.ECS_ReportTemplate" name="folderid"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void removeReport()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getReportQuery()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getFolderItems()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getReportCols()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getRenderer()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setFolderid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void insert()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setCondofitems(com.wofu.base.util.DataRelation)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setName(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getReportItems()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setCreator(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getFolder()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void addFolder()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getReportCond()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="int getFlag()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.util.Date getUpdatetime()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="com.wofu.base.util.DataRelation getCondofitems()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getQueryInfo()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void renameGroup()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="int getFolderid()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setPresql(java.io.InputStream)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.lang.String getUpdator()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getGroup()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setQuerysqlofitems(com.wofu.base.util.DataRelation)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setMerchantid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setCreatetime(java.util.Date)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getItemInfo()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="int getMerchantid()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.lang.String getName()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.io.InputStream getPresql()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void update()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void getRunResult()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void removeFolder()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.lang.String getCreator()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setUpdator(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void addGroup()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.util.Date getCreatetime()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setUpdatetime(java.util.Date)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void select()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setFlag(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void renameFolder()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="void setClearsql(java.io.InputStream)"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="java.io.InputStream getClearsql()"/>
+  <method class="com.wofu.base.report.ECS_ReportTemplate" name="com.wofu.base.util.DataRelation getQuerysqlofitems()"/>
+  <class name="com.wofu.base.report.ECS_ReportGroup"/>
+  <field class="com.wofu.base.report.ECS_ReportGroup" name="groupname"/>
+  <field class="com.wofu.base.report.ECS_ReportGroup" name="groupid"/>
+  <field class="com.wofu.base.report.ECS_ReportGroup" name="merchantid"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="int getMerchantid()"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="void setGroupid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="void setMerchantid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="void setGroupname(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="int getGroupid()"/>
+  <method class="com.wofu.base.report.ECS_ReportGroup" name="java.lang.String getGroupname()"/>
+  <class name="com.wofu.base.report.ECS_ReportItemQueryColumn"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="colid"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="sumfield"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="width"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="queryid"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="grouptype"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="groupfield"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="fieldname"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="sumtype"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="itemid"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="renderer"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="title"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="format"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="displayflag"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getSumfield()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setGrouptype(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setSumtype(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getGroupfield()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setRenderer(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getColid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setColid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getFormat()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setDisplayflag(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setTitle(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getRenderer()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getSumtype()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getGrouptype()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getDisplayflag()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setGroupfield(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getTitle()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="java.lang.String getFieldname()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setWidth(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setFieldname(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setQueryid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getWidth()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setFormat(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="int getQueryid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQueryColumn" name="void setSumfield(java.lang.String)"/>
+  <class name="com.wofu.base.report.ECS_ReportItemQuerySQL"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="queryname"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="querysql"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="columnofquerys"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="queryid"/>
+  <field class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="itemid"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="com.wofu.base.util.DataRelation getColumnofquerys()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="int getQueryid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="java.lang.String getQueryname()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="void setQuerysql(java.io.InputStream)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="void setQueryname(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="void setColumnofquerys(com.wofu.base.util.DataRelation)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="java.io.InputStream getQuerysql()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemQuerySQL" name="void setQueryid(int)"/>
+  <class name="com.wofu.base.report.ECS_ReportItemCond"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="width"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="ismust"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="replaceexpression"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="queryfield"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="logistic"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="itemid"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="renderer"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="type"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="applyquery"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="title"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="defaultvalue"/>
+  <field class="com.wofu.base.report.ECS_ReportItemCond" name="condid"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setItemid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setRenderer(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getItemid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setIsmust(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getIsmust()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setCondid(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getQueryfield()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setTitle(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getRenderer()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setDefaultvalue(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setReplaceexpression(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getReplaceexpression()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getCondid()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getLogistic()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getTitle()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getType()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getDefaultvalue()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setType(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setWidth(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="java.lang.String getApplyquery()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="int getWidth()"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setLogistic(int)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setQueryfield(java.lang.String)"/>
+  <method class="com.wofu.base.report.ECS_ReportItemCond" name="void setApplyquery(java.lang.String)"/>
+  <class name="com.wofu.base.util.DataRelation"/>
+  <field class="com.wofu.base.util.DataRelation" name="jsonfields"/>
+  <field class="com.wofu.base.util.DataRelation" name="relationname"/>
+  <field class="com.wofu.base.util.DataRelation" name="classname"/>
+  <field class="com.wofu.base.util.DataRelation" name="relationdata"/>
+  <field class="com.wofu.base.util.DataRelation" name="serialVersionUID"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.lang.String getJsonfields()"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.util.List toList()"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setRelationData(java.lang.Object)"/>
+  <method class="com.wofu.base.util.DataRelation" name="boolean isNULL()"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setRelationData(java.util.Vector)"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setClassName(java.lang.String)"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.lang.String getRelationName()"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setJsonfields(java.lang.String)"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setRelationData(java.util.ArrayList)"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.lang.String toJson()"/>
+  <method class="com.wofu.base.util.DataRelation" name="int size()"/>
+  <method class="com.wofu.base.util.DataRelation" name="void setRelationName(java.lang.String)"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.util.List getRelationData()"/>
+  <method class="com.wofu.base.util.DataRelation" name="java.lang.String getClassName()"/>
+  <class name="com.wofu.base.util.BusinessObject"/>
+  <field class="com.wofu.base.util.BusinessObject" name="connection"/>
+  <field class="com.wofu.base.util.BusinessObject" name="exportQuerySQL"/>
+  <field class="com.wofu.base.util.BusinessObject" name="dao"/>
+  <field class="com.wofu.base.util.BusinessObject" name="response"/>
+  <field class="com.wofu.base.util.BusinessObject" name="uniqueFields3"/>
+  <field class="com.wofu.base.util.BusinessObject" name="request"/>
+  <field class="com.wofu.base.util.BusinessObject" name="uniqueFields2"/>
+  <field class="com.wofu.base.util.BusinessObject" name="uniqueFields1"/>
+  <field class="com.wofu.base.util.BusinessObject" name="extdao"/>
+  <field class="com.wofu.base.util.BusinessObject" name="searchOrderFieldName"/>
+  <field class="com.wofu.base.util.BusinessObject" name="userinfo"/>
+  <field class="com.wofu.base.util.BusinessObject" name="extconnection"/>
+  <field class="com.wofu.base.util.BusinessObject" name="orderMode"/>
+  <field class="com.wofu.base.util.BusinessObject" name="extdsname"/>
+  <field class="com.wofu.base.util.BusinessObject" name="moduleid"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void getMapData(java.util.Map)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String getReqData()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="javax.servlet.http.HttpServletRequest getRequest()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setExtDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setModuleid(int)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void getJSONData()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="com.wofu.base.dbmanager.DataCentre getDao()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String toJSONObject()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String toJSONArray(java.util.List)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void batchAdjust()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.sql.Connection getConnection()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void copyTo(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="javax.servlet.http.HttpServletResponse getResponse()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setResponse(javax.servlet.http.HttpServletResponse)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void OutputStream(java.io.InputStream)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void getDataByID(int, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void checkUnique(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String getUniqueFields1()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String toJSONObject(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void checkUnique(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void export()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.Object getFieldValue(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String getUniqueFields3()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setReqeust(javax.servlet.http.HttpServletRequest)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void getDataByID(int)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="com.wofu.base.dbmanager.DataCentre getExtDao(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String getJSONTree(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void search()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.util.List getDataFromXLS(java.io.InputStream, java.lang.String[], int)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setConnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="com.wofu.base.systemmanager.UserInfo getUserInfo()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void batchCheckUnique()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="int getModuleid()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setFieldValue(com.wofu.base.util.BusinessClass, java.lang.String, java.lang.Object)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void dataImport()"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.util.List getDataFromXLSX(java.io.InputStream, java.lang.String[], int)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String toJSONObject(java.util.Map)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void setObjValue(com.wofu.base.util.BusinessClass, com.wofu.common.json.JSONObject)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="void OutputStr(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.reflect.Field getFieldByFieldName(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="boolean BusiExists(int)"/>
+  <method class="com.wofu.base.util.BusinessObject" name="java.lang.String getUniqueFields2()"/>
+  <class name="com.wofu.base.util.JSONTool"/>
+  <method class="com.wofu.base.util.JSONTool" name="java.lang.String escape(java.lang.String)"/>
+  <method class="com.wofu.base.util.JSONTool" name="java.lang.String unEscape(java.lang.String)"/>
+  <class name="com.wofu.base.util.BusiUtil"/>
+  <method class="com.wofu.base.util.BusiUtil" name="boolean BusiExists(com.wofu.base.dbmanager.DataCentre, com.wofu.base.util.BusinessClass, int)"/>
+  <method class="com.wofu.base.util.BusiUtil" name="boolean BusiExists(com.wofu.base.dbmanager.DataCentre, java.lang.String, int)"/>
+  <class name="com.wofu.base.util.PageBusinessObject"/>
+  <field class="com.wofu.base.util.PageBusinessObject" name="pagesize"/>
+  <field class="com.wofu.base.util.PageBusinessObject" name="currpage"/>
+  <field class="com.wofu.base.util.PageBusinessObject" name="rowcount"/>
+  <field class="com.wofu.base.util.PageBusinessObject" name="pagecount"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="void setRowcount(int)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="void setPagesize(int)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="void search()"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="java.lang.String toPaginationJSONArray(java.util.List)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="int getPagecount()"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="java.util.Vector getPaginationData(java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="int getCurrpage()"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="void setPagecount(int)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="void setCurrpage(int)"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="int getPagesize()"/>
+  <method class="com.wofu.base.util.PageBusinessObject" name="int getRowcount()"/>
+  <class name="com.wofu.base.util.JavaClassGenerator"/>
+  <method class="com.wofu.base.util.JavaClassGenerator" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.util.JavaClassGenerator" name="void doGenerate()"/>
+  <method class="com.wofu.base.util.JavaClassGenerator" name="java.lang.String getName(java.lang.String)"/>
+  <class name="com.wofu.base.util.BusinessClass"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String toJSONArray(java.util.List)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void setResponse(javax.servlet.http.HttpServletResponse)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="javax.servlet.http.HttpServletRequest getRequest()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String toJSONObject(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="com.wofu.base.dbmanager.DataCentre getDao()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String getReqData()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void getMapData(java.util.Map)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="boolean BusiExists(int)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void getDataByID(int)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void OutputStream(java.io.InputStream)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="javax.servlet.http.HttpServletResponse getResponse()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String getUniqueFields1()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String toJSONObject(java.util.Map)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.sql.Connection getConnection()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void setDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String getUniqueFields2()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void getJSONData()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void getDataByID(int, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void copyTo(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String getUniqueFields3()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void setConnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="com.wofu.base.dbmanager.DataCentre getExtDao(java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="com.wofu.base.systemmanager.UserInfo getUserInfo()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String toJSONObject()"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void setReqeust(javax.servlet.http.HttpServletRequest)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="java.lang.String getJSONTree(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.util.BusinessClass" name="void OutputStr(java.lang.String)"/>
+  <class name="com.wofu.base.account.BusinessAccount"/>
+  <method class="com.wofu.base.account.BusinessAccount" name="void execute(com.wofu.base.dbmanager.DataCentre, int, int)"/>
+  <class name="com.wofu.base.common.BusinessControlUtil"/>
+  <method class="com.wofu.base.common.BusinessControlUtil" name="void control(com.wofu.base.dbmanager.DataCentre, int, int)"/>
+  <class name="com.wofu.base.common.ECS_BusiTypeConfig"/>
+  <field class="com.wofu.base.common.ECS_BusiTypeConfig" name="busitype"/>
+  <field class="com.wofu.base.common.ECS_BusiTypeConfig" name="description"/>
+  <field class="com.wofu.base.common.ECS_BusiTypeConfig" name="accclass"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="void setAccclass(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="void setDescription(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="void setBusitype(int)"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="java.lang.String getDescription()"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="int getBusitype()"/>
+  <method class="com.wofu.base.common.ECS_BusiTypeConfig" name="java.lang.String getAccclass()"/>
+  <class name="com.wofu.base.common.ECS_Attribute"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="name"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="ecsattributeofecsattributes"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="updatetime"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="creator"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="multiselect"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="attrid"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="updator"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="status"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="createtime"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="selectvalues"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="selectedtype"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="merchantid"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="valuemode"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="inputtype"/>
+  <field class="com.wofu.base.common.ECS_Attribute" name="scope"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setecsattributeofecsattributes(com.wofu.base.util.DataRelation)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.lang.String getUpdator()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.util.Date getUpdatetime()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="com.wofu.base.util.DataRelation getecsattributeofecsattributes()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getInputtype()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.lang.String getSelectvalues()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getMultiselect()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setValuemode(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setMultiselect(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getMerchantid()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="com.wofu.base.util.DataRelation getEcsattributeofecsattributes()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void delete()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setUpdator(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.util.Date getCreatetime()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setScope(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.lang.String getCreator()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setSelectvalues(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setMerchantid(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getAttrid()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setName(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setCreator(java.lang.String)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="java.lang.String getName()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getValuemode()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setEcsattributeofecsattributes(com.wofu.base.util.DataRelation)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setUpdatetime(java.util.Date)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setSelectedtype(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void insert()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getStatus()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getScope()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setCreatetime(java.util.Date)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void update()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setInputtype(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="int getSelectedtype()"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setAttrid(int)"/>
+  <method class="com.wofu.base.common.ECS_Attribute" name="void setStatus(int)"/>
+  <class name="com.wofu.base.interfacemanager.ECS_DownNoteBak"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="owner"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="flag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="notetime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="noteid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="handletime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="ownerid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setNoteid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="int getNoteid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="java.util.Date getNotetime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setOwnerid(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setOwner(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setHandletime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="int getFlag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void doBackup()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="java.lang.String getOwner()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setNotetime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setFlag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="java.util.Date getHandletime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNoteBak" name="java.lang.String getOwnerid()"/>
+  <class name="com.wofu.base.interfacemanager.InterfaceProcessor"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="busid"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="vertifycode"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="orgid"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="dao"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="extinterfaceid"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="isExists"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="extdao"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="extconnection"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="merchantid"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceProcessor" name="noteid"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void Import(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setNoteid(int)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="com.wofu.base.dbmanager.DataCentre getDao()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="java.lang.String getBusid()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getMerchantid()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void execute()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setMerchantid(int)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setVertifycode(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getNoteid()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setExtDao(com.wofu.base.dbmanager.DataCentre)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getIDByCustomID(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getExtinterfaceid()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="java.lang.String getVertifycode()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int IDGenerator(com.wofu.base.util.BusinessClass, java.lang.String, java.lang.String, com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="int getOrgid()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setExtinterfaceid(int)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="void setBusid(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceProcessor" name="com.wofu.base.dbmanager.DataCentre getExtDao()"/>
+  <class name="com.wofu.base.interfacemanager.ECS_IntfBusList"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="stime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="interfaceid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="executeflag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="busid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="void setExecuteflag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="void setInterfaceid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="void setStime(java.sql.Timestamp)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="int getInterfaceid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="int getBusid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="java.sql.Timestamp getStime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="int getExecuteflag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusList" name="void setBusid(int)"/>
+  <class name="com.wofu.base.interfacemanager.ECS_UpNote"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="owner"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="flag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="notetime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="noteid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="handletime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNote" name="ownerid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setNoteid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="java.util.Date getNotetime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="int getNoteid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setOwnerid(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setOwner(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setHandletime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="int getFlag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="java.lang.String getOwner()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setNotetime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setFlag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="java.util.Date getHandletime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNote" name="java.lang.String getOwnerid()"/>
+  <class name="com.wofu.base.interfacemanager.IntfHelper"/>
+  <method class="com.wofu.base.interfacemanager.IntfHelper" name="java.util.Map getImportInterfaceInfo(com.wofu.base.dbmanager.DataCentre, int, java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.IntfHelper" name="java.util.Map getInterfaceInfo(com.wofu.base.dbmanager.DataCentre, int, int)"/>
+  <method class="com.wofu.base.interfacemanager.IntfHelper" name="java.util.Map getDownNoteInterfaceInfo(com.wofu.base.dbmanager.DataCentre, int, java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.IntfHelper" name="void setInterfaceSheetList(com.wofu.base.dbmanager.DataCentre, int, int, int)"/>
+  <class name="com.wofu.base.interfacemanager.ECS_Interface"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="extinterfaceid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="interfacecode"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="enable"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="interfaceid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="extinterfacestyle"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="vertifycode"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="orgid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_Interface" name="interfacename"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="java.lang.String getInterfacecode()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="java.lang.String getInterfacename()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="int getExtinterfacestyle()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="java.lang.String getVertifycode()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setInterfacename(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="int getExtinterfaceid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setInterfaceid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setOrgid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setEnable(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setInterfacecode(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="int getEnable()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="int getInterfaceid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setExtinterfaceid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setExtinterfacestyle(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="void setVertifycode(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_Interface" name="int getOrgid()"/>
+  <class name="com.wofu.base.interfacemanager.ECS_UpNoteBak"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="owner"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="flag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="notetime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="noteid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="handletime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="ownerid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setNoteid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="java.util.Date getNotetime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="int getNoteid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setOwnerid(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setOwner(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setHandletime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="int getFlag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="java.lang.String getOwner()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setNotetime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setFlag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="java.util.Date getHandletime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_UpNoteBak" name="java.lang.String getOwnerid()"/>
+  <class name="com.wofu.base.interfacemanager.ECS_InterfaceBusType"/>
+  <field class="com.wofu.base.interfacemanager.ECS_InterfaceBusType" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_InterfaceBusType" name="notes"/>
+  <field class="com.wofu.base.interfacemanager.ECS_InterfaceBusType" name="exportclass"/>
+  <field class="com.wofu.base.interfacemanager.ECS_InterfaceBusType" name="interfaceid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_InterfaceBusType" name="importclass"/>
+  <class name="com.wofu.base.interfacemanager.ECS_DownNote"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="owner"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="flag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="notetime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="noteid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="handletime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_DownNote" name="ownerid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setNoteid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="int getNoteid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="java.util.Date getNotetime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setOwnerid(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setOwner(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setHandletime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="int getFlag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="java.lang.String getOwner()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setNotetime(java.util.Date)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void backup()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setFlag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="void setBustype(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="java.util.Date getHandletime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="int getBustype()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_DownNote" name="java.lang.String getOwnerid()"/>
+  <class name="com.wofu.base.interfacemanager.ECS_IntfBusListBak"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="bustype"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="stime"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="interfaceid"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="executeflag"/>
+  <field class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="busid"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="void setExecuteflag(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="void setInterfaceid(int)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="void setStime(java.sql.Timestamp)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="int getInterfaceid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="int getBusid()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="java.sql.Timestamp getStime()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="int getExecuteflag()"/>
+  <method class="com.wofu.base.interfacemanager.ECS_IntfBusListBak" name="void setBusid(int)"/>
+  <class name="com.wofu.base.interfacemanager.InterfaceTimerExecuter"/>
+  <field class="com.wofu.base.interfacemanager.InterfaceTimerExecuter" name="job"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceTimerExecuter" name="void export()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceTimerExecuter" name="void importing()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceTimerExecuter" name="void downnote()"/>
+  <method class="com.wofu.base.interfacemanager.InterfaceTimerExecuter" name="void run()"/>
+  <class name="com.wofu.base.dbmanager.ECSDao"/>
+  <field class="com.wofu.base.dbmanager.ECSDao" name="lock"/>
+  <field class="com.wofu.base.dbmanager.ECSDao" name="conn"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int execute(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void executePreparedSQL(java.lang.String, java.lang.Object[])"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int IDGenerator(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int IDGeneratorMysql(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.util.Vector getTableMeta(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int insert(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int insert(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int IDGenerator(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int delete(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void freeConnection()"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int delete(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.lang.String strSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int intSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.sql.Connection getConnection()"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int countByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.sql.ResultSet getResultSet(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.util.List oneListSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void commit()"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int delete(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int update(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int[] copyTo(com.wofu.base.dbmanager.DataCentre, java.util.Properties)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.lang.String BusiCodeGenerator(int, com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void rollback()"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.util.Vector getSQLMeta(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int deleteByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void setTransation(boolean)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="boolean exists(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void checkConnection(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.lang.String BusiCodeGenerator(int, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int update(com.wofu.base.util.BusinessClass, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.util.Hashtable oneRowSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void executeBatch(java.util.Collection)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="void setConnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int update(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="com.wofu.base.util.BusinessClass getObjByID(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="java.util.Vector multiRowSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int updateByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECSDao" name="int update(com.wofu.base.util.BusinessClass)"/>
+  <class name="com.wofu.base.dbmanager.DataCentre"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int execute(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void executePreparedSQL(java.lang.String, java.lang.Object[])"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int IDGenerator(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int IDGeneratorMysql(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int insert(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.util.Vector getTableMeta(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int insert(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int IDGenerator(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int delete(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void freeConnection()"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int delete(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.lang.String strSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int intSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.sql.Connection getConnection()"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int countByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.sql.ResultSet getResultSet(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.util.List oneListSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void commit()"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int delete(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int update(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int[] copyTo(com.wofu.base.dbmanager.DataCentre, java.util.Properties)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.lang.String BusiCodeGenerator(int, com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void rollback()"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.util.Vector getSQLMeta(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int deleteByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void setTransation(boolean)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="boolean exists(com.wofu.base.util.BusinessClass)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void checkConnection(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.lang.String BusiCodeGenerator(int, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int update(com.wofu.base.util.BusinessClass, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.util.Hashtable oneRowSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void executeBatch(java.util.Collection)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="void setConnection(java.sql.Connection)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int update(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="com.wofu.base.util.BusinessClass getObjByID(java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="java.util.Vector multiRowSelect(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int updateByKeys(com.wofu.base.util.BusinessClass, java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.DataCentre" name="int update(com.wofu.base.util.BusinessClass)"/>
+  <class name="com.wofu.base.dbmanager.ECS_ExtDS"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dsid"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="url"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="encoding"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dbpassword"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dbname"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dbdriver"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="loadclass"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dbport"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="enable"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="maxsize"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dsip"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="notes"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dbuser"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="encryptflag"/>
+  <field class="com.wofu.base.dbmanager.ECS_ExtDS" name="dsname"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setEncryptflag(int)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDsname(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="int getDsid()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void doDelete()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="int getEnable()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDbuser()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDsid(int)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void doTransaction(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setNotes(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setEnable(int)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDbpassword()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDbname(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getUrl()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="int getEncryptflag()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDbdriver(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getNotes()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getEncoding()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setMaxsize(int)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDsname()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setLoadclass(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDsip()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void doInsert()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setUrl(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDbname()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="int getMaxsize()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void doUpdate()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDbuser(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDbport(int)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="int getDbport()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDsip(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setDbpassword(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="void setEncoding(java.lang.String)"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getLoadclass()"/>
+  <method class="com.wofu.base.dbmanager.ECS_ExtDS" name="java.lang.String getDbdriver()"/>
+  <class name="com.wofu.base.systemmanager.UserInfo"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="name"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="maxlogcount"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="userid"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="merchantname"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="enabled"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="logintime"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="merchantid"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="login"/>
+  <field class="com.wofu.base.systemmanager.UserInfo" name="password"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="int getMaxlogcount()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setPassword(java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="int getUserid()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="java.lang.String getLogin()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setEnabled(int)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="java.lang.String getPassword()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="int getMerchantid()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setLogin(java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="java.lang.String getLogintime()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setMerchantid(int)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setName(java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="int getEnabled()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="java.lang.String getName()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setMaxlogcount(int)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setUserid(int)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setLogintime(java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="java.lang.String getMerchantname()"/>
+  <method class="com.wofu.base.systemmanager.UserInfo" name="void setMerchantname(java.lang.String)"/>
+  <class name="com.wofu.base.systemmanager.ECS_BusProcList"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusProcList" name="bustype"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusProcList" name="stime"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusProcList" name="executeflag"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusProcList" name="busid"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="void setBusid(int)"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="int getExecuteflag()"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="void setBustype(int)"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="int getBusid()"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="int getBustype()"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="java.util.Date getStime()"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="void setExecuteflag(int)"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusProcList" name="void setStime(java.util.Date)"/>
+  <class name="com.wofu.base.systemmanager.ECS_BusTypeConfig"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="bustype"/>
+  <field class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="invprocessor"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="void setInvprocessor(java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="void setBustype(int)"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="int getBustype()"/>
+  <method class="com.wofu.base.systemmanager.ECS_BusTypeConfig" name="java.lang.String getInvprocessor()"/>
+  <class name="com.wofu.base.systemmanager.SystemControl"/>
+  <method class="com.wofu.base.systemmanager.SystemControl" name="void busiControl(com.wofu.base.dbmanager.DataCentre, int, int)"/>
+  <class name="com.wofu.base.systemmanager.PublicUtils"/>
+  <method class="com.wofu.base.systemmanager.PublicUtils" name="void setConfig(java.sql.Connection, java.lang.String, java.lang.String)"/>
+  <method class="com.wofu.base.systemmanager.PublicUtils" name="java.lang.String getConfig(java.sql.Connection, java.lang.String, java.lang.String)"/>
+</expose>
+<map>
+</map>
+</yguard>

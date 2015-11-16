@@ -129,7 +129,7 @@ public class GetOrders extends Thread {
 //					System.out.println("测试 "+responseOrderListData);
 					//获得的responseOrderListData字符串，转换为json对象。
 					JSONObject responseproduct = new JSONObject(responseOrderListData);
-//					System.out.println("从"+Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)+"开始抓取订单");
+					System.out.println("从"+Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)+"到"+Formatter.format(enddate, Formatter.DATE_TIME_FORMAT)+"开始抓取订单");
 					//解析json对象
 					int count=responseproduct.optInt("count");
 					String message=responseproduct.optString("message");
@@ -168,7 +168,7 @@ public class GetOrders extends Thread {
 						o.setObjValue(o, data);
 						OrderItem item=new OrderItem();
 						JSONArray orderItemList =data.getJSONArray("item");
-						Log.info(o.getModified_time()+"订单号为:"+o.getOid()+" 第"+pageno+"页 | 当前页订单数量为"+orderlist.length()+" 当前数量为"+(j+1)+" 总数为"+count);				 		
+						Log.info(Formatter.format(o.getModified_time(),Formatter.DATE_TIME_FORMAT)+"订单号为:"+o.getOid()+" 第"+pageno+"页 | 当前页订单数量为"+orderlist.length()+" 当前数量为"+(j+1)+" 总数为"+count);				 		
 						if (o.getStatus().equals("1"))
 						{
 							if (!OrderManager.isCheck("检查贝贝网订单", conn, o.getOid()))

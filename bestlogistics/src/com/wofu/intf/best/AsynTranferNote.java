@@ -51,17 +51,17 @@ public class AsynTranferNote extends Thread {
 				for(Iterator it=infsheetlist.iterator();it.hasNext();)
 				{
 					String sheetid=(String) it.next();
-
 					StringBuffer bizData=new StringBuffer();
 					bizData.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 					bizData.append("<"+serviceType+">");
 					bizData.append("<customerCode>"+Params.customercode+"</customerCode>");
-
+					
 					//取订单信息
 					String sql="select sheetid,outshopid,inshopid,note,checkdate,flag from transfer0 with(nolock) where refsheetid='"+sheetid+"'";
 					
 					Hashtable htorder=SQLHelper.oneRowSelect(conn, sql);
-					
+					System.out.println(sheetid);
+					System.out.println(htorder);
 					String orderCode=htorder.get("sheetid").toString();
 					String outshopid=htorder.get("outshopid").toString();
 					String inshopid=htorder.get("inshopid").toString();
@@ -71,7 +71,6 @@ public class AsynTranferNote extends Thread {
 					note=StringUtil.replace(note, "&", "&amp;");
 					String checkdate=htorder.get("checkdate").toString();
 					int sheetflag=Integer.valueOf(htorder.get("flag").toString()).intValue();
-
 					
 					bizData.append("<warehouseCode>"+(Params.warehouseMulti?BestUtil.getWarehouseCode(conn,Params.customercode,outshopid,serviceType):BestUtil.getWarehouseCode(conn,Params.customercode,outshopid))+"</warehouseCode>");
 					bizData.append("<warehouseAddressCode>").append("</warehouseAddressCode>");
@@ -161,6 +160,7 @@ public class AsynTranferNote extends Thread {
 					}										
 					bizData.append("</items>");
 					bizData.append("</"+serviceType+">");
+					
 					String bizData1 = BestUtil.filterChar(bizData.toString() );	
 					//Log.info("result1: "+bizData1);
 					String msgId=BestUtil.makeMsgId(conn);

@@ -113,6 +113,7 @@ public class SynStockExecuter extends Executer {
 					
 					for(int i=0;i<vtstockconfig.size();i++)
 					{
+						
 						try{
 							Hashtable htstockconfig=(Hashtable) vtstockconfig.get(i);
 							
@@ -149,11 +150,12 @@ public class SynStockExecuter extends Executer {
 										stockconfig.setErrmsg("找不到SKU【"+stockconfig.getItemcode()+"】对应的条码");
 										this.getDao().updateByKeys(stockconfig, "orgId,itemid");
 										isfind=false;
+										continue;
 									}
 									else							
 										ismulti=true;
 								}
-			
+
 								int qty =0;
 								
 								if (isfind)
@@ -246,6 +248,7 @@ public class SynStockExecuter extends Executer {
 												this.getDao().updateByKeys(stockconfig, "orgId,itemid");
 												
 												isfind=false;
+												continue;
 											}else								
 												ismulti=true;
 										}

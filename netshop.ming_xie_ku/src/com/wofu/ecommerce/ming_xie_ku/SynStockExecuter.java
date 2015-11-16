@@ -28,7 +28,6 @@ public class SynStockExecuter extends Executer {
 
 	@Override
 	public void run() {
-
 		Properties prop=StringUtil.getStringProperties(this.getExecuteobj().getParams());
 		tradecontactid=prop.getProperty("tradecontactid","18");
 		app_key=prop.getProperty("app_key","18");
@@ -179,6 +178,7 @@ public class SynStockExecuter extends Executer {
 										this.getDao().updateByKeys(stockconfig, "orgid,itemid");
 										
 										isfind=false;
+										continue;
 									}else							
 										ismulti=true;
 								}
@@ -213,7 +213,7 @@ public class SynStockExecuter extends Executer {
 										//执行到这里出问题
 										qty=StockManager.getTradeContactUseableStock(this.getDao().getConnection(), Integer.valueOf(tradecontactid).intValue(), stockconfigsku.getSku());
 									}
-									if (qty<0) qty=0;	
+									if (qty<0) qty=0;
 								}
 								int addstockqty=0;
 								if(Math.abs(stockconfig.getAddstockqty())<1)
@@ -235,6 +235,7 @@ public class SynStockExecuter extends Executer {
 								 * ic static boolean updateStock(String url,String appkey,String ver,String format,
 			long warehouseId,String sku,int qty,int newqty,int updatetype,String app_secret
 								 */
+								System.out.println("名鞋库更新的库存： "+qty);
 								StockUtils.updateStock(url, app_key, ver, format, stockconfigsku, qty,  app_Secret);
 							}catch(Exception ex){
 								if (this.getConnection() != null && !this.getConnection().getAutoCommit())

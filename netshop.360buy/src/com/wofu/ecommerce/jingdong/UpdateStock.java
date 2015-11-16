@@ -30,7 +30,7 @@ public class UpdateStock extends Thread{
 				Jingdong.setCurrentDate_updatStock(new Date());
 				Params.token = PublicUtils.getToken(connection, Integer.parseInt(Params.tradecontactid));
 				updateStock(connection);
-			
+				Log.error("连接池数监测,UpdateStock的连接数为"+connection.getMetaData(),"");
 			} catch (Exception e) {
 				try {
 					if (connection != null && !connection.getAutoCommit())

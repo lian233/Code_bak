@@ -37,53 +37,53 @@ public class BeiBei extends Service {
 	public void start() throws Exception {
 		
 		//抓取订单
-		GetOrders getorders = new GetOrders();
-		getorders.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-
-			public void uncaughtException(Thread thread, Throwable e) {
-				
-				Log.error("getorders", "发生未捕获异常"+e.getMessage());
-				GetOrders getorders = new GetOrders();  //重启线程
-				getorders.setUncaughtExceptionHandler(this);
-				getorders.start();
-				
-			}
-			
-		});
-		getorders.start();
-		
-		//检查抓单
-		CheckOrder checkorder = new CheckOrder();
-		checkorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-
-			public void uncaughtException(Thread thread, Throwable e) {
-				
-				Log.error("getorders", "发生未捕获异常"+e.getMessage());
-				CheckOrder checkorder = new CheckOrder();  //重启线程
-				checkorder.setUncaughtExceptionHandler(this);
-				checkorder.start();
-				
-			}
-			
-		});
-		checkorder.start();
-		
-		//生成订单
-		if(Params.isgenorder){
-		GenCustomerOrder gencustomerorder=new GenCustomerOrder();
-		gencustomerorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-
-			public void uncaughtException(Thread thread, Throwable e) {
-				Log.error("gencustomerorder", "发生未捕获异常"+e.getMessage());
-				GenCustomerOrder gencustomerorder = new GenCustomerOrder();  //重启线程
-				gencustomerorder.setUncaughtExceptionHandler(this);
-				gencustomerorder.start();
-				
-			}
-			
-		});
-		gencustomerorder.start();
-		}
+//		GetOrders getorders = new GetOrders();
+//		getorders.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
+//
+//			public void uncaughtException(Thread thread, Throwable e) {
+//				
+//				Log.error("getorders", "发生未捕获异常"+e.getMessage());
+//				GetOrders getorders = new GetOrders();  //重启线程
+//				getorders.setUncaughtExceptionHandler(this);
+//				getorders.start();
+//				
+//			}
+//			
+//		});
+//		getorders.start();
+//		
+//		//检查抓单
+//		CheckOrder checkorder = new CheckOrder();
+//		checkorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
+//
+//			public void uncaughtException(Thread thread, Throwable e) {
+//				
+//				Log.error("getorders", "发生未捕获异常"+e.getMessage());
+//				CheckOrder checkorder = new CheckOrder();  //重启线程
+//				checkorder.setUncaughtExceptionHandler(this);
+//				checkorder.start();
+//				
+//			}
+//			
+//		});
+//		checkorder.start();
+//		
+//		//生成订单
+//		if(Params.isgenorder){
+//		GenCustomerOrder gencustomerorder=new GenCustomerOrder();
+//		gencustomerorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
+//
+//			public void uncaughtException(Thread thread, Throwable e) {
+//				Log.error("gencustomerorder", "发生未捕获异常"+e.getMessage());
+//				GenCustomerOrder gencustomerorder = new GenCustomerOrder();  //重启线程
+//				gencustomerorder.setUncaughtExceptionHandler(this);
+//				gencustomerorder.start();
+//				
+//			}
+//			
+//		});
+//		gencustomerorder.start();
+//		}
 //		
 //		if(Params.isgenorderRet){
 //			genCustomerRet gencustomerret=new genCustomerRet();

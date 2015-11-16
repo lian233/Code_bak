@@ -124,6 +124,8 @@ public class CheckOrderExecuter extends Executer {
 		{
 			try
 			{
+				Log.error("连接池数监测,CheckOrderExecuter连接数为"+this.getDao().getConnection().getMetaData(),"");
+				Log.error("连接池数监测,CheckOrderExecuter Ex连接数为"+this.getExtdao().getConnection().getMetaData(),"");
 				//取当前时间为结束时间，取当前时间前7天内的待出库订单，检查是否有漏单
 				Log.info(username+",定时检查京东漏单任务开始");	
 				DefaultJdClient client = new DefaultJdClient(SERVER_URL,token,appKey,appSecret);

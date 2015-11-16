@@ -100,7 +100,9 @@ public class CheckItemExecuter extends Executer {
 	}
 	
 	private void checkItem() throws Exception
-	{
+	{	
+		Log.error("连接池数监测,CheckItemExecuter连接数为"+this.getDao().getConnection().getMetaData(),"");
+		Log.error("连接池数监测,CheckItemExecuter Ex连接数为"+this.getExtdao().getConnection().getMetaData(),"");
 		String sql="select orgid from ecs_tradecontactorgcontrast with(nolock) where tradecontactid="+tradecontactid;
 		int orgid=this.getDao().intSelect(sql);
 			try

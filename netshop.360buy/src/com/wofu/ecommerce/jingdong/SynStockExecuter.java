@@ -94,7 +94,8 @@ public class SynStockExecuter extends Executer {
 	
 	private void synStock() throws Exception
 	{
-
+		Log.error("连接池数监测,SynStockExecuter连接数为"+this.getDao().getConnection().getMetaData(),"");
+		Log.error("连接池数监测,SynStockExecuter Ex连接数为"+this.getExtdao().getConnection().getMetaData(),"");
 		//店铺同步比例
 		double synrate=1;
 		Log.info(username,"开始同步商品库存");
@@ -180,8 +181,9 @@ public class SynStockExecuter extends Executer {
 										this.getDao().updateByKeys(stockconfig, "orgid,itemid");
 										
 										isfind=false;
+										continue;
 									}
-									else							
+									else
 										ismulti=true;
 								}
 								

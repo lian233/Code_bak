@@ -181,6 +181,9 @@ public class StockUtils {
 	public static boolean updateStock(String url,String appkey,String ver,String format,
 			ECS_StockConfigSku ecs_stockconfigsku,int newqty,String app_secret) throws Exception
 	{
+
+		System.out.println("测试线程数有多少  "+Thread.currentThread().getThreadGroup().activeCount());
+		System.out.println("测试线程数有多少  "+Thread.getAllStackTraces().size());
 		boolean flag=false;
 		Date now=new Date();
 		String method="scn.vendor.inventory.cover.update";
@@ -193,9 +196,9 @@ public class StockUtils {
 		String sign=Utils.get_sign(app_secret,appkey,data, method, now,ver,format);
 		/***合并为输出语句****/
 		String output_to_server=Utils.post_data_process(method, data, appkey,now, sign).toString();
-    
+		System.out.println("名鞋库 更新库存 发送的语句"+output_to_server);
         String responseOrderListData = Utils.sendByPost(url,output_to_server);
-
+        System.out.println("更新名鞋库返回的数据"+responseOrderListData);
 		JSONObject responseupdatestock=new JSONObject(responseOrderListData);
 		
 		JSONObject response=responseupdatestock;
@@ -212,18 +215,17 @@ public class StockUtils {
 				String errorDes=response.getString("ErrMsg");
 				String errorCode=response.getString("ErrCode");
 				
-//				if (errorCode.equals("yhd.visit.error.min_pre_visit_over"))
-//				{
-//					Log.info("接口访问太频繁,暂停更新,请稍候......");
-//					Thread.sleep(60000L);
-//					//PostClient.sendByPost(url, updatestockparams, secretkey);
-//					updateStock(url,merchantid,checkcode,
-//							secretkey,erp,erpver,format,ver,
-//							warehouseId,sku,qty,newqty,updatetype,app_secret);
-//				}
+
 				//String pkInfo=errinfo.getString("pkInfo");
 				
-				errMsg=errMsg+errorDes;//+":"+pkInfo;		
+				errMsg=errMsg+errorDes;//+":"+pkInfo;	
+				if (errMsg.equals("请求过于频繁"))
+				{
+					Log.info("接口访问太频繁,暂停更新,请稍候......");
+					Thread.sleep(61000L);
+//					//PostClient.sendByPost(url, updatestockparams, secretkey);
+				updateStock(url, appkey, ver, format, ecs_stockconfigsku, newqty,  app_secret);
+				}
 			Log.warn("库存更新失败,SKU:["+ecs_stockconfigsku.getSku()+"],原数量:["+ecs_stockconfigsku.getStockcount()+"],更新数量:["+newqty+"] 错误信息:"+errMsg);
 		}
 		else

@@ -63,6 +63,7 @@ public class GenCustomerOrder extends Thread{
 	
 	public static void doGenCustomerOrders(Connection connection) throws Throwable
 	{
+		Log.error("连接池数监测,GenCustomerOrder连接数为"+connection.getMetaData(),"");
 		try 
 		{
 			System.out.println("是否取商城价"+Params.isDistrictMode);

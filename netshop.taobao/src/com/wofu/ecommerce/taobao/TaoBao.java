@@ -35,61 +35,61 @@ public class TaoBao extends Service {
 	@Override
 	public void start() throws Exception {
 		
-		if(Params.isSockServer){
-			GetPublicIp getPublicIp =new GetPublicIp();
-			getPublicIp.start();
-		}
+//		if(Params.isSockServer){
+//			GetPublicIp getPublicIp =new GetPublicIp();
+//			getPublicIp.start();
+//		}
+//		
+//		if(Params.isSockClient){
+//			SockClient sockClient = new SockClient();
+//			sockClient.start();
+//		}
+//		
+//		if(Params.isNeedUpdataLocal){
+//			UpdateLocalExtds updateLocalExtds = new UpdateLocalExtds();
+//			updateLocalExtds.start();
+//		}
+//		
+//		if(Params.isgenorder){
+//			GenCustomerOrder genCustomerOrder= new GenCustomerOrder();
+//			genCustomerOrder.start();
+//		}
+//		
+//		if(Params.isgenorderRet){
+//			genCustomerRet gencustomerret=new genCustomerRet();
+//			gencustomerret.start();
+//		}
+//		
+//		
+//		
+//		
+//		//------------
+//		
+//		
+//		if(!Params.isStopStockSyn){
+//			UpdateStock updatestock=new UpdateStock();
+//			updatestock.start();
+//		}
+//		
+//		if (!Params.isrds && !Params.isdistribution)
+//		{							
+//			getOrders getorders = new getOrders();
+//			getorders.start();
+//		}
+//		
+//		
+//		
+//		//---------------yyk用  没有收费api
+//		
+//		
+//		//----------------------yyk用
+//		OrderDelivery orderdelivery=new OrderDelivery();
+//		orderdelivery.start();
 		
-		if(Params.isSockClient){
-			SockClient sockClient = new SockClient();
-			sockClient.start();
-		}
-		
-		if(Params.isNeedUpdataLocal){
-			UpdateLocalExtds updateLocalExtds = new UpdateLocalExtds();
-			updateLocalExtds.start();
-		}
-		
-		if(Params.isgenorder){
-			GenCustomerOrder genCustomerOrder= new GenCustomerOrder();
-			genCustomerOrder.start();
-		}
-		
-		if(Params.isgenorderRet){
-			genCustomerRet gencustomerret=new genCustomerRet();
-			gencustomerret.start();
-		}
 		
 		
-		
-		
-		//------------
-		
-		
-		if(!Params.isStopStockSyn){
-			UpdateStock updatestock=new UpdateStock();
-			updatestock.start();
-		}
-		
-		if (!Params.isrds && !Params.isdistribution)
-		{							
-			getOrders getorders = new getOrders();
-			getorders.start();
-		}
-		
-		
-		
-		//---------------yyk用  没有收费api
-		
-		
-		//----------------------yyk用
-		OrderDelivery orderdelivery=new OrderDelivery();
-		orderdelivery.start();
-		
-		
-		
-		//GlobalGenCustomerOrder globalGenCustomerOrder = new GlobalGenCustomerOrder();
-		//globalGenCustomerOrder.start();
+		GlobalGenCustomerOrder globalGenCustomerOrder = new GlobalGenCustomerOrder();
+		globalGenCustomerOrder.start();
 		
 		
 		

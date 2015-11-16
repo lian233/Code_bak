@@ -29,7 +29,7 @@ public class UpdateStatus extends Thread {
 	
 			try {		
 				connection = PoolHelper.getInstance().getConnection(com.wofu.ecommerce.jingdong.Params.dbname);
-				
+				Log.info("连接池数监测,UpdateStatus的连接数为"+connection.getMetaData());
 				//确认审核订单
 				doUpdateCheckStatus(connection,Params.tradecontactid);
 				//确认退货订单
@@ -78,7 +78,6 @@ public class UpdateStatus extends Thread {
 			{
 				IntfUtils.backupUpNote(conn, "yongjun",sheetid, "1");
 				Log.info("更新审核状态成功,单号:" + tid);
-				conn.close();
 			}
 			catch(Exception je)
 			{
@@ -110,7 +109,6 @@ public class UpdateStatus extends Thread {
 				{
 					IntfUtils.backupUpNote(conn, "yongjun",sheetid, "2");
 					Log.info("退货收货确认更新状态成功,单号:" + tid);
-					conn.close();
 				}
 				else
 				{

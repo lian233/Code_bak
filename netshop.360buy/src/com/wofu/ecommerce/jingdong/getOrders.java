@@ -50,7 +50,7 @@ public class getOrders extends Thread {
 				Params.token = PublicUtils.getToken(connection, Integer.parseInt(Params.tradecontactid));
 				lasttime=PublicUtils.getConfig(connection,lasttimeconfvalue,Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
 				refundlasttime=PublicUtils.getConfig(connection,refundlasttimeconfvalue,Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
-				
+				Log.error("连接池数监测,getOrders连接数为"+connection.getMetaData().toString(),"");
 				getOrderIdList(connection);
 				//获取京东退货订单  百丽停
 				getRefund(connection) ;

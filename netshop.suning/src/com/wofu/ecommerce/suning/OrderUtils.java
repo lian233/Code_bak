@@ -164,23 +164,23 @@ public class OrderUtils {
         		totalfee+=item.getUnitPrice()*item.getSaleNum();
         		totalPostfee+=item.getTransportFee();
 			}
-			//Log.info("ns_orderitem写入完毕，到ns_customerorder表");
+			Log.info("ns_orderitem写入完毕，到ns_customerorder表");
 			//加入到单据表
-			System.out.println("空指针测试");
-			System.out.println("1"+sellerDiscount);
-			System.out.println("12"+getOrderStateByCode(o.getOrderLineStatus()));
-			System.out.println("13"+totalfee);
-			System.out.println("14"+totalPostfee);
-			System.out.println("15"+o.getCustomerName());
-			System.out.println("16"+cityInfo.get("provinceName"));
-			System.out.println("17"+cityInfo.get("cityname"));
-			System.out.println("18"+cityInfo.get("districtname"));
-			System.out.println("19"+o.getCustomerAddress().replaceAll("'", ""));
-			System.out.println("10"+o.getMobNum());
-			System.out.println("11"+o.getEvaluationMark());
-			System.out.println("12"+tradeContactID);
-			System.out.println("13"+o.getBuyerOrdRemark().replaceAll("'","''"));
-			System.out.println("14"+o.getSellerOrdRemark());
+//			System.out.println("空指针测试");
+//			System.out.println("1"+sellerDiscount);
+//			System.out.println("12"+getOrderStateByCode(o.getOrderLineStatus()));
+//			System.out.println("13"+totalfee);
+//			System.out.println("14"+totalPostfee);
+//			System.out.println("15"+o.getCustomerName());
+//			System.out.println("16"+cityInfo.get("provinceName"));
+//			System.out.println("17"+cityInfo.get("cityname"));
+//			System.out.println("18"+cityInfo.get("districtname"));
+//			System.out.println("19"+o.getCustomerAddress().replaceAll("'", ""));
+//			System.out.println("10"+o.getMobNum());
+//			System.out.println("11"+o.getEvaluationMark());
+//			System.out.println("12"+tradeContactID);
+//			System.out.println("13"+o.getBuyerOrdRemark().replaceAll("'","''"));
+//			System.out.println("14"+o.getSellerOrdRemark());
 			sql =  new StringBuilder().append("insert into ns_customerorder(CustomerOrderId , SheetID , Owner , tid , OrderSheetID , sellernick , ")
             	.append(" type , created , buyermessage , shippingtype , payment , ")
 				.append(" discountfee , adjustfee , status ,paytime,totalfee , postfee , buyeralipayno , ")
