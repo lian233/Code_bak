@@ -32,12 +32,12 @@ public class Fedex extends Service
 	public void start()
 		throws Exception
 	{
-		//同步商品资料
-		AsynProductInfo asynproductinfo = new AsynProductInfo();
-		asynproductinfo.start();
-		//同步订单
-		AsynOrderInfo asyncOrderInfo = new AsynOrderInfo();
-		asyncOrderInfo.start();
+//		//同步商品资料
+//		AsynProductInfo asynproductinfo = new AsynProductInfo();
+//		asynproductinfo.start();
+//		//同步订单
+//		AsynOrderInfo asyncOrderInfo = new AsynOrderInfo();
+//		asyncOrderInfo.start();
 		//取消订单
 		AsyncCancelOrderInfo asynccancelorderinfo = new AsyncCancelOrderInfo();
 		asynccancelorderinfo.start();

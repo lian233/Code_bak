@@ -3,9 +3,8 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Properties;
 import com.wofu.common.service.Service;
 import com.wofu.common.tools.util.log.Log;
-import com.wofu.ecommerce.miya.GenCustomerOrder;
+import com.wofu.ecommerce.miya.CheckOrder;
 import com.wofu.ecommerce.miya.OrderDelivery;
-import com.wofu.ecommerce.miya.GetOrders;
 import com.wofu.ecommerce.miya.Params;
 import com.wofu.ecommerce.miya.Version;
 public class MiYa extends Service {
@@ -38,7 +37,7 @@ public class MiYa extends Service {
 	@Override
 	public void start() throws Exception {
 		
-		//抓取订单
+//		//抓取订单
 		GetOrders getorders = new GetOrders();
 		getorders.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
 
@@ -53,7 +52,7 @@ public class MiYa extends Service {
 			
 		});
 		getorders.start();
-		//生成订单
+//		//生成订单
 		if(Params.isgenorder){
 		GenCustomerOrder gencustomerorder=new GenCustomerOrder();
 		gencustomerorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
@@ -99,33 +98,34 @@ public class MiYa extends Service {
 			
 		});
 		orderdelivery.start();
-		//yyk用
-//		
-//		UpdateStock updatestock=new UpdateStock();
-//		updatestock.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-//
-//			public void uncaughtException(Thread thread, Throwable e) {
-//				Log.error("updatestock", "发生未捕获异常"+e.getMessage());
-//				UpdateStock updatestock=new UpdateStock();  //重启线程
-//				updatestock.setUncaughtExceptionHandler(this);
-//				updatestock.start();
-//				
-//			}
-//			
-//		});
-//		updatestock.start();
-//		
-//		
-//		
+		
+		//检查抓单
+		CheckOrder checkorder = new CheckOrder();
+		checkorder.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
+
+			public void uncaughtException(Thread thread, Throwable e) {
+				
+				Log.error("getorders", "发生未捕获异常"+e.getMessage());
+				CheckOrder checkorder = new CheckOrder();  //重启线程
+				checkorder.setUncaughtExceptionHandler(this);
+				checkorder.start();
+				
+			}
+			
+		});
+		checkorder.start();
 //		
 //		
 //		
-//		getRefund getrefund=new getRefund();
+//		
+//		
+//		
+//		GetRefund getrefund=new GetRefund();
 //		getrefund.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
 //
 //			public void uncaughtException(Thread thread, Throwable e) {
 //				Log.error("getrefund", "发生未捕获异常"+e.getMessage());
-//				getRefund getrefund=new getRefund();  //重启线程
+//				GetRefund getrefund=new GetRefund();  //重启线程
 //				getrefund.setUncaughtExceptionHandler(this);
 //				getrefund.start();
 //			}

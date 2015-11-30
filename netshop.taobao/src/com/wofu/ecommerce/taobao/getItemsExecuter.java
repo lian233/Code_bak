@@ -36,8 +36,7 @@ public class getItemsExecuter extends Executer {
 			sql="select distinct batchid from eco_rds_item(nolock) where flag=0 and nick='"+sellernick+"' and batchid>0 order by batchid";
 			
 			List batchlist=this.getDao().oneListSelect(sql);
-			System.out.println(sellernick+"的SQL语句 "+sql);
-			System.out.println("本次获取的商品数量为"+batchlist.size());
+
 			for(Iterator itbatch=batchlist.iterator();itbatch.hasNext();)
 			{
 				int batchid=(Integer) itbatch.next();

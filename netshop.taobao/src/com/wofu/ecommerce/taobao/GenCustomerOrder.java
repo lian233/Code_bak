@@ -81,12 +81,12 @@ public class GenCustomerOrder extends Thread{
 						}
 						long needTime = System.currentTimeMillis()-currentTime;
 						Log.info("生成一个订单所需的时间为: "+needTime);
-//						if(needTime>300){
-//							long starttime= System.currentTimeMillis();
-//							while(System.currentTimeMillis()-starttime<30*1000L){
-//								Thread.sleep(100L);
-//							}
-//						}
+						if(needTime>300){
+							long starttime= System.currentTimeMillis();
+							while(System.currentTimeMillis()-starttime<30*1000L){
+								Thread.sleep(100L);
+							}
+						}
 						//添加间隔
 						//Thread.sleep(2000L);
 					}catch(Exception ex){

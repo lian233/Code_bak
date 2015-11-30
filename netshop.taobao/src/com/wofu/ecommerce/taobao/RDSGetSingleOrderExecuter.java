@@ -175,9 +175,10 @@ public class RDSGetSingleOrderExecuter extends Executer {
 			batchid=this.getExtdao().IDGenerator("eco_rds_fx_trade", "batchid");
 			sql="select "+batchid+" as batchid,cast(fenxiao_id as varchar(32)) as fenxiao_id,status,cast(tc_order_id as varchar(32)) as tc_order_id,supplier_username,"
 				+"distributor_username,created,modified,jdp_hashcode,isnull(jdp_response,'') as jdp_response,jdp_created,"+
-				"jdp_modified,0 as flag into #tmp_fx_single_trade from sys_info..jdp_fx_trade where supplier_username='"+sellernick+"' and fenxiao_id='"+tid+"'";
+				"jdp_modified,0 as flag into #tmp_fx_single_trade from sys_info..jdp_fx_trade where supplier_username='"+sellernick+"' and fenxiao_id in ("+tid+")";
 			this.getDao().execute(sql);
 			fxtradecount=this.getDao().intSelect("select count(*) from #tmp_fx_single_trade");
+			System.out.println("订单数据量大小"+fxtradecount);
 		}else if(tableName.equals("eco_rds_fx_refund")){
 			//处理分销退单
 			step="处理分销退单";

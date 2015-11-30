@@ -1,7 +1,0 @@
-批量获取商品信息                  coo8.products.get
-修改商品库存                          coo8.item.quantity.update
-批量修改商品库存                  coo8.items.quantity.update 
-订单发货                                 coo8.order.send
-获取承运商列表                      coo8.carriers.get
-
-                  2754193

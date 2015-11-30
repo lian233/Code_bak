@@ -3,6 +3,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Map;
+
+import com.wofu.base.dbmanager.DataCentre;
 import com.wofu.base.job.Executer;
 import com.wofu.business.stock.StockManager;
 import com.wofu.common.json.JSONArray;
@@ -10,25 +12,17 @@ import com.wofu.common.json.JSONObject;
 import com.wofu.common.tools.util.Formatter;
 import com.wofu.common.tools.util.StringUtil;
 import com.wofu.common.tools.util.log.Log;
-import com.wofu.ecommerce.beibei.Params;
+import com.wofu.ecommerce.miya.Params;
 import com.wofu.ecommerce.miya.utils.Utils;
 public class GetItemExecuter extends Executer{
 	
-	private static String jobName = "取贝贝网商品资料作业";
+	private static String jobName = "取蜜芽商品资料作业";
 	
 	private String url="";
 
-	private String token = "";
-
-	private String app_key  = "";
+	private String vendor_key = "";
 	
-	private String username="";
-	
-	private String app_secret="";
-	
-	private String format="";
-	
-	private String ver="";
+	private String secret_key="";
 
 	private String tradecontactid="";
 
@@ -38,15 +32,14 @@ public class GetItemExecuter extends Executer{
 		Properties prop=StringUtil.getStringProperties(this.getExecuteobj().getParams());
 		
 		url=prop.getProperty("url");
-		format=prop.getProperty("format");
-		ver=prop.getProperty("ver");
 		tradecontactid=prop.getProperty("tradecontactid");
-
-		token=prop.getProperty("token");
-		app_key=prop.getProperty("app_key");
-		username=prop.getProperty("username");
-		app_secret=prop.getProperty("app_secret");
+		vendor_key=prop.getProperty("vendor_key");
+		secret_key=prop.getProperty("secret_key");
 		
+		System.out.println(url);
+		System.out.println(tradecontactid);
+		System.out.println(vendor_key);
+		System.out.println(secret_key);
 		try {		
 			updateJobFlag(1);
 			
@@ -110,7 +103,7 @@ public class GetItemExecuter extends Executer{
 
 		int pageno=1;
 		
-		Log.info("开始取贝贝网商品资料");
+		Log.info("开始取蜜芽网商品资料");
 		String sql="select orgid from ecs_tradecontactorgcontrast with(nolock) where tradecontactid="+tradecontactid;
 		int orgid=this.getDao().intSelect(sql);
 		for (int k=0;k<10;)
@@ -120,47 +113,45 @@ public class GetItemExecuter extends Executer{
 				
 				while(true)
 				{
-					Map<String, String> orderlistparams = new HashMap<String, String>();
+					Map<String, String> itemlistparams = new HashMap<String, String>();
 			        //系统级参数设置
-			        orderlistparams.put("method", "beibei.outer.item.onsale.get");
-					orderlistparams.put("app_id", Params.appid);
-			        orderlistparams.put("session", Params.session);
-			        orderlistparams.put("timestamp", time());
-			        orderlistparams.put("version", Params.ver);
+					itemlistparams.put("method", "mia.item.list");
+					itemlistparams.put("vendor_key", vendor_key);
+					itemlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
 			        //应用级输入参数
-			        orderlistparams.put("page_no", String.valueOf(pageno));
-			        orderlistparams.put("page_size","20");
-					String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
-			        Log.info("取商品返回数据:　"+responseOrderListData);
+					itemlistparams.put("page", String.valueOf(pageno));
+					itemlistparams.put("page_size", "20");
+					String responseOrderListData = Utils.sendByPost(itemlistparams, secret_key, url);
 					JSONObject responseproduct=new JSONObject(responseOrderListData);
-					int totalCount=responseproduct.getInt("count");
-					
-					JSONArray productlist=responseproduct.getJSONArray("data");
-					
-					System.out.println(productlist.length());
-					
-					for(int i=0;i<productlist.length();i++)
+//					Log.info("获取商品返回的数据"+Utils.Unicode2GBK(responseOrderListData));
+					JSONObject item_list_response=responseproduct.getJSONObject("content");
+					int totalCount=item_list_response.optInt("total");
+					JSONArray itemlist=item_list_response.getJSONArray("item_list");
+					System.out.println(itemlist.length());
+					System.out.println("总数"+totalCount+"这次的数量"+itemlist.length()+"总页数为"+(Double.valueOf(Math.ceil(totalCount/20.0))).intValue()+"当前页数为"+String.valueOf(pageno));
+					for(int i=0;i<itemlist.length();i++)
 					{
-						JSONObject product=productlist.getJSONObject(i);
-					
-						long productId=product.optLong("iid");//商品编号
-						String productCode=product.optString("goods_num");//货号
-						String productCname=product.optString("title");//商品名称
+						JSONObject product=itemlist.getJSONObject(i);
+						String productId=product.optString("sku_id");//货号
+						String productCode=product.optString("sku_id");//货号
+						String productCname=product.optString("name");//商品名称
 						
 						Log.info("货号:"+productCode+",产品名称:"+productCname);
 						
-						StockManager.stockConfig(this.getDao(), orgid,Integer.valueOf(tradecontactid),String.valueOf(productId),productCode,productCname,0) ;
-						JSONArray responsestock=product.getJSONArray("sku");
+						StockManager.stockConfig(this.getDao(), orgid,Integer.valueOf(tradecontactid),productId,productCode+"_"+i,productCname,0) ;
+						//stockConfig(DataCentre dao,int orgid,int tradecontactid,String itemid,String itemcode,String title,int qty) 
+						JSONArray responsestock=product.getJSONArray("size_barcode");
 						System.out.println("sku数量"+responsestock.length());
 						for(int m=0;m<responsestock.length();m++)
 						{
 							JSONObject childserial=responsestock.optJSONObject(m);
-							String sku=childserial.optString("outer_id");
-							long skuid=childserial.optLong("id");
-							int qty=childserial.optInt("num");
-							System.out.println("sku为"+ sku +" 数量为 "+qty);
-							StockManager.addStockConfigSku(this.getDao(), orgid,String.valueOf(productId),String.valueOf(skuid),sku,qty) ;
-								
+							String sku=childserial.optString("item_barcode");//sku
+							String skuid=product.optString("sku_id");//货号
+							int qty=childserial.optInt("item_quantity");//数量
+							Log.info("sku为"+ sku +" 数量为 "+qty+"店铺为"+orgid);
+							StockManager.addStockConfigSku(this.getDao(), orgid,productId,skuid+"_"+m,sku,qty) ;
+							//addStockConfigSku(DataCentre dao,int orgid,String itemid,String skuid,String sku,int qty) 
+							
 						}
 					}
 

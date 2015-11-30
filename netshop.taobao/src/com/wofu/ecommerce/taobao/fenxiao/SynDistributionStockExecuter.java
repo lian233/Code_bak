@@ -102,7 +102,6 @@ public class SynDistributionStockExecuter extends Executer {
 			{
 				sql="select CustomerID,ShopID,Title,itemcode,OuterSkuID,num_iid,sku_id,Modified,isneedsyn,synrate from DecItem with(nolock) where CustomerID="+customerid+" and shopid="+shopid;
 				Vector vtstockconfig=this.getDao().multiRowSelect(sql);
-				System.out.println(username+"分销执行语句"+sql+" 更新数量为  "+vtstockconfig.size());
 				boolean isfind;
 				boolean ismulti;
 				for(int i=0;i<vtstockconfig.size();i++)

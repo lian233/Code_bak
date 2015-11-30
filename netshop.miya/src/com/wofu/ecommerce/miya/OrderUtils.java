@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.wofu.common.json.JSONArray;
+import com.wofu.common.json.JSONException;
 import com.wofu.common.json.JSONObject;
 import com.wofu.common.tools.sql.JSQLException;
 import com.wofu.common.tools.sql.SQLHelper;
@@ -28,8 +29,8 @@ public class OrderUtils {
 	public static void createInterOrder(Connection conn,
 			Order o, String tradecontactid,String username, JSONObject data) throws Exception {
 		try {
-			if(o.getStatus().equals("1")){
-				o.setStatus("等待发货");
+			if(o.getOrder_state().equals("2")){
+				o.setOrder_state("等待发货");
 			}
 			
 			String sheetid = "";
@@ -46,85 +47,85 @@ public class OrderUtils {
 			sql = "insert into it_downnote(Owner , sheetid , sheettype , sender , receiver , notetime , handletime) values('yongjun','"
 					+ sheetid+ "',1 , '"+ tradecontactid+ "' , 'yongjun' , getdate() , null) ";
 			SQLHelper.executeSQL(conn, sql);
-
-			String moblie=o.getReceiver_phone()!=null?o.getReceiver_phone():"";
+			JSONObject address_info = new JSONObject(o.getAddress_info());
+			System.out.println(o.getAddress_info());
+			System.out.println(address_info.optString("dst_name"));
 			//把订单数据写入ns_customerorder
 			sql = "insert into ns_customerorder(" 
 				+ " CustomerOrderId ,SheetID  ,Owner,tid , created  , "
 				+ " payment , status ,buyermemo ,sellermemo , paytime , "
 				+ " modified,totalfee , postfee , buyernick , receivername ,"
 				+ " receiverstate  ,receivercity ,  receiverdistrict ,  receiveraddress ,"
-				+ " receivermobile , receiverphone,tradeContactid)"
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ " receivermobile , receiverphone,tradeContactid,paymode)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Object[] sqlv = {
 				sheetid,
 				sheetid,
 				username,
-				o.getOid(),
-				o.getCreate_time(),
+				o.getOrder_id(),
+				o.getOrder_time(),
 				//5个
-				o.getPayment(),
-				o.getStatus(),
-				o.getRemark(),
-				o.getSeller_remark(),
-				o.getPay_time(),
+				o.getPay_price(),
+				o.getOrder_state(),
+				o.getOrder_remark(),
+				"",
+				o.getOrder_time(),
 				//5个
-				o.getModified_time(),
-				o.getPayment(),
-				o.getShipping_fee(),
-				o.getReceiver_name(),
-				o.getReceiver_name(),
+				o.getModify_time(),
+				o.getOrder_payment(),
+				o.getShip_price(),
+				address_info.optString("dst_name"),
+				address_info.optString("dst_name"),
 				//5个
-				o.getProvince(),
-				o.getCity(),
-				o.getCounty(),
-				o.getAddress(),
+				address_info.optString("dst_province"),
+				address_info.optString("dst_city"),
+				address_info.optString("dst_area"),
+				address_info.optString("dst_street")+address_info.optString("dst_address"),
 				//4个
-				moblie,
-				moblie,
+				address_info.optString("dst_mobile"),
+				address_info.optString("dst_tel"),
 				tradecontactid,
-				//3个
+				paymode,
+				//4个
 			};
 			SQLHelper.executePreparedSQL(conn, sql, sqlv);
 			
 			OrderItem item=new OrderItem();
-			JSONArray orderItemList =data.getJSONArray("item");
-
-			
+			JSONArray orderItemList =data.getJSONArray("item_info_list");
+			System.out.println("订单商品数量"+orderItemList.length());
 			for (int q=0;q<orderItemList.length();q++) {
-				System.out.println("订单商品数量"+orderItemList.length());
 				JSONObject orderItem =orderItemList.getJSONObject(q);
 				item.setObjValue(item, orderItem);
 				sql = "insert into ns_orderitem(" 
 					+ "	CustomerOrderId , orderItemId  ,oid, SheetID  ,skuid , "
 					+ " title , sellernick , created ,outerskuid , totalfee , "
-					+ " payment ,num , price )"
-					+ "	values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ " payment ,num , price ,iid)"
+					+ "	values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Object[] sqlItem = {
 				sheetid,
-				o.getOid()+"_"+item.getOuter_id(),
-				o.getOid(),
+				o.getOrder_id()+"_"+item.getItem_id(),
+				o.getOrder_id(),
 				sheetid,
-				item.getOuter_id(),
+				item.getSku_id(),
 				
-				item.getTitle(),
+				item.getItem_name(),
 				username,
-				o.getCreate_time(),
-				item.getOuter_id(),
-				item.getTotal_fee(),
+				o.getOrder_time(),
+				item.getBarcode(),
+				item.getSale_price(),
 				
-				item.getSubtotal(),
-				item.getNum(),
-				item.getPrice(),
+				item.getPay_price(),
+				item.getItem_total(),
+				item.getSale_price(),
+				item.getItem_id(),
 			};
 			SQLHelper.executePreparedSQL(conn, sql, sqlItem);
 			}
-			
 			conn.commit();
 			conn.setAutoCommit(true);
-
-			Log.info("生成订单【" + o.getOid() + "】接口数据成功，接口单号【"+ sheetid + "】");
-
+			Log.info("生成订单【" + o.getOrder_id() + "】接口数据成功，接口单号【"+ sheetid + "】");
+			//订单打单确认
+			confirOrder(o.getOrder_id());
 
 		} catch (JSQLException e1) {
 			if (!conn.getAutoCommit())
@@ -136,7 +137,7 @@ public class OrderUtils {
 				conn.setAutoCommit(true);
 			} catch (Exception e3) {
 			}
-			throw new JException("生成订单【" + o.getOid() + "】接口数据失败,错误信息："+ e1.getMessage());
+			throw new JException("生成订单【" + o.getOrder_id() + "】接口数据失败,错误信息："+ e1.getMessage());
 		}
 	}
 	/*
@@ -408,4 +409,30 @@ public class OrderUtils {
 		return o;
 	}
 	 */
+
+	static void confirOrder(String orderid) throws Exception {
+		Map<String, String> confirmlistparams = new HashMap<String, String>();
+        //系统级参数设置
+		confirmlistparams.put("method", "mia.order.confirm");
+		confirmlistparams.put("vendor_key", Params.vendor_key);
+		confirmlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+		confirmlistparams.put("version", Params.ver);
+		//应用级输入参数
+		confirmlistparams.put("order_id", orderid);
+		String responseConfirmListData = Utils.sendByPost(confirmlistparams, Params.secret_key, Params.url);
+	    Log.info(Utils.Unicode2GBK(responseConfirmListData));
+	    JSONObject confirmData = new JSONObject(responseConfirmListData);
+		//判断是否已经打单或者打单成功
+		int code = confirmData.optInt("code");
+		String msg = confirmData.optString("msg");
+		//预料到网络问题，有时会打单失败。所以打单两遍；
+		if(code!=200&&code!=182){
+			Log.error(orderid+"打单失败失败，暂停3秒再试两遍：", msg);
+			for(int i=0;i<2;i++){
+				Thread.sleep(3000);
+				confirOrder(orderid);
+			}
+		}
+		
+	}
 }

@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.ParseException;
 
@@ -16,7 +18,9 @@ import com.wofu.business.stock.StockManager;
 import com.wofu.business.util.PublicUtils;
 import com.wofu.common.json.JSONArray;
 import com.wofu.common.json.JSONObject;
+import com.wofu.common.tools.sql.JSQLException;
 import com.wofu.common.tools.sql.PoolHelper;
+import com.wofu.common.tools.sql.SQLHelper;
 import com.wofu.common.tools.util.Formatter;
 import com.wofu.common.tools.util.log.Log;
 import com.wofu.ecommerce.miya.OrderItem;
@@ -28,7 +32,7 @@ import com.wolf.common.tools.util.JException;
 
 public class GetOrders extends Thread {
 
-	private static String jobname = "获取米亚瓦订单作业";
+	private static String jobname = "获取蜜芽网订单作业";
 	
 	private static long daymillis=24*60*60*1000L;
 	private static String lasttimeconfvalue=Params.username+"取订单最新时间";
@@ -40,10 +44,10 @@ public class GetOrders extends Thread {
 	private String lasttime;
 	public void run() {
 		Log.info(jobname, "启动[" + jobname + "]模块");
-		do {		
+		do {
 			Connection connection = null;
 			is_importing = true;
-			try {		
+			try {
 				//获取数据库连接
 				connection = PoolHelper.getInstance().getConnection(
 						com.wofu.ecommerce.miya.Params.dbname);
@@ -86,7 +90,10 @@ public class GetOrders extends Thread {
 		} while (true);
 	}
 
+
 	
+
+
 	/*
 	 * 获取一天之类的所有订单
 	 */
@@ -100,42 +107,51 @@ public class GetOrders extends Thread {
 			{
 				while(true)
 				{	//设定开始抓单的时间
-					Date startdate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+1000L);
+					Date startdate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()-1000L*60*120);
 					//设定结束抓单的时间
 					Date enddate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+daymillis);
+					String endtime =Formatter.format(enddate, Formatter.DATE_TIME_FORMAT);
+					//设定当前时间，并且做一个判断，是否结束时间大于当前时间，如果大于，就把现在的时间赋值给结束时间
+					Date presentTime = new Date();
+					SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date date=new Date();
+					if(enddate.after(presentTime)){
+					endtime = dateFormater.format(date.getTime()-10000L);
+					}
 					//创建一个map，用来放KEY和VALUESE。
 					Map<String, String> orderlistparams = new HashMap<String, String>();
 			        //系统级参数设置
 			        orderlistparams.put("method", "mia.orders.search");
-					orderlistparams.put("vendor_key", Params.appid);
+					orderlistparams.put("vendor_key", Params.vendor_key);
 			        orderlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
 			        orderlistparams.put("version", Params.ver);
 			        
 			        //应用级输入参数
 			        //订单状态1.待付款2. 已付款待发货3. 发货中4. 发货完成5. 订单完结 6. 已取消
 			        orderlistparams.put("order_state", "2");
-			        orderlistparams.put("time_range", "modified_time");
-//			        orderlistparams.put("start_time", Formatter.format(startdate, Formatter.DATE_TIME_FORMAT));
-//			        orderlistparams.put("end_time", Formatter.format(enddate, Formatter.DATE_TIME_FORMAT));
-			        orderlistparams.put("start_date", "2015-09-15 00:00:00");
-			        orderlistparams.put("end_date", "2015-09-30 00:00:00");
-			        orderlistparams.put("date_type", "2");//查询时间类型，默认按修改时间查询，1为按订单创建时间查询；其它数字为按订单修改时间 。
+			        orderlistparams.put("start_date", Formatter.format(startdate, Formatter.DATE_TIME_FORMAT));
+			        orderlistparams.put("end_date", endtime);
+//			        orderlistparams.put("start_date", "2015-11-25 11:26:10");
+//			        orderlistparams.put("end_date", "2015-11-25 15:27:50");
+//			        orderlistparams.put("date_type", "0");//查询时间类型，默认按修改时间查询，1为按订单创建时间查询；其它数字为按订单修改时间 。
 			        orderlistparams.put("page", String.valueOf(pageno));
 			        orderlistparams.put("page_size", "20");
 			        //把系统级参数和应用级参数合起来,post请求过去，里面包含了各钟加密方法，每个网店的加密方法都不一样。
-					String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
-//					System.out.println("测试 "+responseOrderListData);
+					String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret_key, Params.url);
+					Log.info(Utils.Unicode2GBK(responseOrderListData));
 					//获得的responseOrderListData字符串，转换为json对象。
 					JSONObject responseproduct = new JSONObject(responseOrderListData);
-					System.out.println("从"+Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)+"开始抓取订单");
+					System.out.println("从"+Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)+"开始抓取订单"+"到"+endtime);
 					//解析json对象
-					int count=responseproduct.optInt("count");
-					String message=responseproduct.optString("message");
-					boolean success = responseproduct.optBoolean("success");
-					if(!success){
-						Log.error("失败，退出本次循环"+"错误信息："+message, message);
+					String msg = responseproduct.optString("msg");
+					int code = responseproduct.optInt("code");
+					if(code!=200){
+						Log.error("失败，退出本次循环,错误信息：", msg);
 						break;
 					}
+					JSONObject orders_list_response=responseproduct.getJSONObject("content").getJSONObject("orders_list_response");
+					int count=0;
+					count=orders_list_response.optInt("total");
 					if (count==0)
 					{				
 						if (pageno==1L)		
@@ -158,52 +174,63 @@ public class GetOrders extends Thread {
 						break;
 					}
 					
-					JSONArray orderlist=responseproduct.getJSONArray("data");
+					
+					JSONArray orderlist=orders_list_response.getJSONArray("order_list");
 					for(int j=0;j<orderlist.length();j++)
 					{
 						JSONObject data =orderlist.getJSONObject(j);
 						Order o=new Order();
 						o.setObjValue(o, data);
 						OrderItem item=new OrderItem();
-						JSONArray orderItemList =data.getJSONArray("item");
-						Log.info("订单号为:"+o.getOid()+" 第"+pageno+"页 | 订单数量为"+orderlist.length()+" 当前数量为"+(j+1));				 		
-						if (o.getStatus().equals("1"))
+						JSONArray orderItemList =data.getJSONArray("item_info_list");
+						Log.info("订单号为:"+o.getOrder_id()+"修改时间为:"+Formatter.format(o.getModify_time(), Formatter.DATE_TIME_FORMAT)+" 第"+pageno+"页 | 订单数量为"+orderlist.length()+" 当前数量为"+(j+1));
+						if (o.getOrder_state().equals("2"))
 						{
-							if (!OrderManager.isCheck("检查贝贝网订单", conn, o.getOid()))
-							{	
-								if (!OrderManager.TidLastModifyIntfExists("检查贝贝网订单", conn, o.getOid(),o.getModified_time()))
-								{	
-									OrderUtils.createInterOrder(conn,o,Params.tradecontactid,Params.username,data);
-									for(int i=0;i<orderItemList.length();i++)
+							//蜜芽检测订单专用
+
+							if (!OrderManager.isCheck("检查蜜芽订单", conn, o.getOrder_id()))
+							{
+								String sql="select count(*) from ns_customerorder with(nolock) where TradeContactID = '"+Params.tradecontactid+"' and tid='"+o.getOrder_id()+"' ";
+								if(SQLHelper.intSelect(conn, sql)==0)
+								{
+									if (!OrderManager.TidLastModifyIntfExists("检查蜜芽订单", conn, o.getOrder_id(),o.getModify_time()))
 									{	
-										JSONObject orderItem =orderItemList.getJSONObject(i);
-										item.setObjValue(item, orderItem);
-										StockManager.addSynReduceStore(jobname, conn, Params.tradecontactid, o.getStatus(),o.getOid(), item.getOuter_id(), -item.getNum(),false);
+										OrderUtils.createInterOrder(conn,o,Params.tradecontactid,Params.username,data);
+										for(int i=0;i<orderItemList.length();i++)
+										{	
+											JSONObject orderItem =orderItemList.getJSONObject(i);
+											item.setObjValue(item, orderItem);
+											StockManager.addSynReduceStore(jobname, conn, Params.tradecontactid, o.getOrder_state(),o.getOrder_id(), item.getSku_id(), -item.getItem_total(),false);
+										}
 									}
+								}else{
+									System.out.println("在ns找到该订单跳过");
 								}
+								
 							}
-	
 							//等待买家付款时记录锁定库存
 						}
 						
 						//更新同步订单最新时间
-		                if (o.getModified_time().compareTo(modified)>0)
+		                if (o.getModify_time().compareTo(modified)>0)
 		                {
-		                	modified=o.getModified_time();
+		                	modified=o.getModify_time();
 		                }
 					}
 					//判断是否有下一页
 					if (pageno==(Double.valueOf(Math.ceil(count/20.0))).intValue())
-					{	
+					{
 						break;
 					}
 					pageno++;
 				}
 				if (modified.compareTo(Formatter.parseDate(lasttime, Formatter.DATE_TIME_FORMAT))>0)
 				{
+					System.out.println("蜜芽抓单完成，修改抓单时间为"+modified);
 					String value=Formatter.format(modified,Formatter.DATE_TIME_FORMAT);
 					PublicUtils.setConfig(conn, lasttimeconfvalue, value);
 				}
+				System.out.println("蜜芽抓单完成");
 				break;
 			} catch (Exception e) {
 				if (++k >= 10)
@@ -215,6 +242,12 @@ public class GetOrders extends Thread {
 		}
 	}
 	
+
+
+
+
+
+
 
 
 

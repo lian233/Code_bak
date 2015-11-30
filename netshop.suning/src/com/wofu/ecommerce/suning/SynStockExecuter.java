@@ -32,6 +32,8 @@ public class SynStockExecuter extends Executer {
 	
 		try {		
 			
+			
+			
 			updateJobFlag(1);
 			
 			synStock();
@@ -44,6 +46,8 @@ public class SynStockExecuter extends Executer {
 					+ this.datetimeformat.format(this.getExecuteobj().getNextactive()));
 	
 		} catch (Exception e) {
+			
+			
 			try {
 				
 				if (this.getExecuteobj().getSkip() == 1) {

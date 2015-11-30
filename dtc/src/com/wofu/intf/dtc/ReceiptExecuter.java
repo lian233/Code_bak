@@ -16,8 +16,7 @@ import com.wofu.base.job.timer.TimerRunner;
 public class ReceiptExecuter extends Executer {
 	private static String jobName="定时处理跨境电商反馈数据";
 	public void run() {
-		Properties pro = StringUtil.getStringProperties(this.getExecuteobj().getParams());
-		try {			 
+		try {
 			updateJobFlag(1);
 			String sql="select top 5000 msgid,servicetype,bizdata  "
 				+"from dtcinterfaceinfo with(nolock) where flag=0 order by receivedate";
@@ -25,14 +24,19 @@ public class ReceiptExecuter extends Executer {
 			Log.info(jobName+"，本次要处理的数据条数为:　"+vtintf.size());
 			for (int i=0;i<vtintf.size();i++)
 			{
+				
 				Hashtable htintf=(Hashtable) vtintf.get(i);
+				System.out.println("单号标示"+htintf.get("msgid"));
 				Object msgid1=htintf.get("msgid");
 				String msgid=msgid1!=null?msgid1.toString():"";
 				Object servicetype1=htintf.get("servicetype");
-				String servicetype=servicetype1!=null?servicetype1.toString():"";
+				String servicetype=(servicetype1!=null)?servicetype1.toString():"";
 				Object bizdata1=htintf.get("bizdata");
-				String bizdata=bizdata1!=null?bizdata1.toString():"";
+				String bizdata=(bizdata1!=null)?bizdata1.toString():"";
 				ECSDao dao = (ECSDao)this.getDao();
+				if(servicetype.equals("")||bizdata.equals("")){
+					continue;
+				}
 				String processorClassName = Processors.getProcessor(servicetype);
 				DtcProcess processor = (DtcProcess) Class.forName(processorClassName).newInstance();
 				processor.setBizdata(bizdata);

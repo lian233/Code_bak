@@ -77,6 +77,6 @@
   
   <target name="deploy" depends="package,cleanup" description="ÍêÕûÖ´ÐÐ">
   	<copy todir="X:/Code/Imp/lib" overwrite="true" file="${obf.file}" />
-  	<copy todir="D:/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
+  	<copy todir="D:/ecommerce/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
   </target>
 </project>

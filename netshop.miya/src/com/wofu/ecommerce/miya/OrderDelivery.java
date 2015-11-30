@@ -66,7 +66,7 @@ public class OrderDelivery extends Thread {
 		String sql = "select  a.sheetid,b.tid, upper(ltrim(rtrim(b.companycode))) companycode,"
 			+"upper(ltrim(rtrim(b.outsid))) outsid from it_upnote a with(nolock), ns_delivery b with(nolock)"
 			+ "where a.sheettype=3 and a.sheetid=b.sheetid and a.receiver='"
-			+ Params.tradecontactid + "' and b.iswait=0";
+			+ Params.tradecontactid + "' and b.iswait=0 ";
 		Vector vdeliveryorder=SQLHelper.multiRowSelect(conn, sql);
 		Log.info("本次要处理的订单发货条数为: "+vdeliveryorder.size());
 		for (int i = 0; i < vdeliveryorder.size(); i++) {
@@ -126,27 +126,71 @@ public class OrderDelivery extends Thread {
 				Log.warn(jobname, "快递公司编号未配置，快递公司："+post_company+" 订单号:"+orderid+"");
 				continue;
 			}
-
-	
-			Map<String, String> orderlistparams = new HashMap<String, String>();
+			Map<String, String> confirmlistparams = new HashMap<String, String>();
 	        //系统级参数设置
-	        orderlistparams.put("method", "beibei.outer.trade.logistics.ship");
-			orderlistparams.put("app_id", Params.appid);
-	        orderlistparams.put("session", Params.session);
-	        orderlistparams.put("timestamp", time());
-	        orderlistparams.put("version", Params.ver);
-	        orderlistparams.put("oid", orderid);
-	        orderlistparams.put("company", postcompanyid);
-	        orderlistparams.put("out_sid", post_no);
-			String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
+			confirmlistparams.put("method", "mia.order.confirm");
+			confirmlistparams.put("vendor_key", Params.vendor_key);
+			confirmlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+			confirmlistparams.put("version", Params.ver);
+			//应用级输入参数
+			confirmlistparams.put("order_id", orderid);
+			String responseConfirmListData = Utils.sendByPost(confirmlistparams, Params.secret_key, Params.url);
+		    JSONObject confirmData = new JSONObject(responseConfirmListData);
+			//判断是否已经打单或者打单成功
+			int code = confirmData.optInt("code");
+			String msg = confirmData.optString("msg");
+			if(code!=200){
+				Log.error("打单失败失败，跳过此单","订单号:"+orderid+" 错误信息:"+ msg+" 错误号:"+code);
+			}
+			//查询iid 商品流水号
+			Vector<Hashtable> itemList = new Vector<Hashtable>();
+			sql = "select iid from ns_orderitem(NOLOCK) where oid = '"+orderid+"'";
+			itemList=SQLHelper.multiRowSelect(conn, sql);
+			if(itemList.size()<=0){
+				Log.error("发货找不到商品明细","订单号:"+orderid);
+				continue;
+			}
+			StringBuffer item_id = new StringBuffer();
+			System.out.println(itemList.size());
+			for(int j=0;j<itemList.size();j++){
+				Hashtable ht=(Hashtable) itemList.get(j);
+				String item = ht.get("iid").toString().trim();
+				if(j<1){
+					item_id.append(item);
+				}else{
+					item_id.append(","+item);
+				}
+			}
+			
+			JSONArray sheet_code_info = new  JSONArray();
+			JSONObject express = new JSONObject();
+			express.put("sheet_code", post_no);
+			express.put("logistics_id", postcompanyid);
+			sheet_code_info.put(express);
+			
+			System.out.println(sheet_code_info.toString());
+			System.out.println(item_id.toString());
 			
 			
-			JSONObject responseproduct=new JSONObject(responseOrderListData);
-					
-			String message=responseproduct.optString("message");
-			boolean success = responseproduct.optBoolean("success");
-			if(!success){
-				Log.warn("订单发货失败,订单号:["+orderid+"],快递公司:["+post_company+"],快递单号:["+post_no+"] 错误信息:"+message);
+			Map<String, String> deliverlistparams = new HashMap<String, String>();
+	        //系统级参数设置
+			deliverlistparams.put("method", "mia.order.deliver.upgrade");
+			deliverlistparams.put("vendor_key", Params.vendor_key);
+			deliverlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+			deliverlistparams.put("version", Params.ver);
+			//应用级输入参数
+			deliverlistparams.put("sheet_code_info", sheet_code_info.toString());
+			deliverlistparams.put("item_id", item_id.toString());
+			deliverlistparams.put("order_id", orderid);
+			
+			
+			String responseOrderListData2 = Utils.sendByPost(deliverlistparams, Params.secret_key, Params.url);
+			JSONObject responseproduct=new JSONObject(responseOrderListData2);
+			System.out.println(Utils.Unicode2GBK(responseOrderListData2));
+			String msg2 = responseproduct.optString("msg");
+			int code2 = responseproduct.optInt("code");
+			if(code2!=200&&code2!=164){
+				Log.warn("订单发货失败,订单号:["+orderid+"],快递公司:["+post_company+"],快递单号:["+post_no+"] 错误信息:"+msg2);
 //				if (errdesc.indexOf("状态异常")>=0 ||errdesc.indexOf("订单发货失败（查找订单失败）")>0)
 //				{
 //					conn.setAutoCommit(false);

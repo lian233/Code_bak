@@ -101,7 +101,7 @@ public class GetOrders extends Thread
 					/***data部分***/
 					JSONObject data=new JSONObject();
 					//需要返回的字段：
-					data.put("Fields","seller_id, suggest_express_no, is_cod, vendor_id, seller_order_no, vendor_order_no,submit_date,seller_memo,vendor_memo,shipping_fee,goods_price,rcv_name,rcv_addr_id,rcv_addr_detail,rcv_tel,order_status,update_date,suggest_express,detail.seller_order_det_no,detail.vendor_order_det_no,detail.seller_sku_id,detail.vendor_sku_id,detail.unit_price,detail.sale_price,detail.qty,express.express_no,express.express_company_id,express.sku_qty_pair");	
+					data.put("Fields","cod_amount,seller_id, suggest_express_no, is_cod, vendor_id, seller_order_no, vendor_order_no,submit_date,seller_memo,vendor_memo,shipping_fee,goods_price,rcv_name,rcv_addr_id,rcv_addr_detail,rcv_tel,order_status,update_date,suggest_express,detail.seller_order_det_no,detail.vendor_order_det_no,detail.seller_sku_id,detail.vendor_sku_id,detail.unit_price,detail.sale_price,detail.qty,express.express_no,express.express_company_id,express.sku_qty_pair");	
 					/**以下都不是必须的**/
 //					data.putOpt("StartUpdateDate", Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)); //订单更新开始时间
 //					data.putOpt("EndUpdateDate", Formatter.format(enddate,Formatter.DATE_TIME_FORMAT));   //订单更新结束时间
@@ -119,7 +119,7 @@ public class GetOrders extends Thread
 					String sign=Utils.get_sign(Params.app_Secret,Params.app_key,data, method,now,Params.ver,Params.format);
 					/***合并为输出语句****/
 					String output_to_server=Utils.post_data_process(method, data, Params.app_key,now, sign).toString();
-					System.out.println("请求的参数"+output_to_server);
+					System.out.println("请求的参数"+data);
 					String responseOrderListData=Utils.sendByPost(Params.url, output_to_server);
 					
 //					Log.info(output_to_server);

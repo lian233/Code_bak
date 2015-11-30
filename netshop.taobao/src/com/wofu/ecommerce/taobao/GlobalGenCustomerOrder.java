@@ -79,12 +79,12 @@ public class GlobalGenCustomerOrder extends Thread{
 						}
 						long needTime = System.currentTimeMillis()-currentTime;
 						Log.info("生成一个订单所需的时间为: "+needTime);
-//						if(needTime>1000){
-//							long starttime= System.currentTimeMillis();
-//							while(System.currentTimeMillis()-starttime<10*1000L){
-//								Thread.sleep(100L);
-//							}
-//						}
+						if(needTime>1000){
+							long starttime= System.currentTimeMillis();
+							while(System.currentTimeMillis()-starttime<10*1000L){
+								Thread.sleep(100L);
+							}
+						}
 						//添加间隔
 						//Thread.sleep(2000L);
 					}catch(Exception ex){

@@ -105,8 +105,8 @@ public class SuNing extends Service {
 		
 		//--更新库存  yyk停
 		
-		UpdateStock updatestock=new UpdateStock();
-		updatestock.start();
+//		UpdateStock updatestock=new UpdateStock();
+//		updatestock.start();
 		
 		//检测发货线程
 		CheckDeliveryOrerThread checkDeliveryOrerThread = new CheckDeliveryOrerThread();

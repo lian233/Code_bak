@@ -36,11 +36,14 @@ public class OrderUtils
 			String deliverySheetID="";
 			int invoiceflag=0;		
 			String invoicetitle="";
-			
+			String codAmount = o.getCodAmount();
 			if(o.getIsCod().equals("true")){
 				paymode=2;//货到付款
 				delivery=conversionName(o.getSuggestExpress());//快递名字
 				deliverySheetID=o.getSuggestExpressNo();//快递单号
+			}
+			if(codAmount==null&&!o.getIsCod().equals("true")){
+				codAmount="0";
 			}
 			
 
@@ -77,7 +80,7 @@ public class OrderUtils
 					+ ",'"	+ o.getSellerId()+ "' ,'"+ o.getRcvName()+ "' , '"
 					+ o.getRcvAddrDetail()+ "', '"	+ ""+ "' , '"+""+"', "
 					+ "'"+ o.getRcvAddrDetail()+ "','"+ o.getRcvAddrId()+ "' , '"
-					+ moblie+ "' , '"+ phone+ "','mxk'," + tradecontactid + ",'"+""/*货到付款金额*/+"')";
+					+ moblie+ "' , '"+ phone+ "','mxk'," + tradecontactid + ",'"+codAmount/*货到付款金额*/+"')";
 			//System.out.println(sql);     //////testsql
 			SQLHelper.executeSQL(conn, sql);
 			
@@ -163,7 +166,7 @@ private static String conversionName(String suggestExpress) {
 		/***data部分***/
 		JSONObject data=new JSONObject();
 		//需要返回的字段：
-		data.put("Fields","seller_id,suggest_express_no, is_cod, vendor_id, seller_order_no, vendor_order_no,submit_date,seller_memo,vendor_memo,shipping_fee,goods_price,rcv_name,rcv_addr_id,rcv_addr_detail,rcv_tel,order_status,update_date,suggest_express,detail.seller_order_det_no,detail.vendor_order_det_no,detail.seller_sku_id,detail.vendor_sku_id,detail.unit_price,detail.sale_price,detail.qty,express.express_no,express.express_company_id,express.sku_qty_pair");	
+		data.put("Fields","cod_amount,seller_id,suggest_express_no, is_cod, vendor_id, seller_order_no, vendor_order_no,submit_date,seller_memo,vendor_memo,shipping_fee,goods_price,rcv_name,rcv_addr_id,rcv_addr_detail,rcv_tel,order_status,update_date,suggest_express,detail.seller_order_det_no,detail.vendor_order_det_no,detail.seller_sku_id,detail.vendor_sku_id,detail.unit_price,detail.sale_price,detail.qty,express.express_no,express.express_company_id,express.sku_qty_pair");	
 		data.put("VendorOrderNo", orderCode);   //供货商订单号
 //		data.put("OrderStatus", 1);     //订单状态(1-未处理 2-已确认 3-已发货 4-已作废)
 		/**sign部分***/

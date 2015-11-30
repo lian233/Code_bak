@@ -94,7 +94,7 @@ public class OrderUtils {
 					+ "(CustomerOrderId , SheetID , Owner , tid  ,OrderSheetID, sellernick , type, "
 					+ "  created , buyermessage, shippingtype, payment, status,paytime ,  modified ,totalfee , postfee  , "
 					+ " buyernick , receivername ,  "
-					+ " receiveraddress , receiverzip , receivermobile , receiverphone , tradeContactid) "
+					+ " receiveraddress , receiverzip , receivermobile , receiverphone , tradeContactid,buyermemo) "
 
 					+ " values(" + "'"
 					+ sheetid
@@ -135,9 +135,11 @@ public class OrderUtils {
 					+ mobile
 					+ "','"
 					+ phone
-					+ "',"
+					+ "','"
 					+ tradecontactid
-					+ ")";
+					+ "','"
+					+ o.getBuyerFeedback()
+					+ "')";
 			SQLHelper.executeSQL(conn, sql);
 			//循环添加商品详情
 			for(int i=0; i< o.getOrderEntries().getRelationData().size();i++){

@@ -127,7 +127,7 @@ public class SynStockExecuter extends Executer {
 		{
 			try
 			{
-				sql="select * from ecs_stockconfig with(nolock) where orgid="+orgid;
+				sql="select * from ecs_stockconfig with(nolock)  where orgid="+orgid;
 				Vector vtstockconfig=this.getDao().multiRowSelect(sql);
 				
 				for(int i=0;i<vtstockconfig.size();i++)

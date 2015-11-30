@@ -60,30 +60,24 @@ public class test1 {
         System.out.println(Params.appid);
         System.out.println(Params.session);
         //把系统级参数和应用级参数合起来,post过去
-		String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
-		System.out.println(responseOrderListData);
+//		String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
+//		System.out.println(responseOrderListData);
 
 		
 	}
 	
 	public static void getLogisticsCompany() throws Exception
 	{
-		GetOrders o = new GetOrders();
 		Map<String, String> orderlistparams = new HashMap<String, String>();
         //系统级参数设置
-        orderlistparams.put("method", "beibei.outer.trade.logistics.get");
-		orderlistparams.put("app_id", Params.appid);
-        orderlistparams.put("session", Params.session);
-        orderlistparams.put("timestamp", o.time());
-        orderlistparams.put("time_range", "modified_time");
-
-        System.out.println(Params.appid);
-        System.out.println(Params.session);
-        //把系统级参数和应用级参数合起来,post过去
-		String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
-		System.out.println(responseOrderListData);
-
-		
+        orderlistparams.put("method", "mia.logistics.get");
+		orderlistparams.put("vendor_key", Params.vendor_key);
+        orderlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+        orderlistparams.put("version", Params.ver);
+		String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret_key, Params.url);
+	    System.out.println(Utils.Unicode2GBK(responseOrderListData));
+	    System.out.println(Params.vendor_key);
+		System.out.println(Params.secret_key);
 	}
 	
 	public static void getRefund() throws Exception

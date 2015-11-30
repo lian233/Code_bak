@@ -96,16 +96,6 @@ public class InsertCityDate {
 			JSONObject obj=null;
 			PreparedStatement pstm = conn.prepareStatement("insert into sn_citycode(id,regioncode,regionname,privincecode,privincename,citycode,cityname,districtcode,districtname) values(1,'001','华东','100','江苏','000001000175','镇江市','00000002','润州区')");;
 			int i=1;
-			//int j=1;
-			//System.out.println(strs);
-			/*while(strs!=null){
-				System.out.println(strs);
-				obj=new JSONObject(strs.substring(0,strs.length()-1));
-				pstm.setString(1, (String)obj.get("expressCompanyCode"));
-				pstm.setString(2, (String)obj.get("expressCompanyName"));
-				pstm.execute();
-				strs=br.readLine();
-			}*/
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

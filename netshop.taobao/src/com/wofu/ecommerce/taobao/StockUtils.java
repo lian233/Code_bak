@@ -329,7 +329,7 @@ public class StockUtils {
 			if(response.isSuccess()){
 				Log.info("更新分销库存成功,SKU:"+stockconfigsku.getSku()+" 新库存:"+qty);
 				stockconfig.setStockcount(qty);
-				stockconfig.setErrflag(1);
+				stockconfig.setErrflag(0);
 				stockconfig.setErrmsg("");
 				dao.updateByKeys(stockconfig,"orgid,itemid");
 				stockconfigsku.setStockcount(qty);
@@ -350,7 +350,7 @@ public class StockUtils {
 							Log.info("更新分销库存成功,SKU:"+stockconfigsku.getSku()+" 新库存:"+qty);
 							stockconfig.setStockcount(qty);
 							stockconfig.setErrflag(0);
-							stockconfig.setErrmsg("1");
+							stockconfig.setErrmsg("");
 							dao.updateByKeys(stockconfig,"orgid,itemid");
 							stockconfigsku.setStockcount(qty);
 							stockconfigsku.setErrflag(0);

@@ -174,7 +174,13 @@ public class DtcTools {
 		Vector  sheetlist=SQLHelper.multiRowSelect(conn, sql);
 		return sheetlist;
 	}
-	
+	//传图片专用
+	public static Vector getInfDownItemNote(Connection conn,String sheettype) throws Exception
+	{		
+		String sql="select top 1 SerialID, OperData , OperType, Owner  from Inf_DownNote where Flag = 0 and SheetType= "+sheettype;
+		Vector  sheetlist=SQLHelper.multiRowSelect(conn, sql);
+		return sheetlist;
+	}
 	//取得单位
 	public static String GetUnitCode(Connection conn, String name)  throws Exception
 	{

@@ -6,7 +6,7 @@ import java.util.Vector;
 import com.wofu.business.stock.StockManager;
 import com.wofu.common.tools.util.StringUtil;
 import com.wofu.common.tools.util.log.Log;
-import com.wofu.ecommerce.beibei.StockUtils;
+import com.wofu.ecommerce.miya.StockUtils;
 import com.wofu.ecommerce.stockmanager.ECS_StockConfig;
 import com.wofu.ecommerce.stockmanager.ECS_StockConfigSku;
 
@@ -16,17 +16,13 @@ public class SynStockExecuter extends Executer {
 	
 	private String url="";
 
-	private String app_id = "";
+	private String vendor_key = "";
 	
-	private String tradecontactid="";
+	private String secret_key="";
 
-	private String username="";
+	private String tradecontactid="";
 	
-	private String secret="";
-	
-	private String session="";
-	
-	private static String jobName="定时更新贝贝网库存";
+	private static String jobName="定时更新蜜芽库存";
 	
 
 	public void run() {
@@ -35,16 +31,13 @@ public class SynStockExecuter extends Executer {
 		
 		url=prop.getProperty("url");
 		tradecontactid=prop.getProperty("tradecontactid");
-		username=prop.getProperty("username");
-		app_id=prop.getProperty("app_id");
-		secret=prop.getProperty("secret");
-		session=prop.getProperty("session");
+		vendor_key=prop.getProperty("vendor_key");
+		secret_key=prop.getProperty("secret_key");
+		
 		System.out.println(url);
 		System.out.println(tradecontactid);
-		System.out.println(username);
-		System.out.println(app_id);
-		System.out.println(secret);
-		System.out.println(session);
+		System.out.println(vendor_key);
+		System.out.println(secret_key);
 		try {		
 			
 			updateJobFlag(1);
@@ -108,7 +101,7 @@ public class SynStockExecuter extends Executer {
 	{
 		//店铺同步比例
 		double synrate=1;
-		Log.info(username,"开始同步商品库存");
+		Log.info("开始同步商品库存");
 		
 		StringBuffer updateItemsXML=new StringBuffer();
 		
@@ -147,7 +140,7 @@ public class SynStockExecuter extends Executer {
 											
 						if (stockconfig.getIsneedsyn()==0)
 						{
-							Log.info(username,"配置不需要同步库存,货号:"+stockconfig.getItemcode());
+							Log.info("配置不需要同步库存,货号:"+stockconfig.getItemcode());
 							continue;  //不需要同步
 						}
 			
@@ -163,7 +156,7 @@ public class SynStockExecuter extends Executer {
 								ECS_StockConfigSku stockconfigsku=new ECS_StockConfigSku();
 								stockconfigsku.getMapData(htstockconfigsku);
 										
-								Log.info(username,"SKU:"+stockconfigsku.getSku()+" 原库存:"+stockconfigsku.getStockcount());
+								Log.info("SKU:"+stockconfigsku.getSku()+" 原库存:"+stockconfigsku.getStockcount());
 									
 								boolean ismulti=false;
 								boolean isfind=true;
@@ -174,7 +167,7 @@ public class SynStockExecuter extends Executer {
 									sql="select count(*) from MultiSKURef where refcustomercode='"+stockconfigsku.getSku()+"'";
 									if (this.getDao().intSelect(sql)==0)
 									{
-										Log.warn(username,"找不到SKU【"+stockconfigsku.getSku()+"】对应的条码,商品标题:"+stockconfig.getTitle());		
+										Log.warn("找不到SKU【"+stockconfigsku.getSku()+"】对应的条码,商品标题:"+stockconfig.getTitle());		
 										
 										stockconfigsku.setErrflag(1);
 										stockconfigsku.setErrmsg("找不到SKU【"+stockconfigsku.getSku()+"】对应的条码");
@@ -183,8 +176,8 @@ public class SynStockExecuter extends Executer {
 										stockconfig.setErrflag(1);
 										stockconfig.setErrmsg("找不到SKU【"+stockconfigsku.getSku()+"】对应的条码");
 										this.getDao().updateByKeys(stockconfig, "orgid,itemid");
-										
 										isfind=false;
+										continue;
 									}else							
 										ismulti=true;
 								}
@@ -243,9 +236,8 @@ public class SynStockExecuter extends Executer {
 								qty = Double.valueOf(Math.floor(qty*synrate)).intValue();
 								Log.info("new qty: "+qty);
 								//更新库存开始
-								StockUtils.UpdateSkuStock(this.getDao(),orgid,url,app_id,secret,
-										session,stockconfigsku.getSku(),qty,stockconfig,stockconfigsku);
-									
+								StockUtils.UpdateSkuStock(this.getDao(),orgid,url,vendor_key,secret_key,
+										stockconfigsku.getSku(),qty,stockconfig,stockconfigsku);
 							}catch(Exception ex){
 								if (this.getConnection() != null && !this.getConnection().getAutoCommit())
 									this.getConnection().rollback();

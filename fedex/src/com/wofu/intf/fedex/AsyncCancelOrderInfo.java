@@ -65,7 +65,7 @@ public class AsyncCancelOrderInfo extends Thread {
 						cancelorder.getMapData(htsku);
 						info.updateOrderStatus(request, cancelorder.getOrderStatus(),2, ask, message, error);
 					}
-					
+					System.out.println( ask+" "+message+"  "+error);
 					if("1".equals(ask.value)){
 						isSuccess=true;
 						conn.setAutoCommit(false);

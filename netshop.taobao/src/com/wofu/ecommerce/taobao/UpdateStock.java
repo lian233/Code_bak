@@ -8,6 +8,7 @@ import com.wofu.ecommerce.taobao.Params;
 import com.wofu.base.dbmanager.DataCentre;
 import com.wofu.base.dbmanager.ECSDao;
 import com.wofu.business.stock.StockManager;
+import com.wofu.business.util.PublicUtils;
 import com.wofu.common.tools.sql.PoolHelper;
 import com.wofu.common.tools.sql.SQLHelper;
 import com.wofu.common.tools.util.log.Log;
@@ -27,7 +28,7 @@ public class UpdateStock extends Thread{
 			is_updating = true;
 			try {					
 				connection = PoolHelper.getInstance().getConnection(Params.dbname);
-	
+				Params.authcode = PublicUtils.getToken(connection, Integer.parseInt(Params.tradecontactid));
 				updateStock(connection);
 		
 			} catch (Exception e) {

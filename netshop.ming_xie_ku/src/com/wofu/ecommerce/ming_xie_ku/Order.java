@@ -30,7 +30,7 @@ public class Order extends BusinessObject
 	private String VendorOrderDetNo;
 	private String VendorSkuId;
 	private String UnitPrice;
-	
+	private String CodAmount;
 	
 	private DataRelation orderItemList=new DataRelation("orderItemList","com.wofu.ecommerce.ming_xie_ku.OrderItem");	
 	public DataRelation getOrderItemList()
@@ -237,4 +237,11 @@ public class Order extends BusinessObject
 	public String getIsCod() {
 		return IsCod;
 	}
+	public String getCodAmount() {
+		return CodAmount;
+	}
+	public void setCodAmount(String codAmount) {
+		CodAmount = codAmount;
+	}
+
 }

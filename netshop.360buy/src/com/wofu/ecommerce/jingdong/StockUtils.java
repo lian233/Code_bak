@@ -81,6 +81,8 @@ public class StockUtils
 			String appKey,String appSecret,ECS_StockConfig stockconfig,
 			ECS_StockConfigSku stockconfigsku,int qty) throws Exception
 	{
+		System.out.println("测试线程数有多少  "+Thread.currentThread().getThreadGroup().activeCount());
+		System.out.println("测试线程数有多少  "+Thread.getAllStackTraces().size());
 		try
 		{
 			if(stockconfigsku.getSku().equals("")){

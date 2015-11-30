@@ -172,7 +172,7 @@ public class ProcessOrderInfo extends Thread {
 					{	
 						Log.error(jobname, jobname + "失败,接口单号:"+SerialID+",错误信息："+result);
 					}else   //同步成功，备份接口数据，写入ecs_bestlogisticsmsg表
-					{
+					{	
 						Log.error(jobname, jobname + "成功,接口单号:"+SerialID);
 					}
 					

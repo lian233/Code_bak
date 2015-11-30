@@ -20,6 +20,7 @@ public class Taobao extends Executer{
 			if(param.isNeedDelivery){  //发货
 				new Thread(new DeliveryRunnable(watch,param)).start();
 			}
+			System.out.println("是否生成订单"+param.isGenCustomerOrder);
 			if(param.isGenCustomerOrder){//生成客户订单
 				new Thread(new GenCustomerOrderRunnable(watch,param)).start();
 			}

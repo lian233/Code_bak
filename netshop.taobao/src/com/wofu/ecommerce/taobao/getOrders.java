@@ -59,7 +59,7 @@ public class getOrders extends Thread {
 				connection = PoolHelper.getInstance().getConnection(
 						com.wofu.ecommerce.taobao.Params.dbname);
 				lasttime=PublicUtils.getConfig(connection,lasttimeconfvalue,Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
-				
+				Params.authcode = PublicUtils.getToken(connection, Integer.parseInt(Params.tradecontactid));
 				String sql="select isnull(value,0) from config where name='等待付款订单是否进系统'";
 				if (SQLHelper.strSelect(connection, sql).equals("1"))
 					waitbuyerpayisin=true;

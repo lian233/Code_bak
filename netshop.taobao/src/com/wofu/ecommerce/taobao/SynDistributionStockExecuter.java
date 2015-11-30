@@ -31,7 +31,7 @@ public class SynDistributionStockExecuter extends Executer {
 		authcode=prop.getProperty("authcode");
 		tradecontactid=prop.getProperty("tradecontactid");
 		username=prop.getProperty("username");
-		try {
+		try {		
 			updateJobFlag(1);	
 			synStock();
 			UpdateTimerJob();
@@ -104,10 +104,10 @@ public class SynDistributionStockExecuter extends Executer {
 		double synrate=1;
 		String sql="select orgid from ecs_tradecontactorgcontrast with(nolock) where tradecontactid="+tradecontactid;
 		int orgid=this.getDao().intSelect(sql);
-//		sql="update ecs_stockconfig set errflag=0,errmsg='' where orgid="+orgid;
-//		this.getDao().execute(sql);
-//		sql="update ecs_stockconfigsku set errflag=0,errmsg='' where orgid="+orgid;
-//		this.getDao().execute(sql);
+		sql="update ecs_stockconfig set errflag=0,errmsg='' where orgid="+orgid;
+		this.getDao().execute(sql);
+		sql="update ecs_stockconfigsku set errflag=0,errmsg='' where orgid="+orgid;
+		this.getDao().execute(sql);
 		//分销零库存商品是否要下架  1代表要下架 0不用  默认1
 		sql = "select value from config where name='分销商品零库存是否下架'";
 		String value = this.getDao().strSelect(sql);
@@ -133,20 +133,14 @@ public class SynDistributionStockExecuter extends Executer {
 		{
 			try
 			{
-//				sql="select * from ecs_stockconfig with(nolock) where orgid='"+orgid+"' and errmsg<>'1' order by updatetime desc";
-				sql="select * from ecs_stockconfig with(nolock) where orgid='"+orgid+"' and errflag<>'1' and isneedsyn ='1' order by updatetime desc";
+				sql="select * from ecs_stockconfig with(nolock) where orgid="+orgid;
 				Vector vtstockconfig=this.getDao().multiRowSelect(sql);
-				if(vtstockconfig.size()==0){
-					sql="update ecs_stockconfig set errflag=0,errmsg='' where orgid="+orgid;
-					this.getDao().execute(sql);
-					continue;
-				}
 				
 				for(int i=0;i<vtstockconfig.size();i++)
 				{
 					try{
 						Hashtable htstockconfig=(Hashtable) vtstockconfig.get(i);
-						System.out.println("总数为 "+vtstockconfig.size()+"  当前数为 "+i);
+						
 						ECS_StockConfig stockconfig=new ECS_StockConfig();
 						
 						stockconfig.getMapData(htstockconfig);

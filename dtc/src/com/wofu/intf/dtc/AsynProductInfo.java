@@ -16,10 +16,10 @@ public class AsynProductInfo extends Thread {
 		Log.info(jobname, "启动[" + jobname + "]模块");
 		do {		
 			Connection conn = null;
-			try {		
+			try {
 				conn = PoolHelper.getInstance().getConnection(Params.dbname);
 				//取接口表
-				List infsheetlist=DtcTools.getInfDownNote(conn,sheetType);
+				List infsheetlist=DtcTools.getInfDownItemNote(conn,sheetType);
 				//----生成报文
 				//报文头
 				StringBuilder bizData=new StringBuilder();
@@ -40,7 +40,7 @@ public class AsynProductInfo extends Thread {
 						actionType = "1";
 					}
 					Log.info("actionType1 : "+actionType);
-					String sql ="select Action,CustomBC,g.Country,g.MID,g.ProducerName,g.SupplierName,g.RegFlag,g.Name, g.ShortName, Spec,b.HSCode,UnitName,g.Price BasePrice,isnull(g.CustomsType,2) CustomsType,PostTaxNo,Weigh/1000 Weigh ,NetWeigh/1000 NetWeigh,"
+					String sql ="select  Action,CustomBC,g.Country,g.MID,g.ProducerName,g.SupplierName,g.RegFlag,g.Name, g.ShortName, Spec,b.HSCode,UnitName,g.Price BasePrice,isnull(g.CustomsType,2) CustomsType,PostTaxNo,Weigh/1000 Weigh ,NetWeigh/1000 NetWeigh,"
 							 +" DetailURL,b.BarcodeID , c.Name ColorName , s.Name SizeName , c.ColorID ColorID , s.SizeID SizeID,isnull(UnitNum,1) UnitNum ," 
 							+	 " case when p.Unit = '' then UnitName else p.Unit end Unit ,isnull(e.isexperimental_unit,0) isexperimental_unit,g.Origin,g.DeptID "
 							 +" from BarcodeTranList a  inner join Barcode b on  a.BarcodeID = b.BarcodeID and sheetid='"+sheetid+" ' inner join Merchandise g  on  "
@@ -55,10 +55,19 @@ public class AsynProductInfo extends Thread {
 					for (int i=0;i<vtsku.size();i++){
 						System.out.println("要同步的商品资料总数为:"+vtsku.size());
 						Hashtable htsku=(Hashtable) vtsku.get(i);
+						//查询图片
 						sql ="select MarkExchange from GoodsImage where goodsid='"+htsku.get("MID").toString()+"'";
 						String MarkExchange=SQLHelper.strSelect(conn, sql);
 						sql ="select OriginPlaceCert from GoodsImage where goodsid='"+htsku.get("MID").toString()+"'";
 						String OriginPlaceCert=SQLHelper.strSelect(conn, sql);
+						//查询国家代码
+						sql ="select code from country_code where country='"+htsku.get("Origin").toString()+"'";
+						String originCode=SQLHelper.strSelect(conn, sql);
+						if(originCode.equalsIgnoreCase(""))
+						{
+							System.out.println(sheetid+" 找不到对应的国家代码  "+htsku.get("Origin").toString());
+							continue;
+						}
 						bizData.append("<"+messageType+">");
 						bizData.append(DtcTools.CreateItem("ESHOP_ENT_CODE" , Params.EshopEntCode , null));
 						bizData.append(DtcTools.CreateItem("ESHOP_ENT_NAME" , Params.EshopEntName , null));
@@ -92,7 +101,8 @@ public class AsynProductInfo extends Thread {
 						}
 						bizData.append(DtcTools.CreateItem("IN_AREA_UNIT" , DtcTools.GetUnitCode(conn,htsku.get("UnitName").toString()) , null));
 						bizData.append(DtcTools.CreateItem("IS_EXPERIMENT_GOODS" , String.valueOf(htsku.get("isexperimental_unit")) , null));//是否是试点商品    0否  1是
-						bizData.append(DtcTools.CreateItem("ORIGIN_COUNTRY_CODE" , "Country" , htsku));//原产国代码  之后再改
+//						bizData.append(DtcTools.CreateItem("ORIGIN_COUNTRY_CODE" , "Country" , htsku));//原产国代码  之后再改
+						bizData.append(DtcTools.CreateItem("ORIGIN_COUNTRY_CODE" , originCode , null));//原产国代码  之后再改
 						bizData.append(DtcTools.CreateItem("CHECK_ORG_CODE" , (Integer)htsku.get("CustomsType")==2?"500400":"500600" , null));//施检机构的代码  保税:500400  直邮：500600  2:保税  1：直邮
 						bizData.append(DtcTools.CreateItem("IS_CNCA_POR_DOC" , "0" , null));//是否存在食药监局、国家认监委备案附件0：否1：是//
 						bizData.append(DtcTools.CreateItem("IS_ORIGIN_PLACE_CERT" , "0" , null));//是否存在原产地证书0：否1：是//
@@ -128,7 +138,7 @@ public class AsynProductInfo extends Thread {
 				} 					
 				conn.commit();
 				conn.setAutoCommit(true);
-								
+				sleep(30000);
 			} catch (Exception e) {
 				e.printStackTrace();
 				try {

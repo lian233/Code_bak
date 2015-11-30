@@ -28,6 +28,7 @@ import com.taobao.api.response.TmcMessageProduceResponse;
 import com.taobao.api.response.TradeGetResponse;
 import com.taobao.api.response.TradeMemoUpdateResponse;
 import com.taobao.api.response.WlbOrderJzwithinsConsignResponse;
+import com.wofu.business.util.PublicUtils;
 import com.wofu.common.json.JSONArray;
 import com.wofu.common.json.JSONObject;
 import com.wofu.common.tools.sql.JSQLException;
@@ -53,7 +54,9 @@ public class OrderDelivery extends Thread {
 				else
 					connection = PoolHelper.getInstance().getConnection(
 							com.wofu.ecommerce.taobao.Params.dbname);
-
+				Params.authcode = PublicUtils.getToken(connection, Integer.parseInt(Params.tradecontactid));
+				
+				System.out.println("≤‚ ‘2222222"+Params.authcode);
 				delivery(connection);	
 				resend(connection);
 				//modifiRemark(connection);

@@ -19,15 +19,15 @@ import com.wofu.common.tools.util.JException;
 
 import com.wofu.common.tools.util.log.Log;
 import com.wofu.ecommerce.miya.utils.Utils;
-import com.wofu.ecommerce.yhd.OrderUtils;
-import com.wofu.ecommerce.yhd.Params;
-import com.wofu.ecommerce.yhd.RefundDetail;
+import com.wofu.ecommerce.miya.OrderUtils;
+import com.wofu.ecommerce.miya.Params;
+import com.wofu.ecommerce.miya.RefundDetail;
 import com.wofu.business.util.PublicUtils;
 import com.wofu.business.order.OrderManager;
 
-public class getRefund extends Thread {
+public class GetRefund extends Thread {
 
-	private static String jobName = "获取一号店退货作业";
+	private static String jobName = "获取蜜芽网退货作业";
 	
 	private static long daymillis=24*60*60*1000L;
 	
@@ -40,7 +40,7 @@ public class getRefund extends Thread {
 	private String lasttime;
 
 
-	public getRefund() {
+	public GetRefund() {
 		setDaemon(true);
 		setName(jobName);
 	}
@@ -97,29 +97,49 @@ public class getRefund extends Thread {
 			{
 				while(true)
 				{
-					
-					Map<String, String> refundlistparams = new HashMap<String, String>();
-			        //系统级参数设置
 					Date startdate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+1000L);
+					//设定结束抓单的时间
 					Date enddate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+daymillis);
+					String endtime =Formatter.format(enddate, Formatter.DATE_TIME_FORMAT);
+					//设定当前时间，并且做一个判断，是否结束时间大于当前时间，如果大于，就把现在的时间赋值给结束时间
+					Date presentTime = new Date();
+					if(enddate.after(presentTime)){
+					endtime = Formatter.format(presentTime, Formatter.DATE_TIME_FORMAT);
+					}
+					//创建一个map，用来放KEY和VALUESE。
+					Map<String, String> orderlistparams = new HashMap<String, String>();
+			        //系统级参数设置
+			        orderlistparams.put("method", "mia.orders.search");
+					orderlistparams.put("vendor_key", Params.vendor_key);
+			        orderlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+			        orderlistparams.put("version", Params.ver);
+			        orderlistparams.put("order_state", "2");
+			        orderlistparams.put("start_date", Formatter.format(startdate, Formatter.DATE_TIME_FORMAT));
+			        orderlistparams.put("end_date", endtime);
+//			        orderlistparams.put("start_date", "2015-10-27 00:00:00");
+//			        orderlistparams.put("end_date", "2015-11-17 00:00:00");
+			        orderlistparams.put("date_type", "1");//查询时间类型，默认按修改时间查询，1为按订单创建时间查询；其它数字为按订单修改时间 。
+			        orderlistparams.put("page", String.valueOf(pageno));
+			        orderlistparams.put("page_size", "20");
+			        //把系统级参数和应用级参数合起来,post请求过去，里面包含了各钟加密方法，每个网店的加密方法都不一样。
+					String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret_key, Params.url);
+				    System.out.println(Utils.Unicode2GBK(responseOrderListData));
+					//获得的responseOrderListData字符串，转换为json对象。
+					JSONObject responseproduct = new JSONObject(responseOrderListData);
 					
-					refundlistparams.put("appKey", Params.app_key);
-					refundlistparams.put("sessionKey", Params.token);
-					refundlistparams.put("format", Params.format);
-					refundlistparams.put("method", "yhd.refund.get");
-					refundlistparams.put("ver", Params.ver);
-					refundlistparams.put("dateType", "5");
-					refundlistparams.put("timestamp", Formatter.format(new Date(), Formatter.DATE_TIME_FORMAT));
-			        
-					refundlistparams.put("curPage", String.valueOf(pageno));
-					refundlistparams.put("pageRows", "50");
-			        refundlistparams.put("startTime", Formatter.format(startdate, Formatter.DATE_TIME_FORMAT));
-			        refundlistparams.put("endTime", Formatter.format(enddate, Formatter.DATE_TIME_FORMAT));
-			        refundlistparams.put("dateType",String.valueOf(1));
-			        
-			        String responseOrderListData = Utils.sendByPost(refundlistparams, Params.app_secret, Params.url);
-			        //Log.info("退货: "+responseOrderListData);
-					JSONObject responseproduct=new JSONObject(responseOrderListData);
+					System.exit(0);
+					
+					System.out.println("从"+Formatter.format(startdate, Formatter.DATE_TIME_FORMAT)+"开始抓取订单");
+					//解析json对象
+					String msg = responseproduct.optString("msg");
+					int code = responseproduct.optInt("code");
+					if(code!=200){
+						Log.error("失败，退出本次循环,错误信息：", msg);
+						break;
+					}
+					JSONObject orders_list_response=responseproduct.getJSONObject("content").getJSONObject("orders_list_response");
+					int count=0;
+					count=orders_list_response.optInt("total");
 					
 					if (responseOrderListData.indexOf("errInfoList")>=0)
 					{
@@ -301,8 +321,8 @@ public class getRefund extends Thread {
 					
 							if (!OrderManager.RefundIntfExists("检查一号店退货单", conn, r.getOrderCode(),r.getRefundCode()))
 							{
-								OrderUtils.createRefund(conn,r,
-										Integer.valueOf(Params.tradecontactid).intValue(),Params.app_key,Params.token,Params.format,Params.ver);
+//								OrderUtils.createRefund(conn,r,
+//										Integer.valueOf(Params.tradecontactid).intValue(),Params.app_key,Params.token,Params.format,Params.ver);
 							
 							}
 									

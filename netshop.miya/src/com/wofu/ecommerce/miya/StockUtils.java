@@ -287,33 +287,30 @@ public class StockUtils {
 	}
 
 	public static void UpdateSkuStock(DataCentre dao, int orgid, String url,
-			String app_id, String secret, String session, String sku, int qty, ECS_StockConfig stockconfig, ECS_StockConfigSku stockconfigsku) throws Exception {
+			String vendor_key, String secret_key,  String sku, int qty, ECS_StockConfig stockconfig, ECS_StockConfigSku stockconfigsku) throws Exception {
 		
-		Map<String, String> orderlistparams = new HashMap<String, String>();
+		Map<String, String> synlistparams = new HashMap<String, String>();
         //系统级参数设置
-        orderlistparams.put("method", "beibei.outer.item.qty.update");
-		orderlistparams.put("app_id", Params.appid);
-        orderlistparams.put("session", Params.session);
-        orderlistparams.put("timestamp", time());
-        orderlistparams.put("version", Params.ver);
-        //应用级参数设置
-        orderlistparams.put("iid", stockconfig.getItemid());
-        orderlistparams.put("outer_id", sku);
-        orderlistparams.put("qty", String.valueOf(qty));
-		String responseOrderListData = Utils.sendByPost(orderlistparams, Params.secret, Params.url);
-		JSONObject responseproduct = new JSONObject(responseOrderListData);
-		System.out.println(responseOrderListData);
-		String message=responseproduct.optString("message");
-		boolean success = responseproduct.optBoolean("success");
-		if(!success){
-			Log.error("更新失败，退出本次循环"+"错误信息："+message, "itemid为 ："+stockconfig.getItemid()+"SKU为 ："+sku);
+		synlistparams.put("method", "mia.update.sku.stock");
+		synlistparams.put("vendor_key", vendor_key);
+		synlistparams.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+        //应用级输入参数
+		synlistparams.put("quantity", String.valueOf(qty));
+		synlistparams.put("item_barcode", sku);
+		
+		String responseSynData = Utils.sendByPost(synlistparams, secret_key, url);
+		JSONObject responseproduct = new JSONObject(responseSynData);
+		String msg = responseproduct.optString("msg");
+		int code = responseproduct.optInt("code");
+		if(code!=200){
+			Log.error("更新失败，退出本次循环"+"错误信息："+msg, "itemid为 ："+stockconfig.getItemid()+"SKU为 ："+sku);
 			stockconfigsku.setErrflag(1);
-			stockconfigsku.setErrmsg(message);
+			stockconfigsku.setErrmsg(msg);
 			dao.updateByKeys(stockconfigsku, "orgid,skuid");
 			return ;
 		}
 		else{
-			Log.error("库存更新成功！"+"返回信息："+message, "itemid为: "+stockconfig.getItemid()+"SKU为: "+sku+" 更新前库存为 :"+stockconfigsku.getStockcount()+"" +
+			Log.error("库存更新成功！"+"返回信息："+msg, "itemid为: "+stockconfig.getItemid()+"SKU为: "+sku+" 更新前库存为 :"+stockconfigsku.getStockcount()+"" +
 					" 更新后为 :"+qty);
 			stockconfig.setErrflag(0);
 			stockconfig.setErrmsg("");

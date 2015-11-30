@@ -827,7 +827,7 @@ public class RDSUtils {
 		Log.info(po.getId()+" "+po.getStatus()+" "+Formatter.format(date,Formatter.DATE_TIME_FORMAT));
 		/*
 		 *1、如果状态为等待卖家发货则生成接口订单
-		 *2、删除等待买家付款时的锁定库存 
+		 *2、删除等待买家付款时的锁定库存   
 		 */		
 		String sku;
 		String sql="";

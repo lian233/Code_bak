@@ -37,6 +37,7 @@ public class Utils {
 			if (appParamMap != null) {
 				treeMap.putAll(appParamMap);
 			}
+			//加密拼接数据
 			String sign = Utils.getSign(appParamMap, secret);
 			treeMap.put("sign", sign);
 //			System.out.println("排列\n"+treeMap);
@@ -48,7 +49,7 @@ public class Utils {
 				String key = iterator.next();
 				params.add(new BasicNameValuePair(key, treeMap.get(key)));
 			}
-//			System.out.println("params \n"+params);
+//			System.out.println("params "+params);
 			UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(params, "UTF-8");
 			httpPost.setEntity(uefEntity);
 
@@ -154,11 +155,37 @@ public class Utils {
 		StringBuffer splicing = new StringBuffer();
 		splicing = splicing(orderlistparams); //系统级参数拼接
 //		System.out.println("系统级参数拼接\n"+splicing);
-		splicing.insert(0,secret).insert(splicing.length(),secret);//把secret插入开头和结尾
+		splicing.insert(splicing.length(),secret);//把secret插入开头和结尾
 //		Log.info("\n系统级和应用级参数拼接\n"+splicing);
 		String sign = Utils.getMD5(splicing.toString());
 		return sign;
 	}
-
+	
+	//Unicode转GBK
+    public static String Unicode2GBK(String dataStr) {
+        int index = 0;
+        StringBuffer buffer = new StringBuffer();
+ 
+        int li_len = dataStr.length();
+        while (index < li_len) {
+            if (index >= li_len - 1
+                    || !"\\u".equals(dataStr.substring(index, index + 2))) {
+                buffer.append(dataStr.charAt(index));
+ 
+                index++;
+                continue;
+            }
+ 
+            String charStr = "";
+            charStr = dataStr.substring(index + 2, index + 6);
+ 
+            char letter = (char) Integer.parseInt(charStr, 16);
+ 
+            buffer.append(letter);
+            index += 6;
+        }
+ 
+        return buffer.toString();
+    }
 
 }

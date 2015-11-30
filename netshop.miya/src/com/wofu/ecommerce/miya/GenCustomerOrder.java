@@ -11,7 +11,7 @@ import com.wofu.ecommerce.miya.Params;
 
 
 public class GenCustomerOrder extends Thread{
-	private static String jobname = "贝贝网订单生成客户订单作业";
+	private static String jobname = "蜜芽网订单生成客户订单作业";
 	
 	private boolean is_gening=false;
 	
@@ -24,6 +24,7 @@ public class GenCustomerOrder extends Thread{
 				connection = PoolHelper.getInstance().getConnection(
 						com.wofu.ecommerce.miya.Params.dbname);	
 				Vector vts=IntfUtils.getDownNotes(connection, Params.tradecontactid, "1");
+				System.out.println("本次要生成的订单数量为 "+vts.size());
 				for (int i=0;i<vts.size();i++) {
 					try{
 						Hashtable hts=(Hashtable) vts.get(i);
@@ -34,7 +35,6 @@ public class GenCustomerOrder extends Thread{
 						//生成客户订单
 						boolean is_success=OrderManager.genCustomerOrder(connection, sheetid);			
 											
-						
 						if (is_success)
 						{
 							//备份接口数据

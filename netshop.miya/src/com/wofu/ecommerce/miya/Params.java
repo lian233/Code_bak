@@ -52,11 +52,11 @@ public class Params {
 	
 	public static String appid="ecla";
 	public static String app_secret="";
-	public static String secret="a1961fbd661b64a7a760fde5b2a5fc35";
+	public static String secret_key="f372bed62716ef57012a0d6dba5a0ee8";
 	public static int isDelay;
 	public static int tableType;
 
-	public static boolean isgenorder;//是否生成系统订单
+	public static boolean isgenorder=true;//是否生成系统订单
 	public static boolean isgenorderRet;  //是否调用接口订单生成退货订单线程
 
 	public static String app_key;
@@ -64,6 +64,8 @@ public class Params {
 	public static String format;
 
 	public static String token;
+
+	public static String vendor_key="test_40";
 
 	
 	public Params() {
@@ -92,8 +94,8 @@ public class Params {
 		phone = properties.getProperty("phone", "020-38458026");
 		mobile = properties.getProperty("mobile", "15992409145");
 		appid = properties.getProperty("appid", "ecla");
-		app_secret = properties.getProperty("app_secret", "15992409145");
-		secret = properties.getProperty("secret", "a1961fbd661b64a7a760fde5b2a5fc35");
+		vendor_key = properties.getProperty("vendor_key", "test_40");
+		secret_key = properties.getProperty("secret_key", "f372bed62716ef57012a0d6dba5a0ee8");
 		isDelay = Integer.valueOf(properties.getProperty("isDelay", "0"));
 		tableType = Integer.valueOf(properties.getProperty("tableType", "0"));
 		isgenorder = Boolean.parseBoolean(properties.getProperty("isgenorder", "true"));
