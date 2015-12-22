@@ -51,7 +51,7 @@ public class PaymentsService  extends HttpServlet{
 		notifyTime=request.getParameter("notifyTime");
 		resultCode=request.getParameter("resultCode");
 		sign=request.getParameter("sign");
-		message=request.getParameter("message");
+		message=request.getParameter("memo");
 		resultMessage=request.getParameter("resultMessage");
 		outOrderNo=request.getParameter("outOrderNo");
 		version=request.getParameter("version");

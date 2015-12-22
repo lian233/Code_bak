@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GB2312"?>
 
 <project basedir="." default="deploy" name="wofu.ecommerce">
-  <property name="jdk.home" value="D:/java/jdk1.6.0_22"/>
+  <property name="jdk.home" value="E:/java/jdk1.6.0_22"/>
     
   <property name="build" value="bin"/>
   <property name="build.file" value="ecommerce" />
@@ -52,6 +52,9 @@
   	<pathelement location="../../lib/suning.jar" />
   	<pathelement location="../../lib/bestlogistcs.jar" />
   	<pathelement location="../../lib/mgj.jar" />
+	<pathelement location="../../lib/hk.jar" />
+	<pathelement location="../../lib/alibaba.jar" />
+	<pathelement location="../../lib/commons-httpclient-3.1.jar" />
   	<pathelement location="../../lib/MaWSJavaClientLibrary-1.1.jar" />
   	<pathelement location="../../lib/MWSClientJavaRuntime-1.0.jar" />
   	<pathelement location="../../lib/MWSOrders_2013-09-01_v2015-03-05.jar" />
@@ -137,6 +140,6 @@
   	<copy todir="X:/Code/Imp/lib" overwrite="true" file="${obf.file}" />
   	<copy todir="X:/Code/Imp/View/wofu.99fashion/WebRoot/WEB-INF/lib" overwrite="true" file="${obf.file}" />
   	<copy todir="X:/Code/Imp/Back/extjs/WebRoot/WEB-INF/lib" overwrite="true" file="${obf.file}" />
-  	<copy todir="D:/ecommerce/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
+  	<copy todir="D:/jdk1.6.0_22/jre/lib/ext" overwrite="true" file="${obf.file}" />
   </target>
 </project>

@@ -90,9 +90,15 @@ public class OrderDelivery extends Thread {
 			//trade.order.orderList.get
 			String urlPath=CommonUtil.buildInvokeUrlPath(Params.namespace,"trade.order.orderList.get",Params.version,Params.requestmodel,Params.appkey);
 			String response = ApiCallService.callApiTest(Params.url, urlPath, Params.secretKey, params);
-			//Log.info("result: "+response);
+			Log.info("发货返回的数据 result: "+response);
 			JSONObject res=new JSONObject(response);
+			boolean resuccess =  res.getJSONObject("result").optBoolean("success");
+			if(!resuccess){
+				continue;
+			}
 			JSONArray orderEntries=res.getJSONObject("result").getJSONArray("toReturn").getJSONObject(0).getJSONArray("orderEntries");
+			
+			
 			
 			String orderdetailids="";
 			for(int j=0; j<orderEntries.length();j++){

@@ -32,5 +32,8 @@
 	<classpathentry kind="lib" path="X:/Code/Imp/lib/MWSClientJavaRuntime-1.0.jar"/>
 	<classpathentry kind="lib" path="X:/Code/Imp/lib/MWSOrders_2013-09-01_v2015-03-05.jar"/>
 	<classpathentry kind="lib" path="X:/Code/Imp/lib/mgj.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/alibaba.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="X:/Code/Imp/lib/hk.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

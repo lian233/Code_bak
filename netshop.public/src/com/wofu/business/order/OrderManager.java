@@ -145,7 +145,6 @@ public class OrderManager {
 		return ret;
 	}
 	
-	
 	public static boolean genCustomerOrder(Connection conn,String sheetid,int isDelay,int tableType) throws Exception
 	{	String sql ="";
 		if(isDelay==0 && tableType==0){

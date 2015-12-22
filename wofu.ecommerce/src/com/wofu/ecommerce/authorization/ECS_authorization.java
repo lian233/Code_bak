@@ -101,11 +101,9 @@ public class ECS_authorization extends BusinessObject{
 				break;
 			case 13://ÃÀÀöËµ
 				obj  = GetTokenHelper.getMeiLiShuoToken(appkey, appsecret, authstr);
-				if(obj.getInt("error_code")!=0) throw new Exception(obj.getString("error_description"));
-				JSONObject data = obj.getJSONObject("data");
-				token = data.getString("access_token");
-				System.out.println("ÐÂTOKEN"+token);
-				String refreshtoken = data.getString("refresh_token");
+				if(obj.getInt("code")!=0) throw new Exception(obj.getString("error_description"));
+				token = obj.getString("access_token");
+				String refreshtoken = obj.getString("refresh_token");
 				sql = "update ecs_org_params set token='"+token+"',refreshtoken='"+refreshtoken+"' ,lastgettokentime=getdate(),invaliddate=dateadd(dd,30,getdate()) where orgid="+shopid;
 				this.getDao().execute(sql);
 				break;
@@ -114,7 +112,9 @@ public class ECS_authorization extends BusinessObject{
 		this.getMapData(ht);
 		Log.info("result: "+this.toJSONObject());
 		this.OutputStr("["+this.toJSONObject()+"]");
-
+		
+		
+		
 	}
 	
 	private Hashtable getTokenInfoUtil(int shopid) throws Exception{

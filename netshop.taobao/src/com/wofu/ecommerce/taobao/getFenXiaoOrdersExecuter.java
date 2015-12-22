@@ -27,7 +27,7 @@ public class getFenXiaoOrdersExecuter extends Executer {
 			
 			//删除已经处理过的
 			
-			String sql="delete from eco_rds_fx_trade where supplier_username='"+sellernick+"' and flag=1 and modified<dateadd(dd,-15,getdate())";
+			String sql="delete from eco_rds_fx_trade where supplier_username='"+sellernick+"' and flag=1 and modified<dateadd(dd,-60,getdate())";
 			this.getDao().execute(sql);
 			Log.info(jobName+"-"+sellernick+"-删除已经处理的数据成功!");
 			

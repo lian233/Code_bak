@@ -273,6 +273,7 @@ public class getOrders extends Thread {
 	//获取退货信息 V2
 	public void getRefund(Connection conn) throws Throwable
 	{
+		System.out.println("开始获取退货单");
 		boolean hasNextPage = true ;
 		int pageIndex = 1 ;
 		Date modified=Formatter.parseDate(refundlasttime,Formatter.DATE_TIME_FORMAT);
@@ -281,8 +282,8 @@ public class getOrders extends Thread {
 			try 
 			{
 
-				Date startdate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+1000L);
-				Date enddate=new Date(Formatter.parseDate(lasttime,Formatter.DATE_TIME_FORMAT).getTime()+daymillis);
+				Date startdate=new Date(Formatter.parseDate(refundlasttime,Formatter.DATE_TIME_FORMAT).getTime()+1000L);
+				Date enddate=new Date(Formatter.parseDate(refundlasttime,Formatter.DATE_TIME_FORMAT).getTime()+daymillis);
 				
 				DefaultJdClient client = new DefaultJdClient(Params.SERVER_URL,Params.token,Params.appKey,Params.appSecret);
 				AfterSearchRequest request = new AfterSearchRequest();
@@ -300,13 +301,15 @@ public class getOrders extends Thread {
 				request.setQueryFields(queryFields);
 				request.setSelectFields(selectFields) ;
 				request.setPageSize("10");
-				
-	
+				System.out.println("开始");
+				System.out.println(Formatter.format(startdate, Formatter.DATE_TIME_FORMAT));
+				System.out.println(Formatter.format(enddate, Formatter.DATE_TIME_FORMAT));
+				System.out.println("结束");
 				while(hasNextPage)
 				{
 					request.setPage(String.valueOf(pageIndex));
 					AfterSearchResponse response = client.execute(request);
-	
+					Log.info("京东退货返回的信息"+response.getMsg());
 					
 					//判断是否正常返回
 					if(!"0".equals(response.getCode()))
@@ -356,7 +359,7 @@ public class getOrders extends Thread {
 								try{
 									ReturnItem item = itemList.get(j) ;
 									Sku sku= StockUtils.getSkuInfoBySkuId(jobName, item.getSkuId(), Params.SERVER_URL, Params.token, Params.appKey, Params.appSecret) ;
-									String sql="select shopid from ContactShopContrast with(nolock) where tradecontactid="+Params.tradecontactid;
+									String sql="	="+Params.tradecontactid;
 						            String inshopid=SQLHelper.strSelect(conn, sql);
 						            conn.setAutoCommit(false);		
 									sql="declare @Err int ; declare @NewSheetID char(16); execute  @Err = TL_GetNewSheetID 1105, @NewSheetID output;select @NewSheetID;";			

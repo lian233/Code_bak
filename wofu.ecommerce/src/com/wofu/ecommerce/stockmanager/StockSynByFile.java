@@ -326,77 +326,88 @@ public class StockSynByFile extends PageBusinessObject{
 		boolean isNeedSyn;
 		ArrayList<String> sqlBatch = new ArrayList<String>();
 		ArrayList<String> insertBatch = new ArrayList<String>();
-		while(sc.hasNextLine()){
-			isNeedSyn=true;
-			String record = sc.nextLine().trim();
-			if("".equals(record)) continue;
-			String[] item = record.split(":");
-			int qty=0;
-			if("".equals(item[1])){  //没有数量就用可用库存的比例
-				float synRate = Float.parseFloat(item[2]);
-				qty = StockManager.getTradeContactUseableStock(this.getConnection(),tradecontactid,item[0]);
-				qty = Math.round(qty * synRate);
-			}else{
-				if(Float.parseFloat(item[1])<1  && Float.parseFloat(item[1])!=0){//设置sku的同步比例
-					isNeedSyn=false;
-					String sql = "update ecs_stockconfigsku set synrate="+item[1]+" where orgid='"+ orgid+"' and  sku='"+item[0]+"'";
-					sqlBatch.add(sql);
-					HashMap map = new HashMap();
-					map.put("sku", item[0]);
-					map.put("stocknum", "");
-					map.put("log", "同步比例:"+item[1]);
-					arr.put(map);
-					
+		try{
+			while(sc.hasNextLine()){
+				isNeedSyn=true;
+				String record = sc.nextLine().trim();
+				if("".equals(record)) continue;
+				String[] item = record.split(":");
+				int qty=0;
+				if("".equals(item[1])){  //没有数量就用可用库存的比例
+					float synRate = Float.parseFloat(item[2]);
+					qty = StockManager.getTradeContactUseableStock(this.getConnection(),tradecontactid,item[0]);
+					qty = Math.round(qty * synRate);
 				}else{
-					qty = Math.round(Float.parseFloat(item[1]));
-					}
-					
-				}
-				if(sqlBatch.size()>=200){
-					SQLHelper.executeBatch(this.getConnection(), sqlBatch);
-					sqlBatch.clear();
-				}
-					
-				if(isNeedSyn){
-					if(qty<0) qty=0;
-					String sql ="select itemid,skuid,sku from ecs_stockconfigsku where orgid='"+ orgid+"' and  sku='"+item[0]+"'";
-					Hashtable<String, String> tb = this.getDao().oneRowSelect(sql);
-					HashMap map = new HashMap();
-					if(tb.size()==0){
+					if(Float.parseFloat(item[1])<1  && Float.parseFloat(item[1])!=0){//设置sku的同步比例
+						isNeedSyn=false;
+						String sql = "update ecs_stockconfigsku set synrate="+item[1]+" where orgid='"+ orgid+"' and  sku='"+item[0]+"'";
+						sqlBatch.add(sql);
+						HashMap map = new HashMap();
 						map.put("sku", item[0]);
-						map.put("stocknum", String.valueOf(qty));
-						map.put("log", "同步失败，此sku在erp或淘宝后台不存在，请核对后再同步");
-						map.put("syntime", Formatter.format(new Date(),Formatter.DATE_TIME_FORMAT));
-						map.put("synname", fileName);
-						map.put("shoporgid", orgid);
+						map.put("stocknum", "");
+						map.put("log", "同步比例:"+item[1]);
 						arr.put(map);
+						
 					}else{
-						String log = taobaoUtil(url,appkey,appsecret,authcode,(String)tb.get("itemid") ,(String)tb.get("skuid"),(String)tb.get("sku"),qty,1);
-						map.put("sku", item[0]);
-						map.put("stocknum", String.valueOf(qty));
-						map.put("log", log);
-						map.put("syntime", Formatter.format(new Date(),Formatter.DATE_TIME_FORMAT));
-						map.put("synname", fileName);
-						map.put("shoporgid", orgid);
-						arr.put(map);
+						qty = Math.round(Float.parseFloat(item[1]));
+						}
+						
 					}
-					sql = "insert into StockSynByFile(sku,stocknum,log,syntime,synname,shoporgid) values('"+
-						map.get("sku")+"','"+map.get("stocknum")+"','"+map.get("log")+"','"+
-						map.get("syntime")+"','"+map.get("synname")+"','"+map.get("shoporgid")+"')";
-					insertBatch.add(sql);
-				}
-				if(insertBatch.size()>200){
-					SQLHelper.executeBatch(this.getConnection(), insertBatch);
-					insertBatch.clear();
-				}
+					if(sqlBatch.size()>=200){
+						SQLHelper.executeBatch(this.getConnection(), sqlBatch);
+						sqlBatch.clear();
+					}
+						
+					if(isNeedSyn){
+						if(qty<0) qty=0;
+						String sql ="select itemid,skuid,sku from ecs_stockconfigsku where orgid='"+ orgid+"' and  sku='"+item[0]+"'";
+						Hashtable<String, String> tb = this.getDao().oneRowSelect(sql);
+						HashMap map = new HashMap();
+						if(tb.size()==0){
+							map.put("sku", item[0]);
+							map.put("stocknum", String.valueOf(qty));
+							map.put("log", "同步失败，此sku在erp或淘宝后台不存在，请核对后再同步");
+							map.put("syntime", Formatter.format(new Date(),Formatter.DATE_TIME_FORMAT));
+							map.put("synname", fileName);
+							map.put("shoporgid", orgid);
+							arr.put(map);
+						}else{
+							System.out.println("finish......1");
+							String log = taobaoUtil(url,appkey,appsecret,authcode,(String)tb.get("itemid") ,(String)tb.get("skuid"),(String)tb.get("sku"),qty,1);
+							map.put("sku", item[0]);
+							map.put("stocknum", String.valueOf(qty));
+							map.put("log", log);
+							System.out.println("finish......2");
+							map.put("syntime", Formatter.format(new Date(),Formatter.DATE_TIME_FORMAT));
+							map.put("synname", fileName);
+							map.put("shoporgid", orgid);
+							System.out.println("finish......3");
+							arr.put(map);
+						}
+						sql = "insert into StockSynByFile(sku,stocknum,log,syntime,synname,shoporgid) values('"+
+							map.get("sku")+"','"+map.get("stocknum")+"','"+map.get("log")+"','"+
+							map.get("syntime")+"','"+map.get("synname")+"','"+map.get("shoporgid")+"')";
+						insertBatch.add(sql);
+					}
+					if(insertBatch.size()>200){
+						SQLHelper.executeBatch(this.getConnection(), insertBatch);
+						insertBatch.clear();
+					}
+						
 					
-				
-			}
-			if(sqlBatch.size()>0)
-				SQLHelper.executeBatch(this.getConnection(), sqlBatch);
-			if(insertBatch.size()>0)
-				SQLHelper.executeBatch(this.getConnection(), insertBatch);
-		this.OutputStr("{\"success\":\"true\",\"data\":"+arr.toString()+"}");
+				}
+				System.out.println("finish......333");
+				if(sqlBatch.size()>0)
+					SQLHelper.executeBatch(this.getConnection(), sqlBatch);
+				if(insertBatch.size()>0)
+					SQLHelper.executeBatch(this.getConnection(), insertBatch);
+				System.out.println("finish......");
+			this.OutputStr("{\"success\":\"true\",\"data\":"+arr.toString()+"}");
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+		
 	}
 
 	public static String taobaoUtil(String url,String appkey,

@@ -19,7 +19,7 @@ public class Timer {
 			System.out.println(new Date(1423471495*1000L));
 			**/
 			//
-			System.out.println(Secret.decrypt("ElK/8pikYydoyJOzCiG2BQ=="));
+			System.out.println(Secret.decrypt("KDf428JwI7Iug0sty7JTS43/YGjsSoW/"));
 			System.out.println(Secret.encrypt("djz-djz"));
 			//System.out.println(new String("\u66fe\u4e3d\u82b3".getBytes()));
 			//ECS_StockConfigSku stockConfigSku = new ECS_StockConfigSku();

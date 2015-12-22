@@ -44,7 +44,7 @@ public class SynStockExecuter extends Executer {
 		System.out.println(app_id);
 		System.out.println(secret);
 		System.out.println(session);
-		try {		
+		try {
 			
 			updateJobFlag(1);
 			

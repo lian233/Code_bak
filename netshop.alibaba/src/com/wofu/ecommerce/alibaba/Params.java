@@ -88,7 +88,7 @@ public class Params {
 		phone = properties.getProperty("phone", "020-38458026");
 		mobile = properties.getProperty("mobile", "15992409145");	
 		secretKey = properties.getProperty("secretKey", "AmUvfEqcm2U");	
-		refresh_token = properties.getProperty("refresh_token", "");	
+		refresh_token = properties.getProperty("refresh_token", "52ef0899-af9c-4ef0-a03e-06a4c9b8769a");	
 		redirect_uri = properties.getProperty("redirect_uri", "");	
 		sellerMemberId = properties.getProperty("sellerMemberId", "");	
 		isgenorder = Boolean.parseBoolean(properties.getProperty("isgenorder", "true"));
