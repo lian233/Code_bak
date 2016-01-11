@@ -221,7 +221,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 			params.put("customsCode", "5100");	//申请海关代码4600：郑州关区  5100：广州海关 
 			params.put("payerName", CertName);		//支付人姓名
 			params.put("payerDocType", CertType);	//支付人证件类型 01:居民身份证
-			params.put("taxAmount", taxFee);		//税款金额  
+			params.put("taxAmount", "0");		//税款金额  
 			params.put("freightCurrency", "142");//物流币种编号 
 			params.put("goodsAmount", PayFee);	//货款金额	
 			params.put("eshopEntCode", Params.EshopEntCode);	//电商企业代码 

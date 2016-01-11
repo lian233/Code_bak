@@ -61,6 +61,7 @@ public class CommHelper {
             	result.append(temp);
             	temp=br.readLine();
             }
+            System.out.println("具体数据"+result.toString());
             return result.toString();
         } catch (Exception e) {
         	e.printStackTrace();

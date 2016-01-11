@@ -26,6 +26,7 @@ public class ProcessOrderInfo extends Thread {
 	
 	public void run() {
 		Log.info(jobname, "启动[" + jobname + "]模块");
+		System.out.println("海关号"+Params.CustomsCode+" 起运方式"+Params.ship_tool_code+" 分拣线"+Params.SortLineID);
 
 		do {
 			Connection conn = null;
@@ -127,7 +128,7 @@ public class ProcessOrderInfo extends Thread {
 					bizSheet.append(DtcTools.CreateItem("ESHOP_ENT_CODE" , Params.EshopEntCode , null));//电商企业代码
 					bizSheet.append(DtcTools.CreateItem("ESHOP_ENT_NAME" , Params.EshopEntName , null));//电商企业名称
 					bizSheet.append(DtcTools.CreateItem("DESP_ARRI_COUNTRY_CODE" , strCountryCode , null));//起运国  116	日本
-					bizSheet.append(DtcTools.CreateItem("SHIP_TOOL_CODE" , "Y" , null));//运输方式
+					bizSheet.append(DtcTools.CreateItem("SHIP_TOOL_CODE" , Params.ship_tool_code , null));//运输方式
 					bizSheet.append(DtcTools.CreateItem("CHECK_TYPE" , "R" , null));//验证类型R:收货人 P:支付人
 					bizSheet.append(DtcTools.CreateItem("RECEIVER_ID_NO" , "CertNo" , dtOut));//收货人身份证号码
 					bizSheet.append(DtcTools.CreateItem("RECEIVER_NAME" , "CertName" , dtOut));//收货人姓名

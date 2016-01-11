@@ -1352,7 +1352,15 @@ public class DecOrderController extends BaseController{
 								}
 								int shopID = Integer.parseInt(temp);
 								
-								DecOrder decOrder = new DecOrder();								
+								DecOrder decOrder = new DecOrder();	
+								//支付方式:
+								//4	分销
+								//3	自动发货
+								//2	货到付款
+								//1	在线支付
+								//0	其他
+								decOrder.setPayMode(1);//默认支付方式为在线支付
+								
 								decOrder.setRefSheetID(refSheetID);
 								decOrder.setShopID(shopID);
 								
@@ -1450,7 +1458,6 @@ public class DecOrderController extends BaseController{
 								}		
 								decOrder.setEditor(editor);//登录人
 								decOrder.setFront(front);
-								
 								
 								//明细
 								String title = Tools.getListByName(rowData , headList ,"标题");

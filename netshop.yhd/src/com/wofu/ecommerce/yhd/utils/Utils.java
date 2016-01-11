@@ -44,6 +44,7 @@ public class Utils {
 			while (iterator.hasNext()) {
 				String key = iterator.next();
 				params.add(new BasicNameValuePair(key, treeMap.get(key)));
+				System.out.println(key+":"+treeMap.get(key));
 			}
 
 			UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(params, "UTF-8");

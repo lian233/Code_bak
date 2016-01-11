@@ -167,7 +167,7 @@ public class GetOrdersRunnable implements Runnable{
 										
 										//创建订单 如果创建成功，减少库存--欧培测试
 										OrderUtils.createInterOrder(conn, param.SERVER_URL,param.appKey,param.appSecret,param.token,
-												order,param.shopid, param.username,param.JBDCustomerCode,param.isLBP,param.isNeedGetDeliverysheetid);
+												order,param.shopid, param.username,param.isLBP,param.isNeedGetDeliverysheetid);
 										
 										//减其它店库存
 										List<ItemInfo> itemList = order.getItemInfoList() ;

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="springmvc" basedir="." default="startup">
-    <property name="tomcat.home" value="D:\tomcat"/>
+    <property name="tomcat.home" value="H:\JAVA\apache-tomcat-7.0.11"/>
     <property name="web.root" value="${tomcat.home}\webapps"></property>
     <property name="app.name" value="springmvc"/>
     <property name="src.dir" value="src"/>
-    <property name="jdk.dir" value="D:\jdk1.6.0_22"/>
+    <property name="jdk.dir" value="H:\JAVA\jdk1.6.0_22"/>
 	<property name="resource.dir" value="rst-resources"/>
     <property name="classes.dir" value="WebRoot/WEB-INF/classes"/>
 	 <property name="html.dir" value="WebRoot/WEB-INF/html"/>

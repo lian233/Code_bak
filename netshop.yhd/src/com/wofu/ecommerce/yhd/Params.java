@@ -58,6 +58,9 @@ public class Params {
 
 	public static boolean isgenorder;//是否生成系统订单
 	public static boolean isgenorderRet;  //是否调用接口订单生成退货订单线程
+
+	public static int getInterval=24;//时间间隔
+	public static int getDetailedTime=3;//时间间隔
 	
 	public Params() {
 	}
@@ -91,6 +94,8 @@ public class Params {
 		tableType = Integer.valueOf(properties.getProperty("tableType", "0"));
 		isgenorder = Boolean.parseBoolean(properties.getProperty("isgenorder", "true"));
 		isgenorderRet = Boolean.parseBoolean(properties.getProperty("isgenorderRet", "true"));
+		getInterval = (new Integer(properties.getProperty("getInterval", "10"))).intValue();	
+		getDetailedTime = (new Integer(properties.getProperty("getDetailed", "10"))).intValue();
 	}
 }
 

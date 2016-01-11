@@ -1,0 +1,44 @@
+@charset "utf-8";
+html,body{
+	height:100%;
+	width:100%;
+	margin:0px;
+	padding: 0px;
+	overflow:hidden;
+}
+
+.text{
+    margin-top:5px;
+    width:98%;
+    height:30px;
+    border: none;
+}
+.tr_high_light{
+    background: rgb(235,235,255);
+}
+
+.active_menu_arrow {
+    left:365px;
+}
+.foot_wraper_left{
+    float:left;
+    height:100%;
+    margin-top:5px;
+}
+.foot_wraper_right{
+    float:right;
+    height:100%;
+    margin-top:5px;
+}
+.dlg_button_row{
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+.tra{
+    background-color:transparent;
+}
+.grid
+{
+	overflow-y:auto;
+}

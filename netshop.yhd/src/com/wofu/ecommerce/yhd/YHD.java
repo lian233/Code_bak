@@ -114,18 +114,18 @@ public class YHD extends Service {
 		
 		
 		
-		getRefund getrefund=new getRefund();
-		getrefund.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-
-			public void uncaughtException(Thread thread, Throwable e) {
-				Log.error("getrefund", "发生未捕获异常"+e.getMessage());
-				getRefund getrefund=new getRefund();  //重启线程
-				getrefund.setUncaughtExceptionHandler(this);
-				getrefund.start();
-			}
-			
-		});
-		getrefund.start();
+//		getRefund getrefund=new getRefund();
+//		getrefund.setUncaughtExceptionHandler(new UncaughtExceptionHandler(){
+//
+//			public void uncaughtException(Thread thread, Throwable e) {
+//				Log.error("getrefund", "发生未捕获异常"+e.getMessage());
+//				getRefund getrefund=new getRefund();  //重启线程
+//				getrefund.setUncaughtExceptionHandler(this);
+//				getrefund.start();
+//			}
+//			
+//		});
+//		getrefund.start();
 	
 		
 			

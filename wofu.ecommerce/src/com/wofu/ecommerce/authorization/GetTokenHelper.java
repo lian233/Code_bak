@@ -125,7 +125,7 @@ public class GetTokenHelper {
 		param.put("client_id", appkey);
 		param.put("client_secret", app_secret);
 		param.put("code", code);
-		param.put("redirect_uri", "http://121.196.132.134:30001/login.html");
+		param.put("redirect_uri", "http://120.26.193.249:30001/login.html");
 		//param.put("state", YOUR_CUSTOM_CODE);//http://oauth.open.meilishuo.com/authorize/token
 		String result = HttpUtil.sendRequest("https://auth.360buy.com/oauth/token", param, null,"gbk");
 		Log.info("result: "+result);

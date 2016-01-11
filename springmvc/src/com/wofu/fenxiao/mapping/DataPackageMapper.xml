@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 数据包管理  -->
+<mapper namespace="com.wofu.fenxiao.mapping.DataPackageMapper">
+	<!--mybatis ehcache缓存配置 -->
+	<!--
+		以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache
+		type="org.mybatis.caches.ehcache.LoggingEhcache" />
+	-->
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+	<!-- 以下与实体类的中字段一致    关联字段也一起查出来   这里只保持实体跟sql语句的一致，没有跟数据库字段保存一致-->
+	<!-- 为了返回list 类型而定义的returnMap -->
+	
+	<!-- 数据包的映射    -->
+	<!-- type:java.util.HashMap , id:返回的结果resultMap -->
+	<resultMap type="com.wofu.fenxiao.domain.DataPackage" id="dataPackageInfo" >
+		<!-- column:数据库字段  , property:domain里的对应的字段 -->
+		<result column="ID" property="ID" />
+		<result column="Title" property="Title" />
+		<result column="DataType" property="DataType" />
+		<result column="ProductLineID" property="ProductLineID" />
+		<result column="Note" property="Note" />
+		<result column="UploadTime" property="UploadTime" />
+		<result column="FileName" property="FileName" />
+		<result column="Operator" property="Operator" />
+	</resultMap>
+
+	<!-- 查询数据包  -->
+	<select id="qryDataPackage" parameterType="java.util.HashMap" resultMap="dataPackageInfo">
+		select *
+		from DataPackageList
+		<where>
+			1=1
+			<if test="StartDateTime != null">
+				and UploadTime &gt;= #{StartDateTime}
+			</if>
+			<if test="EndDateTime != null">
+				and UploadTime &lt;= #{EndDateTime}
+			</if>
+			<if test="Title != null and Title != ''">
+				and Title like '%${Title}%'
+			</if>
+			<if test="ProductLineID != null and ProductLineID > 0">
+				and ProductLineID = #{ProductLineID}
+			</if>
+			<if test="DataTypeID != null">
+				and DataType = #{DataTypeID}
+			</if>
+		</where>		
+	</select>
+	
+	<!-- 查询当前数据包最后的一个ID  -->
+	<select id="qryIdentity" resultType="java.lang.Integer">
+		select CONVERT(INT,IDENT_CURRENT('DataPackageList')) as ID
+	</select>
+	
+	<!-- 查询数据包文件是否已经存在于数据库记录中 -->
+	<select id="qryFileExisting" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from DataPackageList
+		<where>
+			FileName = #{strFileName}
+		</where>
+	</select>
+	
+	<!-- 查询指定ID的数据包信息  -->
+	<select id="getById" parameterType="java.lang.Integer" resultType="com.wofu.fenxiao.domain.DataPackage">
+		select [ID],[Title],[Note],[ProductLineID],[DataType],[UploadTime],[FileName],[Operator] from DataPackageList where ID = #{packageID}
+	</select>
+
+	<!-- 添加数据包信息(mapper不用定义,已存在与base类里) -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DataPackage">
+		insert into DataPackageList (
+		[Title],
+		<if test="Note != null">
+			[Note],
+		</if>
+		<if test="ProductLineID != null and ProductLineID > 0">
+			[ProductLineID],
+		</if>
+		[DataType],
+		[UploadTime],
+		[FileName],
+		[Operator]
+		)
+		values (
+		#{Title},
+		<if test="Note != null">
+			#{Note},
+		</if>
+		<if test="ProductLineID != null and ProductLineID > 0">
+			#{ProductLineID},
+		</if>
+		#{DataType},
+		#{UploadTime},
+		#{FileName},
+		#{Operator}
+		)
+	</insert>
+	
+	
+	<!-- 删除分销价格(mapper不用定义,已存在与base类里) -->
+	<delete id="delete" parameterType="int">
+		delete from DataPackageList where ID = #{ID}
+	</delete>
+	
+	<!-- 修改分销价格(mapper不用定义,已存在与base类里) -->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DataPackage">
+		update DataPackageList
+		<set>
+			<if test="Title != null and Title != ''">
+				Title=#{Title},
+			</if>					
+			<if test="Note != null">
+				Note=#{Note},
+			</if>
+			<if test="ProductLineID != null and ProductLineID > 0">
+				ProductLineID=#{ProductLineID},
+			</if>
+			<if test="ProductLineID != null and ProductLineID == -1">
+				ProductLineID=null,
+			</if>
+			<if test="DataType != null">
+				DataType=#{DataType}
+			</if>					
+		</set>
+		where ID=#{ID}
+	</update>
+</mapper>

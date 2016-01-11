@@ -50,7 +50,7 @@
 //弹出提示框
 	function showTips(text){
 		var dlg = $("#tips_dlg");
-		dlg.show();
+		dlg.fadeIn(100);
 
 		windowResize();
 		
@@ -61,11 +61,11 @@
 	function CallWaitdlg(Display){
 		if(Display == true)
 		{
+			$("#Wait_dlg").fadeIn(50);
 			windowResize();
-			$("#Wait_dlg").show();
 		}
 		else
-			$("#Wait_dlg").hide();
+			$("#Wait_dlg").fadeOut(50);
 	}
 	
 //界面初始化
@@ -144,12 +144,13 @@
 		page_ctrl_to_callback = function(pn){
 			if (lastSearchParamA){
 				lastSearchParamA.pn = pn;
-
+				CallWaitdlg(true);
 				$.ajax({
 					url: "./qryDistributorPrice.do", 
 					type: "post", 
 					data: JSON.stringify(lastSearchParamA), 
 					success: function(rsp){
+						CallWaitdlg(false);
 						if (rsp.errorCode!=0){
 							showTips(rsp.msg);
 						}else{
@@ -162,6 +163,7 @@
 						}
 					}, 
 					error: function(){
+						CallWaitdlg(false);
 						showTips("请求出错了");
 					}, 
 					dataType: "json"
@@ -172,12 +174,13 @@
 		page_ctrl_to_callback_detail = function(pn){
 			if (lastSearchParamB){
 				lastSearchParamB.pn = pn;
-
+				CallWaitdlg(true);
 				$.ajax({
 					url: "./qryDistributorPriceLog.do", 
 					type: "post", 
 					data: JSON.stringify(lastSearchParamB), 
 					success: function(rsp){
+						CallWaitdlg(false);
 						if (rsp.errorCode!=0){
 							showTips(rsp.msg);
 						}else{
@@ -191,6 +194,7 @@
 						}
 					}, 
 					error: function(){
+						CallWaitdlg(false);
 						showTips("请求出错了");
 					},
 					dataType: "json"
@@ -217,11 +221,11 @@
 					currentNodeName = "当前分销商:" + loginCustomerName;
 					loginCustomerLevel = parseInt(allData.curLogin.CustomerLevel);
 					loginCustomerName = allData.curLogin.CustomerName;
-					if(console)
-					{
-						console.log("CID:" + loginCustomerID);
-						console.log("Level:" + loginCustomerLevel);
-					}
+					// if(console)
+					// {
+						// console.log("CID:" + loginCustomerID);
+						// console.log("Level:" + loginCustomerLevel);
+					// }
 				}
 				
 				//初始化菜单栏
@@ -244,8 +248,8 @@
 			zTree = $.fn.zTree.getZTreeObj("dtree");
 		};
 		
-	//开启ajax异步
-		$.ajaxSetup({async: false});
+	//关闭ajax异步
+		//$.ajaxSetup({async: false});
 		
 	//分销价格表
 		//填充数据到表格
@@ -699,11 +703,13 @@
 			}
 			
 			//执行查询
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./qryDistributorPrice.do", 
 				type: "post", 
 				data: JSON.stringify(lastSearchParamA), 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -716,6 +722,7 @@
 					}
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 				}, 
 				dataType: "json"
@@ -771,12 +778,13 @@
 			}
 			
 			disableGrid();//先禁止表格的编辑
-			
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./saveDistributorPrice.do", 
 				type: "post", 
 				data: JSON.stringify(param), 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -787,6 +795,7 @@
 					enableGrid();//开放表格的编辑
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 					enableGrid();
 				},
@@ -857,11 +866,13 @@
 			
 			if(data.distributorPrices.length > 0)
 			{
+				CallWaitdlg(true);
 				$.ajax({
 					url: "./saveDistributorPrice.do", 
 					type: "post", 
 					data: JSON.stringify(data), 
 					success: function(rsp){
+						CallWaitdlg(false);
 						if (rsp.errorCode!=0){
 							showTips(rsp.msg);
 
@@ -871,6 +882,7 @@
 						}
 					}, 
 					error: function(){
+						CallWaitdlg(false);
 						showTips("请求出错了");
 					}, 
 					dataType: "json"
@@ -953,11 +965,13 @@
 			}
 			
 			//执行查询
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./qryDistributorPriceLog.do", 
 				type: "post", 
 				data: JSON.stringify(lastSearchParamB), 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -972,6 +986,7 @@
 					}
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 				}, 
 				dataType: "json"
@@ -1231,11 +1246,13 @@
 			param.distributors.push(item);
 			
 			//提交数据
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./saveDistributor.do", 
 				type: "post", 
 				data: JSON.stringify(param), 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -1251,6 +1268,7 @@
 					}
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 				}, 
 				dataType: "json"
@@ -1310,11 +1328,13 @@
 			param.distributors.push(item);
 			
 			//提交数据
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./saveDistributor.do", 
 				type: "post", 
 				data: JSON.stringify(param), 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -1325,6 +1345,7 @@
 					}
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 				}, 
 				dataType: "json"
@@ -1344,11 +1365,13 @@
 				param.Enable = setting;
 				
 				//提交数据
+				CallWaitdlg(true);
 				$.ajax({
 					url: "./setDistributorEnable.do", 
 					type: "post", 
 					data: JSON.stringify(param), 
 					success: function(rsp){
+						CallWaitdlg(false);
 						if (rsp.errorCode!=0){
 							showTips(rsp.msg);
 						}else{
@@ -1359,6 +1382,7 @@
 						}
 					}, 
 					error: function(){
+						CallWaitdlg(false);
 						showTips("请求出错了");
 					}, 
 					dataType: "json"
@@ -1376,11 +1400,13 @@
 			
 			DistributorData = []
 			//请求数据
+			CallWaitdlg(true);
 			$.ajax({
 				url: "./qrySubDistributor.do", 
 				type: "post", 
 				data: "{}", 
 				success: function(rsp){
+					CallWaitdlg(false);
 					if (rsp.errorCode!=0){
 						showTips(rsp.msg);
 					}else{
@@ -1388,6 +1414,7 @@
 					}
 				}, 
 				error: function(){
+					CallWaitdlg(false);
 					showTips("请求出错了");
 				}, 
 				dataType: "json"
@@ -1633,13 +1660,13 @@
 				showTips("请先点击左侧目录树的其中一个分销商节点后再操作！");
 				return;
 			}
-			$("#PriceHistory_dialog").show();
+			$("#PriceHistory_dialog").fadeIn(100);
 		});
 		
 	//导入分销价格
 		//弹出上传窗口
 		$("#btnUploadPrice").click(function(){
-			$("#uploadPrice_dlg").show();
+			$("#uploadPrice_dlg").fadeIn(100);
 		});
 	
 		//上传
@@ -1654,7 +1681,7 @@
 					secureuri : false,
 					fileElementId : 'file_for_import',
 					dataType : 'json',
-					async : false,
+					async : true,
 					success : function(data) {
 						CallWaitdlg(false);
 						
@@ -1707,7 +1734,7 @@
 					dataType:'json',
 					contentType:"application/json;charset=UTF-8",
 					data:{},
-					async : false,
+					async : true,
 					success : function(data) {
 						if (data.errorCode==0)
 						{
@@ -1734,7 +1761,7 @@
 					dataType:'json',
 					contentType:"application/json;charset=UTF-8",
 					data:{},
-					async : false,
+					async : true,
 					success : function(data) {
 						if (data.errorCode==0)
 						{
@@ -1756,12 +1783,12 @@
 		//关闭按钮
 		$(".btn_dlgclose").click(function(){
 			var dialog = $(this).parents(".dialog");
-			$(dialog).hide();
+			$(dialog).fadeOut(100);
 		});
 		//右上角关闭按钮
 		$(".dialog_close").click(function(){
 			var dialog = $(this).parents(".dialog");
-			$(dialog).hide();
+			$(dialog).fadeOut(100);
 		});
 		
 	//执行初始化

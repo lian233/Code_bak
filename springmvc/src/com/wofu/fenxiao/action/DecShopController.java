@@ -285,20 +285,24 @@ public class DecShopController extends BaseController{
 					if (shop.containsKey("Note")) {c.setNote(shop.getString("Note"));}										
 				}
 				
-				int isUpdateStock = 0;
-				HashMap<String,String> curLogin = (HashMap<String,String>)request.getSession().getAttribute("CurLoginSession");
-				if (curLogin.get("SystemType").toString().equals("1")){
-					isUpdateStock = 1;
-				}
+//				int isUpdateStock = 0;
+//				HashMap<String,String> curLogin = (HashMap<String,String>)request.getSession().getAttribute("CurLoginSession");
+//				if (curLogin.get("SystemType").toString().equals("1")){
+//					isUpdateStock = 1;
+//				}
 				
 				if (id==-1){//增加
 					//检查数据
 					if (!shop.containsKey("Name")) {throw new Exception("没有输入名称");}
 					if (!shop.containsKey("ChannelID")) {throw new Exception("没有输入店铺类型");}
 					if (!shop.containsKey("Status")) {c.setStatus(1);}
-					if (!shop.containsKey("IsGetOrder")) {c.setIsGetOrder(1);}					
+					if (!shop.containsKey("IsGetOrder")) {c.setIsGetOrder(1);}
+					
+					if (!shop.containsKey("isNeedDelivery")) c.setIsNeedDelivery(1);
 					if (shop.containsKey("isNeedDelivery")) c.setIsNeedDelivery(shop.getInt("isNeedDelivery"));
+					if (!shop.containsKey("isUpdateStock")) c.setIsUpdateStock(shop.getInt("SynFlag"));
 					if (shop.containsKey("isUpdateStock")) c.setIsUpdateStock(shop.getInt("isUpdateStock"));
+					if (!shop.containsKey("isgenCustomerRet")) c.setIsgenCustomerRet(0);
 					if (shop.containsKey("isgenCustomerRet")) c.setIsgenCustomerRet(shop.getInt("isgenCustomerRet"));
 					
 					//取得最大的ID
@@ -310,7 +314,7 @@ public class DecShopController extends BaseController{
 					c.setLastRefundTime(new Date());
 					c.setLastItemTime(new Date());
 					c.setLastTokenTime(new Date());
-					c.setIsUpdateStock(isUpdateStock);
+					//c.setIsUpdateStock(isUpdateStock);
 					c.setNick("");
 					c.setToken("");
 					
@@ -350,9 +354,17 @@ public class DecShopController extends BaseController{
 						if (!shop.containsKey("CanSeparate")) {c.setCanSeparate(-1);}
 						if (!shop.containsKey("SynFlag")) {c.setSynFlag(-1);}
 						if (!shop.containsKey("Status")) {c.setStatus(-1);}
+						
+						if (!shop.containsKey("isNeedDelivery")) c.setIsNeedDelivery(1);
 						if (shop.containsKey("isNeedDelivery")) c.setIsNeedDelivery(shop.getInt("isNeedDelivery"));
+						
+						if (!shop.containsKey("SynFlag")) {c.setSynFlag(-1);}
+						if (!shop.containsKey("isUpdateStock")) c.setIsUpdateStock(c.getSynFlag());
 						if (shop.containsKey("isUpdateStock")) c.setIsUpdateStock(shop.getInt("isUpdateStock"));
+						
+						if (!shop.containsKey("isgenCustomerRet")) c.setIsgenCustomerRet(0);
 						if (shop.containsKey("isgenCustomerRet")) c.setIsgenCustomerRet(shop.getInt("isgenCustomerRet"));
+						
 						if (shop.containsKey("lastordertime") && !"".equals(shop.getString("lastordertime"))) {c.setLastOrderTime(Formatter.parseDate(shop.getString("lastordertime"), Formatter.DATE_TIME_FORMAT));}
 						int channelid =shop.getInt("ChannelID");
 						switch(channelid){
@@ -427,8 +439,8 @@ public class DecShopController extends BaseController{
 					c.setSession(json.getString("Session"));
 				c.setChannelID(json.getInt("channelid"));
 				if(json.containsKey("lastordertime") && !"".equals(json.getString("lastordertime")))c.setLastOrderTime(Formatter.parseDate(json.getString("lastordertime"), Formatter.DATE_TIME_FORMAT));
-					c.setStatus(-1);
-					c.setSynFlag(-1);
+					c.setStatus(-1);	//不修改
+					c.setSynFlag(-1);	//...
 					c.setIsGetOrder(-1);
 					c.setCanMerge(-1);
 					c.setCanSeparate(-1);

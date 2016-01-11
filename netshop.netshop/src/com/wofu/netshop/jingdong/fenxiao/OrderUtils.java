@@ -177,7 +177,7 @@ public class OrderUtils
 	 */
 	public static void createInterOrder(Connection conn,String SERVER_URL,String appKey,
 			String appSecret,String token,OrderInfo o, int shopid,String username,  //OrderInfo o,
-			String JBDCustomerCode,boolean isLBP,boolean isNeedGetDeliverysheetid) throws Exception
+			boolean isLBP,boolean isNeedGetDeliverysheetid) throws Exception
 	{		
 		try 
 		{
@@ -189,6 +189,8 @@ public class OrderUtils
 			 *  "pay_type": "5-公司转帐",
 			 *  "pay_type": "6-银行卡转帐", 
 			 */
+			String jdsql="SELECT code FROM jdcod where shopid= '"+shopid+"'";
+			String JBDCustomerCode = SQLHelper.strSelect(conn, jdsql);
 			Log.info("订单总金额: "+o.getOrderTotalPrice());
 			Log.info("用户应付金额: "+o.getOrderPayment());
 			Log.info("订单货款金额: "+o.getOrderSellerPrice());

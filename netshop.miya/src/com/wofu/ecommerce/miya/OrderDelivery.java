@@ -141,11 +141,26 @@ public class OrderDelivery extends Thread {
 			String msg = confirmData.optString("msg");
 			if(code!=200){
 				Log.error("打单失败失败，跳过此单","订单号:"+orderid+" 错误信息:"+ msg+" 错误号:"+code);
+				if(code==181){
+					Log.info("订单已经发货，删除IT_UpNote" +sheetid+"订单号"+orderid);
+					conn.setAutoCommit(false);
+					sql = "insert into IT_UpNoteBak(Owner,SheetID,SheetType,Sender,Receiver,Notetime,HandleTime,Flag) "
+							+ " select Owner , SheetID , SheetType , Sender , Receiver , Notetime , getdate() , 1 from IT_UpNote "
+							+ " where SheetID = '"+ sheetid+ "' and SheetType = 3";
+					SQLHelper.executeSQL(conn, sql);
+
+					sql = "delete from IT_UpNote where SheetID='"+ sheetid + "' and sheettype=3";
+
+					SQLHelper.executeSQL(conn, sql);
+					conn.commit();
+					conn.setAutoCommit(true);
+				}
 			}
 			//查询iid 商品流水号
 			Vector<Hashtable> itemList = new Vector<Hashtable>();
 			sql = "select iid from ns_orderitem(NOLOCK) where oid = '"+orderid+"'";
 			itemList=SQLHelper.multiRowSelect(conn, sql);
+
 			if(itemList.size()<=0){
 				Log.error("发货找不到商品明细","订单号:"+orderid);
 				continue;
@@ -189,6 +204,7 @@ public class OrderDelivery extends Thread {
 			System.out.println(Utils.Unicode2GBK(responseOrderListData2));
 			String msg2 = responseproduct.optString("msg");
 			int code2 = responseproduct.optInt("code");
+
 			if(code2!=200&&code2!=164){
 				Log.warn("订单发货失败,订单号:["+orderid+"],快递公司:["+post_company+"],快递单号:["+post_no+"] 错误信息:"+msg2);
 //				if (errdesc.indexOf("状态异常")>=0 ||errdesc.indexOf("订单发货失败（查找订单失败）")>0)

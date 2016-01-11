@@ -972,7 +972,27 @@ $(function(){
 	});
 	
 	$("#export").click(function(){
-		window.location.href="exportDecOrder.do";
+		//window.location.href="exportDecOrder.do";
+
+		$.ajax({
+				type : "POST",
+				url : "exportDecOrder.do",
+				dataType:'json',
+				contentType:"application/json;charset=UTF-8",
+				data:JSON.stringify(lastParam),
+				async : false,
+				success : function(data) {
+					if (data.errorCode==0)
+					{
+						window.location.href=data.data;
+					}else{
+						showTips(data.msg);
+					}										
+				},error:function(data){
+					showTips("导出错误" );
+				}
+			});
+
 		/*
 			$.ajax({
 				url : "exportDecOrder.do",

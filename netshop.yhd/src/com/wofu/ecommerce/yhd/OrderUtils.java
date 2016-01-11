@@ -347,11 +347,10 @@ public class OrderUtils {
         
 		orderparams.put("orderCode", orderCode);
      
-        
+        System.out.println("获取信息中");
+        Thread.sleep(1000*Params.getDetailedTime);
 		String responseOrderData = Utils.sendByPost(orderparams,Params.app_secret,Params.url);
-		
-		
-
+		System.out.println("获取详细信息"+responseOrderData);
 		JSONObject responseorder=new JSONObject(responseOrderData);
 		
 		int errorOrderCount=responseorder.getJSONObject("response").getInt("errorCount");

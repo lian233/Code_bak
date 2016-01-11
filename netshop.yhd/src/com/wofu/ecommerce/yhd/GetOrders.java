@@ -107,7 +107,7 @@ public class GetOrders extends Thread {
 			        orderlistparams.put("pageRows", "50");
 			        
 					String responseOrderListData = Utils.sendByPost(orderlistparams, Params.app_secret, Params.url);
-					//System.out.println(responseOrderListData);
+					Log.info("返回的数据"+responseOrderListData);
 					
 					JSONObject responseproduct = new JSONObject(responseOrderListData);
 					if (responseOrderListData.indexOf("errInfoList")>=0)
@@ -204,8 +204,10 @@ public class GetOrders extends Thread {
 					}
 		
 					JSONArray orderlist=responseproduct.getJSONObject("response").getJSONObject("orderList").getJSONArray("order");
+					System.out.println("订单一共有 "+orderlist.length()+"条");
 					for(int j=0;j<orderlist.length();j++)
 					{
+						System.out.println("当前订单"+j);
 						JSONObject order=orderlist.getJSONObject(j);
 						Order o=OrderUtils.getOrderByID(order.getString("orderCode"),Params.app_key,Params.token,Params.format,Params.ver);
 						Log.info(o.getOrderCode()+" "+o.getOrderStatus()+" "+Formatter.format(o.getUpdateTime(),Formatter.DATE_TIME_FORMAT));

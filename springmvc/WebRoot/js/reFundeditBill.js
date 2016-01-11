@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -318,7 +318,7 @@ $(function(){
 
 	function getGoodsData(){
 		var gds = [];
-		
+
 		$("tbody tr:not(:last)").each(function(){
 			var inputs = $(this).find("input");
 			
@@ -369,7 +369,25 @@ $(function(){
 				}
 			}
 			
-			gds.push(gd);
+			//检查sku是否已经存在
+			var findsku = false;
+			for(var i=0;i<gds.length;i++)
+			{
+				if(gds[i].OuterSkuID == gd.OuterSkuID)
+				{ findsku = true; break; }
+			}
+
+			if(!findsku)
+			{
+				gds.push(gd);
+			}
+			else
+			{
+				showTips("SKU:" + gd.OuterSkuID + "已经存在，不能重复！");
+				gds = false;
+				return false;
+			}
+
 		});
 		
 		return gds;

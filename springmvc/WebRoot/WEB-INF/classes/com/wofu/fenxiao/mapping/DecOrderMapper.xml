@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wofu.fenxiao.mapping.DecOrderMapper">
+	<resultMap type="DecOrder" id="DecOrderMap">
+	<id column="ID" property="id" />
+	<result column="SheetID" property="sheetID" />
+	<result column="RefSheetID" property="refSheetID" />
+	<result column="CustomerID" property="customerID" />
+	<result column="ShopID" property="shopID" />
+	<result column="DeliveryID" property="deliveryID" />
+	<result column="OutFlag" property="outFlag" />
+	<result column="Flag" property="flag" />
+	<result column="Editor" property="editor" />
+	<result column="EditTime" property="editTime" />
+	<result column="Checker" property="checker" />
+	<result column="CheckTime" property="checkTime" />
+	<result column="BuyerMemo" property="buyerMemo" />
+	<result column="SellerMemo" property="sellerMemo" />
+	<result column="BuyerMessage" property="buyerMessage" />
+	<result column="TradeMemo" property="tradeMemo" />
+	<result column="BuyerNick" property="buyerNick" />
+	<result column="SellerNick" property="sellerNick" />
+	<result column="State" property="state" />
+	<result column="City" property="city" />
+	<result column="District" property="district" />
+	<result column="Address" property="address" />
+	<result column="Phone" property="phone" />
+	<result column="Mobile" property="mobile" />
+	<result column="LinkMan" property="linkMan" />
+	<result column="ZipCode" property="zipCode" />
+	<result column="BuyerEmail" property="buyerEmail" />
+	<result column="PostFee" property="postFee" />
+	<result column="CustomState" property="customState" />
+	<result column="SheetFlag" property="sheetFlag" />
+	<result column="PromotionDetails" property="promotionDetails" />
+	<result column="TradeFrom" property="tradeFrom" />
+	<result column="PayFee" property="payFee" />
+	<result column="PayMode" property="payMode" />
+	<result column="InvoiceFlag" property="invoiceFlag" />
+	<result column="InvoiceTitle" property="invoiceTitle" />
+	<result column="DistributorID" property="distributorID" />
+	<result column="DistributeTid" property="distributeTid" />
+	<result column="DistributorShopName" property="distributorShopName" />
+	<result column="RefundFlag" property="refundFlag" />
+	<result column="OverSaleFlag" property="overSaleFlag" />
+	<result column="Canceler" property="canceler" />
+	<result column="DeliverySheetID" property="deliverySheetID" />
+	<result column="Weigh" property="weigh" />
+	<result column="Mark" property="mark" />
+	<result column="CreateTime" property="createTime" />
+	<result column="PayTime" property="payTime" />
+	<result column="PrintTime" property="printTime" />
+	<result column="PrintTimes" property="printTimes" />
+	<result column="Modified" property="modified" />
+	<result column="EndTime" property="endTime" />
+	<result column="SendTime" property="sendTime" />
+	<result column="BuyerAlipayNo" property="buyerAlipayNo" />
+	<result column="AlipayNo" property="alipayNo" />
+	<result column="InvoiceID" property="invoiceID" />
+	<result column="AddressID" property="addressID" />
+	<result column="ZoneCode" property="zoneCode" />
+	<result column="SellerFlag" property="sellerFlag" />
+	<result column="KeyNote" property="keyNote" />
+	<result column="PicNote" property="picNote" />
+	<result column="ItemContent" property="itemContent" />
+	<result column="ItemCount" property="itemCount" />
+	<result column="TotalQty" property="totalQty" />
+	<result column="TotalAmount" property="totalAmount" />
+	<result column="TotalDistributePrice" property="totalDistributePrice" />
+	<result column="Note" property="note" />
+	<result column="MerFlag" property="merFlag" />
+	</resultMap>
+	
+	<!-- 订单统计-->
+	<resultMap type="java.util.HashMap" id="StaDecOrderMap" extends="DecOrderMap">
+		<result column="ShopName" property="shopName" />
+		<result column="DeliveryName" property="deliveryName" />
+	</resultMap>
+	
+	
+	<!-- 快递相关信息 -->
+	<!-- 
+	确认订单用
+	 -->
+	<resultMap type="java.util.HashMap" id="getDeliveryOrderMap">
+	<id column="ID" property="id"/>
+	<result column="DeliverySheetID" property="deliverysheetid"/>
+	<result column="SheetID" property="sheetid"/>
+	<result column="CustomerID" property="customerid"/>
+	<result column="ShopID" property="shopid"/>
+	<result column="Flag" property="flag"/>
+	<result column="DeliveryID" property="deliveryid"/>
+	<result column="clientID" property="clientid"/>
+	<result column="url" property="url"/>
+	<result column="partnerkey" property="partnerkey"/>
+	<result column="queryurl" property="queryurl"/>
+	<result column="deliveryname" property="deliveryname"/>
+	<result column="Mobile" property="tele"/>
+	<result column="Phone" property="phone"/>
+	<result column="LinkMan" property="linkman"/>
+	<result column="Address" property="address"/>
+	<result column="ZipCode" property="zipcode"/>
+	<result column="State" property="state"/>
+	<result column="City" property="city"/>
+	<result column="District" property="district"/>
+	<result column="v" property="v"/>
+	<result column="UserId" property="UserId"/>
+	<result column="appkey" property="appkey"/>
+	<result column="DeliveryNoType" property="deliveryNoType"/>
+	<result column="SecretKey" property="SecretKey"/>
+	<result column="channelid" property="channelid"/>
+	<collection property="items" ofType="DecOrderItem">
+	<result column="purqty" property="purQty"/>
+	<result column="title" property="title"/>
+	</collection>
+	</resultMap>
+
+<!-- 订单同步发货状态相关信息 -->
+	<resultMap id="sendOrders" type="java.util.HashMap">
+	<id column="ID" property="id"/>
+	<result column="refsheetid" property="tid"/>
+	<result column="deliverysheetid" property="outsid"/>
+	<result column="code" property="companycode"/>
+	<result column="AppKey" property="appkey"/>
+	<result column="Session" property="appsecret"/>
+	<result column="Token" property="token"/>
+	<result column="channelid" property="channelid"/>
+	<result column="url" property="url"/>
+	<result column="delivercompanycodelist" property="delivercompanycodelist"/>
+	</resultMap>
+
+	<resultMap id="StaDecOrderSkuMap" type="java.util.HashMap">
+	<result column="OuterSkuID" property="OuterSkuID"/>
+	<result column="Title" property="Title"/>
+	<result column="SkuPropertiesName" property="SkuPropertiesName"/>
+	<result column="Qty" property="Qty"/>
+	</resultMap>
+
+	<resultMap id="resultCustomerBaseSta" type="java.util.HashMap">
+	<result column="UseAccount" property="UseAccount"/>
+	<result column="Account" property="Account"/>
+	<result column="CreditAccount" property="CreditAccount"/>
+	<result column="DecCount" property="DecCount"/>
+	<result column="OrderCount" property="OrderCount"/>
+	<result column="CheckCount" property="CheckCount"/>
+	</resultMap>
+	
+	
+
+	<resultMap id="goodsStaMap" type="java.util.HashMap">
+	<result column="OuterSKUID" property="OuterSKUID"/>
+	<result column="Qty" property="Qty"/>
+	<result column="Amount" property="Amount"/>
+	</resultMap>
+	
+	<resultMap id="daysStaMap" type="java.util.HashMap">
+	<result column="Stime" property="Stime"/>
+	<result column="Qty" property="Qty"/>
+	<result column="Amount" property="Amount"/>
+	</resultMap>
+	
+
+	<!-- 增加订单  -->
+	<insert id="add" parameterType="com.wofu.fenxiao.domain.DecOrder">
+		insert into ${front}DecOrder0 (
+			ID,
+			SheetID,
+			RefSheetID,
+			CustomerID,
+			ShopID,
+			DeliveryID,
+			OutFlag,
+			Flag,
+			Editor,
+			EditTime,
+			Checker,
+			CheckTime,
+			BuyerMemo,
+			SellerMemo,
+			BuyerMessage,
+			TradeMemo,
+			BuyerNick,
+			SellerNick,
+			State,
+			City,
+			District,
+			Address,
+			Phone,
+			Mobile,
+			LinkMan,
+			ZipCode,
+			BuyerEmail,
+			PostFee,
+			CustomState,
+			SheetFlag,
+			PromotionDetails,
+			TradeFrom,
+			PayFee,
+			PayMode,
+			InvoiceFlag,
+			InvoiceTitle,
+			DistributorID,
+			DistributeTid,
+			DistributorShopName,
+			RefundFlag,
+			OverSaleFlag,
+			Canceler,
+			DeliverySheetID,
+			Weigh,
+			Mark,
+			CreateTime,
+			PayTime,
+			PrintTime,
+			PrintTimes,
+			Modified,
+			EndTime,
+			SendTime,
+			BuyerAlipayNo,
+			AlipayNo,
+			InvoiceID,
+			AddressID,
+			ZoneCode,
+			SellerFlag,
+			KeyNote,
+			PicNote,
+			ItemContent,
+			ItemCount,
+			TotalQty,
+			TotalAmount,
+			TotalDistributePrice,
+			Note
+		)
+		values (
+			#{id},
+			#{sheetID},
+			#{refSheetID},
+			#{customerID},
+			#{shopID},
+			#{deliveryID},
+			#{outFlag},
+			#{flag},
+			#{editor},
+			#{editTime},
+			#{checker},
+			#{checkTime},
+			#{buyerMemo},
+			#{sellerMemo},
+			#{buyerMessage},
+			#{tradeMemo},
+			#{buyerNick},
+			#{sellerNick},
+			#{state},
+			#{city},
+			#{district},
+			#{address},
+			#{phone},
+			#{mobile},
+			#{linkMan},
+			#{zipCode},
+			#{buyerEmail},
+			#{postFee},
+			#{customState},
+			#{sheetFlag},
+			#{promotionDetails},
+			#{tradeFrom},
+			#{payFee},
+			#{payMode},
+			#{invoiceFlag},
+			#{invoiceTitle},
+			#{distributorID},
+			#{distributeTid},
+			#{distributorShopName},
+			#{refundFlag},
+			#{overSaleFlag},
+			#{canceler},
+			#{deliverySheetID},
+			#{weigh},
+			#{mark},
+			#{createTime},
+			#{payTime},
+			#{printTime},
+			#{printTimes},
+			#{modified},
+			#{endTime},
+			#{sendTime},
+			#{buyerAlipayNo},
+			#{alipayNo},
+			#{invoiceID},
+			#{addressID},
+			#{zoneCode},
+			#{sellerFlag},
+			#{keyNote},
+			#{picNote},
+			#{itemContent},
+			#{itemCount},
+			#{totalQty},
+			#{totalAmount},
+			#{totalDistributePrice},
+			#{note}
+		)
+	</insert>
+
+	<select id="getByObj" parameterType="java.util.HashMap" resultType="com.wofu.fenxiao.domain.DecOrder">
+		select
+		<include refid="selectId" />
+		from ${front}DecOrder${bak} where id=#{id}
+	</select>
+
+	<!-- 删除订单 -->
+	<delete id="delete" parameterType="int">
+		delete from ${front}DecOrder0 where
+		ID=#{id}
+	</delete>
+
+	<!-- 删除订单 -->
+	<delete id="delete2" parameterType="com.wofu.fenxiao.domain.DecOrder">
+		delete from ${front}DecOrder0 where
+		ID=#{id}
+	</delete>
+
+	<!-- 修改订单-->
+	<update id="update" parameterType="com.wofu.fenxiao.domain.DecOrder">
+		update ${front}DecOrder0
+		<set>
+			<if test="refSheetID != null and refSheetID != ''">
+				RefSheetID=#{refSheetID},
+			</if>
+			<if test="deliveryID >= 0 ">
+				DeliveryID=#{deliveryID},
+			</if>
+			<if test="editor != null and editor != ''">
+				Editor=#{editor},
+			</if>
+			<if test="editTime != null">
+				EditTime=#{editTime},
+			</if>
+			<if test="sellerMemo != null and sellerMemo != ''">
+				SellerMemo=#{sellerMemo},
+			</if>
+			<if test="buyerMessage != null and buyerMessage != ''">
+				buyerMessage=#{refSheetID},
+			</if>
+			<if test="tradeMemo != null and tradeMemo != ''">
+				TradeMemo=#{tradeMemo},
+			</if>
+			<if test="buyerNick != null and buyerNick != ''">
+				BuyerNick=#{buyerNick},
+			</if>
+			<if test="sellerNick != null and sellerNick != ''">
+				SellerNick=#{sellerNick},
+			</if>
+			<if test="state != null and state != ''">
+				State=#{state},
+			</if>
+			<if test="city != null and city != ''">
+				City=#{city},
+			</if>
+			<if test="district != null and district != ''">
+				District=#{district},
+			</if>
+			<if test="address != null and address != ''">
+				Address=#{address},
+			</if>
+			<if test="phone != null and phone != ''">
+				Phone=#{phone},
+			</if>
+			<if test="mobile != null and mobile != ''">
+				Mobile=#{mobile},
+			</if>
+			<if test="linkMan != null and linkMan != ''">
+				LinkMan=#{linkMan},
+			</if>
+			<if test="zipCode != null and zipCode != ''">
+				ZipCode=#{zipCode},
+			</if>
+			<if test="buyerEmail != null and buyerEmail != ''">
+				BuyerEmail=#{buyerEmail},
+			</if>
+			<if test="postFee != null ">
+				PostFee=#{postFee},
+			</if>
+			<if test="payFee != null ">
+				PayFee=#{payFee},
+			</if>
+			<if test="payMode != null ">
+				PayMode=#{payMode},
+			</if>
+			<if test="invoiceFlag >=0 ">
+				InvoiceFlag=#{invoiceFlag},
+			</if>			
+			<if test="invoiceTitle != null ">
+				InvoiceTitle=#{invoiceTitle},
+			</if>
+			Canceler=#{canceler},
+			<if test="deliverySheetID != null ">
+				DeliverySheetID=#{deliverySheetID},
+			</if>
+			<if test="weigh >=0 ">
+				Weigh=#{weigh},
+			</if>			
+			<if test="mark >= null ">
+				Mark=#{mark},
+			</if>			
+			<if test="createTime != null">
+				Createtime=#{createTime},
+			</if>
+			<if test="payTime != null">
+				PayTime=#{payTime},
+			</if>
+			<if test="printTime != null">
+				PrintTime=#{printTime},
+			</if>
+			<if test="printTime != null">
+				PrintTime=#{printTime},
+			</if>
+			<if test="printTimes >=0 ">
+				PrintTimes=#{printTimes},
+			</if>
+			<if test="modified != null">
+				Modified=#{modified},
+			</if>
+			<if test="endTime != null">
+				EndTime=#{endTime},
+			</if>
+			<if test="sendTime != null">
+				SendTime=#{sendTime},
+			</if>
+			<if test="invoiceID != '' and invoiceID != null">
+				InvoiceID=#{invoiceID},
+			</if>
+			<if test="note != null">
+				Note=#{note},
+			</if>
+		</set>
+		where ID=#{id}
+	</update>
+
+	<!-- 查询的字段 -->
+	<sql id="selectId">
+			ID,
+			rtrim(SheetID) SheetID,
+			rtrim(RefSheetID) RefSheetID,
+			CustomerID,
+			ShopID,
+			DeliveryID,
+			OutFlag,
+			Flag,
+			Editor,
+			EditTime,
+			Checker,
+			CheckTime,
+			BuyerMemo,
+			SellerMemo,
+			BuyerMessage,
+			TradeMemo,
+			BuyerNick,
+			SellerNick,
+			State,
+			City,
+			District,
+			Address,
+			Phone,
+			Mobile,
+			LinkMan,
+			ZipCode,
+			BuyerEmail,
+			PostFee,
+			CustomState,
+			SheetFlag,
+			PromotionDetails,
+			TradeFrom,
+			PayFee,
+			PayMode,
+			InvoiceFlag,
+			InvoiceTitle,
+			DistributorID,
+			DistributeTid,
+			DistributorShopName,
+			RefundFlag,
+			OverSaleFlag,
+			Canceler,
+			DeliverySheetID,
+			Weigh,
+			Mark,
+			CreateTime,
+			PayTime,
+			PrintTime,
+			PrintTimes,
+			Modified,
+			EndTime,
+			SendTime,
+			BuyerAlipayNo,
+			AlipayNo,
+			InvoiceID,
+			AddressID,
+			ZoneCode,
+			SellerFlag,
+			KeyNote,
+			PicNote,
+			ItemContent,
+			ItemCount,
+			TotalQty,
+			TotalAmount,
+			TotalDistributePrice,
+			MerFlag,
+			Note
+	</sql>
+
+	
+	<!-- 查询订单资料  {shopID,deliveryID,flag,range,key,
+refsheetid, sellerFlag , buyerNick, linkman, tele,
+mobile,state,address,deliverySheetID,goodsName,
+title,outerSkuID,note, buyerMemo, sellerMemo, 
+buyerMessage, tradeMemo, color,size,itemCount,
+itemQty,postFee,totalAmount,tradeFrom, invoiceFlag ,
+payMode,sheetID
+}  -->
+	<select id="qryDecOrder" parameterType="java.util.HashMap" resultMap="DecOrderMap">
+		select <include refid="selectId" />
+		from ${front}DecOrder${bak}   
+		<where>
+			1=1
+			<if test="shopID != null">
+				and ShopID = #{shopID} 
+			</if>
+			<if test="customerID >0 ">
+				and CustomerID = #{customerID} 
+			</if>
+			<if test="deliveryID != null">
+				and DeliveryID = #{deliveryID} 
+			</if>
+			<if test="flag != null">
+				and Flag = #{flag} 
+			</if>
+			<if test="range !=null and range == 0 ">
+				and (isnull(BuyerMemo,'')='' and isnull(SellerMemo,'')='' and isnull(BuyerMessage,'')='' and isnull(TradeMemo,'')='' and isnull(RefundFlag,0)=0) 
+			</if>
+			<if test="range !=null and range == 1 ">
+				and (isnull(BuyerMemo,'')!='' or isnull(SellerMemo,'')!='' or isnull(BuyerMessage,'')!='' or isnull(TradeMemo,'')!='' or isnull(RefundFlag,0)!=0 )
+			</if>
+			<if test="key != null and key != ''">
+				and (LinkMan like '%${key}%' or RefSheetID like '%${key}%'  or DeliverySheetID like '%${key}%' or BuyerNick like '%${key}%' 
+					or SheetID in (select SheetID from ${front}DecOrderItem${bak} where Title like '%${key}%' or OuterSkuID like '%${key}%'  ))
+			</if>
+			<if test="refsheetid != null and refsheetid != ''">
+				and RefsheetID like '%${refsheetid}%'
+			</if>
+			<if test="sellerFlag != null and sellerFlag >= 0 ">
+				and SellerFlag = #{sellerFlag}
+			</if>
+			<if test="buyerNick != null and buyerNick != ''">
+				and BuyerNick like '%${buyerNick}%'
+			</if>
+			<if test="linkman != null and linkman != ''">
+				and Linkman like '%${linkman}%'
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and Mobile like '%${mobile}%'
+			</if>
+			<if test="state != null and state != ''">
+				and (State like '%${state}%' or City like '%${state}%' or District like '%${state}%' )
+			</if>
+			<if test="address != null and address != ''">
+				and Address like '%${address}%'
+			</if>
+			<if test="phone != null and phone != ''">
+				and Phone like '%${phone}%'
+			</if>
+			<if test="deliverySheetID != null and deliverySheetID != ''">
+				and DeliverySheetID like '%${deliverySheetID}%'
+			</if>
+			<if test="title != null and title != ''">
+				and SheetID in (select SheetID from ${front}DecOrderItem${bak} where Title like '%${title}%'  )
+			</if>
+			<if test="outerSkuID != null and outerSkuID != ''">
+				and SheetID in (select SheetID from ${front}DecOrderItem${bak} where OuterSkuID like '%${outerSkuID}%'  )
+			</if>
+			<if test="note != null and note != ''">
+				and Note like '%${note}%'
+			</if>
+			<if test="buyerMemo != null and buyerMemo != ''">
+				and BuyerMemo like '%${buyerMemo}%'
+			</if>
+			<if test="sellerMemo != null and sellerMemo != ''">
+				and SellerMemo like '%${sellerMemo}%'
+			</if>
+			<if test="buyerMessage != null and buyerMessage != ''">
+				and BuyerMessage like '%${buyerMessage}%'
+			</if>
+			<if test="tradeMemo != null and tradeMemo != ''">
+				and TradeMemo like '%${tradeMemo}%'
+			</if>
+			<if test="itemCount != null ">
+				and ItemCount = #{itemCount}
+			</if>
+			<if test="itemQty != null ">
+				and TotalQty = #{itemQty}
+			</if>
+			<if test="postFee != null ">
+				and PostFee = #{postFee}
+			</if>
+			<if test="inDays != null ">
+				and PayTime >= dateadd(dd , -${inDays} , getdate())
+			</if>
+			<if test="totalAmount != null ">
+				and TotalAmount = #{totalAmount}
+			</if>
+			<if test="tradeFrom != null and tradeFrom != ''">
+				and TradeFrom like '%${tradeFrom}%'
+			</if>
+			<if test="invoiceFlag != null ">
+				and InvoiceFlag = #{invoiceFlag}
+			</if>
+			<if test="payMode != null and payMode >= 0 ">
+				and PayMode = #{payMode}
+			</if>
+			<if test="begintime != null ">
+				<if test="timeType == 1 ">
+					and SendTime >= '${begintime}'
+				</if>
+				<if test="timeType == 2 ">
+					and PayTime >= '${begintime}'
+				</if>
+			</if>
+			<if test="endtime != null ">
+				<if test="timeType == 1 ">
+					and SendTime &lt;= '${endtime}'
+				</if>
+				<if test="timeType == 2 ">
+					and PayTime &lt;= '${endtime}'
+				</if>
+			</if>
+			<if test="sheetID != null and sheetID != ''">
+				and SheetID like '%${sheetID}%'
+			</if>
+			<if test="printTimes != null ">
+				and isnull(PrintTimes,0) = #{printTimes}
+			</if>
+		</where>
+		<if test="orderby != null ">
+			${orderby}
+		</if>							
+	</select>		
+	
+	<!-- 查询订单明细统计数据  {shopID,deliveryID,flag,range,key,
+refsheetid, sellerFlag , buyerNick, linkman, tele,
+mobile,state,address,deliverySheetID,goodsName,
+title,outerSkuID,note, buyerMemo, sellerMemo, 
+buyerMessage, tradeMemo, color,size,itemCount,
+itemQty,postFee,totalAmount,tradeFrom, invoiceFlag ,
+payMode,sheetID
+}  -->
+	<select id="qryStaDecOrderSku" parameterType="java.util.HashMap" resultMap="StaDecOrderSkuMap">
+		select OuterSkuID,Title,SkuPropertiesName,sum(PurQty) Qty
+		from ${front}DecOrder${bak} a  ${front}DecOrderItem${bak} b   
+		<where>
+			a.SheetID = b.SheetID
+			<if test="shopID != null">
+				and ShopID = #{shopID} 
+			</if>
+			<if test="customerID >=0 ">
+				and CustomerID = #{customerID} 
+			</if>
+			<if test="deliveryID != null">
+				and DeliveryID = #{deliveryID} 
+			</if>
+			<if test="flag != null">
+				and Flag = #{flag} 
+			</if>
+			<if test="range !=null and range == 0 ">
+				and (isnull(BuyerMemo,'')='' and isnull(SellerMemo,'')='' and isnull(BuyerMessage,'')='' and isnull(TradeMemo,'')='' and isnull(RefundFlag,0)=0) 
+			</if>
+			<if test="range !=null and range == 1 ">
+				and (isnull(BuyerMemo,'')!='' or isnull(SellerMemo,'')!='' or isnull(BuyerMessage,'')!='' or isnull(TradeMemo,'')!='' or isnull(RefundFlag,0)!=0)
+			</if>
+			<if test="key != null and key != ''">
+				and (LinkMan like '%${key}%' or RefSheetID like '%${key}%'  or DeliverySheetID like '%${key}%' or BuyerNick like '%${key}%' 
+					or SheetID in (select SheetID from ${front}DecOrderItem${bak} where Title like '%${key}%' or OuterSkuID like '%${key}%'  ))
+			</if>
+			<if test="refsheetid != null and refsheetid != ''">
+				and RefsheetID like '%${refsheetid}%'
+			</if>
+			<if test="sellerFlag != null and sellerFlag >= 0 ">
+				and SellerFlag = #{sellerFlag}
+			</if>
+			<if test="buyerNick != null and buyerNick != ''">
+				and BuyerNick like '%${buyerNick}%'
+			</if>
+			<if test="linkman != null and linkman != ''">
+				and Linkman like '%${linkman}%'
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and Mobile like '%${mobile}%'
+			</if>
+			<if test="state != null and state != ''">
+				and (State like '%${state}%' or City like '%${state}%' or District like '%${state}%' )
+			</if>
+			<if test="address != null and address != ''">
+				and Address like '%${address}%'
+			</if>
+			<if test="phone != null and phone != ''">
+				and Phone like '%${phone}%'
+			</if>
+			<if test="deliverySheetID != null and deliverySheetID != ''">
+				and DeliverySheetID like '%${deliverySheetID}%'
+			</if>
+			<if test="title != null and title != ''">
+				and Title like '%${title}%' 
+			</if>
+			<if test="outerSkuID != null and outerSkuID != ''">
+				and  OuterSkuID like '%${outerSkuID}%' 
+			</if>
+			<if test="note != null and note != ''">
+				and Note like '%${note}%'
+			</if>
+			<if test="buyerMemo != null and buyerMemo != ''">
+				and BuyerMemo like '%${buyerMemo}%'
+			</if>
+			<if test="sellerMemo != null and sellerMemo != ''">
+				and SellerMemo like '%${sellerMemo}%'
+			</if>
+			<if test="buyerMessage != null and buyerMessage != ''">
+				and BuyerMessage like '%${buyerMessage}%'
+			</if>
+			<if test="tradeMemo != null and tradeMemo != ''">
+				and TradeMemo like '%${tradeMemo}%'
+			</if>
+			<if test="itemCount != null ">
+				and ItemCount = #{itemCount}
+			</if>
+			<if test="itemQty != null ">
+				and TotalQty = #{itemQty}
+			</if>
+			<if test="postFee != null ">
+				and PostFee = #{postFee}
+			</if>
+			<if test="inDays != null ">
+				and PayTime >= dateadd(dd , -${inDays} , getdate())
+			</if>
+			<if test="totalAmount != null ">
+				and TotalAmount = #{totalAmount}
+			</if>
+			<if test="tradeFrom != null and tradeFrom != ''">
+				and TradeFrom like '%${tradeFrom}%'
+			</if>
+			<if test="invoiceFlag != null ">
+				and InvoiceFlag = #{invoiceFlag}
+			</if>
+			<if test="payMode != null and payMode >= 0 ">
+				and PayMode = #{payMode}
+			</if>
+			<if test="begintime != null ">
+				and PayTime >= '${begintime}'
+			</if>
+			<if test="endtime != null ">
+				and PayTime &lt;= '${endtime}'
+			</if>
+			<if test="sheetID != null and sheetID != ''">
+				and SheetID like '%${sheetID}%'
+			</if>
+			<if test="printTimes != null ">
+				and isnull(PrintTimes,0) = #{printTimes}
+			</if>
+		</where>
+		group by OuterSkuID,Title,SkuPropertiesName
+	</select>		
+	
+	
+	<!-- 查询订单统计数据  }  -->
+	<select id="qryStaDecOrderxxx" parameterType="java.util.HashMap" resultMap="StaDecOrderMap">
+		select <include refid="selectId" />, rtrim(s.Name) ShopName , rtrim(d.Name) DeliveryName
+		from ${front}DecOrder${bak} a , DecShop s , DecDelivery d  
+		<where>
+			a.ShopID = s.ID and a.DeliveryID = d.ID
+			<if test="sheetList != null">
+				and SheetID in (${sheetList})
+			</if>
+		</where>
+		
+	</select>	
+	
+		
+	<!-- 查询订单统计数据  {shopID,deliveryID,flag,range,key,
+refsheetid, sellerFlag , buyerNick, linkman, tele,
+mobile,state,address,deliverySheetID,goodsName,
+title,outerSkuID,note, buyerMemo, sellerMemo, 
+buyerMessage, tradeMemo, color,size,itemCount,
+itemQty,postFee,totalAmount,tradeFrom, invoiceFlag ,
+payMode,sheetID
+}  -->
+	<select id="qryStaDecOrder" parameterType="java.util.HashMap" resultMap="StaDecOrderMap">
+		select a.ID,rtrim(a.SheetID) SheetID,rtrim(a.RefSheetID) RefSheetID,a.CustomerID,a.ShopID,a.DeliveryID,a.OutFlag,a.Flag,a.Editor,a.EditTime,a.Checker,
+				a.CheckTime,a.BuyerMemo,a.SellerMemo,a.BuyerMessage,a.TradeMemo,a.BuyerNick,a.SellerNick,a.State,a.City,a.District,a.Address,a.Phone,a.Mobile,
+				a.LinkMan,a.ZipCode,a.BuyerEmail,a.PostFee,a.CustomState,a.SheetFlag,a.PromotionDetails,a.TradeFrom,a.PayFee,a.PayMode,a.InvoiceFlag,
+				a.InvoiceTitle,a.DistributorID,a.DistributeTid,a.DistributorShopName,a.RefundFlag,a.OverSaleFlag,a.Canceler,a.DeliverySheetID,a.Weigh,a.Mark,
+				a.CreateTime,a.PayTime,a.PrintTime,a.PrintTimes,a.Modified,a.EndTime,a.SendTime,a.BuyerAlipayNo,a.AlipayNo,a.InvoiceID,a.AddressID,a.ZoneCode,
+				a.SellerFlag,a.KeyNote,a.PicNote,a.ItemContent,a.ItemCount,a.TotalQty,a.TotalAmount,a.TotalDistributePrice,a.MerFlag,a.Note, 
+				rtrim(s.Name) ShopName , rtrim(d.Name) DeliveryName
+		from ${front}DecOrder${bak} a , DecShop s , DecDelivery d    
+		<where>
+			a.ShopID = s.ID and a.DeliveryID = d.ID
+			<if test="shopID != null">
+				and ShopID = #{shopID} 
+			</if>
+			<if test="customerID >0 ">
+				and a.CustomerID = #{customerID} 
+			</if>
+			<if test="deliveryID != null">
+				and DeliveryID = #{deliveryID} 
+			</if>
+			<if test="flag != null">
+				and a.Flag = #{flag} 
+			</if>
+			<if test="range !=null and range == 0 ">
+				and (isnull(BuyerMemo,'')='' and isnull(SellerMemo,'')='' and isnull(BuyerMessage,'')='' and isnull(TradeMemo,'')='' and isnull(RefundFlag,0)=0) 
+			</if>
+			<if test="range !=null and range == 1 ">
+				and (isnull(BuyerMemo,'')!='' or isnull(SellerMemo,'')!='' or isnull(BuyerMessage,'')!='' or isnull(TradeMemo,'')!='' or isnull(RefundFlag,0)!=0 )
+			</if>
+			<if test="key != null and key != ''">
+				and (LinkMan like '%${key}%' or RefSheetID like '%${key}%'  or DeliverySheetID like '%${key}%' or BuyerNick like '%${key}%' 
+					or SheetID in (select SheetID from ${front}DecOrderItem${bak} where Title like '%${key}%' or OuterSkuID like '%${key}%'  ))
+			</if>
+			<if test="refsheetid != null and refsheetid != ''">
+				and RefsheetID like '%${refsheetid}%'
+			</if>
+			<if test="sellerFlag != null and sellerFlag >= 0 ">
+				and SellerFlag = #{sellerFlag}
+			</if>
+			<if test="buyerNick != null and buyerNick != ''">
+				and BuyerNick like '%${buyerNick}%'
+			</if>
+			<if test="linkman != null and linkman != ''">
+				and Linkman like '%${linkman}%'
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and Mobile like '%${mobile}%'
+			</if>
+			<if test="state != null and state != ''">
+				and (State like '%${state}%' or City like '%${state}%' or District like '%${state}%' )
+			</if>
+			<if test="address != null and address != ''">
+				and Address like '%${address}%'
+			</if>
+			<if test="phone != null and phone != ''">
+				and Phone like '%${phone}%'
+			</if>
+			<if test="deliverySheetID != null and deliverySheetID != ''">
+				and DeliverySheetID like '%${deliverySheetID}%'
+			</if>
+			<if test="title != null and title != ''">
+				and SheetID in (select SheetID from ${front}DecOrderItem${bak} where Title like '%${title}%'  )
+			</if>
+			<if test="outerSkuID != null and outerSkuID != ''">
+				and SheetID in (select SheetID from ${front}DecOrderItem${bak} where OuterSkuID like '%${outerSkuID}%'  )
+			</if>
+			<if test="note != null and note != ''">
+				and a.Note like '%${note}%'
+			</if>
+			<if test="buyerMemo != null and buyerMemo != ''">
+				and BuyerMemo like '%${buyerMemo}%'
+			</if>
+			<if test="sellerMemo != null and sellerMemo != ''">
+				and SellerMemo like '%${sellerMemo}%'
+			</if>
+			<if test="buyerMessage != null and buyerMessage != ''">
+				and BuyerMessage like '%${buyerMessage}%'
+			</if>
+			<if test="tradeMemo != null and tradeMemo != ''">
+				and TradeMemo like '%${tradeMemo}%'
+			</if>
+			<if test="itemCount != null ">
+				and ItemCount = #{itemCount}
+			</if>
+			<if test="itemQty != null ">
+				and TotalQty = #{itemQty}
+			</if>
+			<if test="postFee != null ">
+				and PostFee = #{postFee}
+			</if>
+			<if test="inDays != null ">
+				and PayTime >= dateadd(dd , -${inDays} , getdate())
+			</if>
+			<if test="totalAmount != null ">
+				and TotalAmount = #{totalAmount}
+			</if>
+			<if test="tradeFrom != null and tradeFrom != ''">
+				and TradeFrom like '%${tradeFrom}%'
+			</if>
+			<if test="invoiceFlag != null ">
+				and InvoiceFlag = #{invoiceFlag}
+			</if>
+			<if test="payMode != null and payMode >= 0 ">
+				and PayMode = #{payMode}
+			</if>
+			<if test="begintime != null ">
+				<if test="timeType == 1 ">
+					and SendTime >= '${begintime}'
+				</if>
+				<if test="timeType == 2 ">
+					and PayTime >= '${begintime}'
+				</if>
+			</if>
+			<if test="endtime != null ">
+				<if test="timeType == 1 ">
+					and SendTime &lt;= '${endtime}'
+				</if>
+				<if test="timeType == 2 ">
+					and PayTime &lt;= '${endtime}'
+				</if>
+			</if>
+			<if test="sheetID != null and sheetID != ''">
+				and SheetID like '%${sheetID}%'
+			</if>
+			<if test="printTimes != null ">
+				and isnull(PrintTimes,0) = #{printTimes}
+			</if>
+		</where>
+		<if test="orderby != null ">
+			${orderby}
+		</if>							
+	</select>		
+	
+	
+	<!-- 查询订单明细统计数据  }  -->
+	<select id="qryStaDecOrderSkuList" parameterType="java.util.HashMap" resultMap="StaDecOrderSkuMap">
+		select OuterSkuID,Title,SkuPropertiesName,sum(PurQty) Qty
+		from ${front}DecOrderItem${bak}   
+		<where>
+			<if test="sheetList != null">
+				and SheetID in (${sheetList})
+			</if>
+		</where>
+		group by OuterSkuID,Title,SkuPropertiesName
+	</select>			
+	
+	<!-- 根据列表查订单数据 -->
+	<select id="qryDecOrderList" parameterType="java.util.HashMap" resultMap="DecOrderMap">
+		select <include refid="selectId" />
+		from ${front}DecOrder${bak}   
+		<where>
+			ID in (${idList})
+		</where>			
+		<if test="flag != null ">
+			and Flag = #{flag}
+		</if>
+		<if test="orderby != null ">
+			${orderby}
+		</if>		
+	</select>	
+	
+	<!-- 更新打印次数 -->
+	<select id="updatePrintTimes" parameterType="java.util.HashMap" >
+		update ${front}DecOrder${bak} 
+		set PrintTimes = isnull(PrintTimes,0)+1 , PrintTime=getdate()
+		<where>
+			ID in (${idList})
+		</where>			
+	</select>			
+
+	<!-- 更改快递 -->
+	<select id="modifyDelivey" parameterType="java.util.HashMap" >
+		update ${front}DecOrder0
+		set DeliveryID = ${deliveryID} , DeliverySheetID=''
+		<where>
+			ID in (${idList})
+		</where>			
+	</select>			
+	
+	
+	
+	<!-- 更新发货状态 -->
+	<select id="updateOutFlag" parameterType="java.util.HashMap" >
+		update ${front}DecOrder${bak} 
+		set OutFlag = 1 , SendTime=getdate()
+		<where>
+			ID in (${idList})
+		</where>			
+	</select>			
+		
+	<!-- 审核订单 -->
+	<select id="stDecOrder" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call ST_DecOrder(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{ID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR},
+		#{SetFlag,mode=IN,jdbcType=INTEGER})}
+	]]>
+	</select>	
+
+	<!-- 取消订单 -->
+	<select id="tlBakDecOrder" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_BakDecOrder(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{ID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR},
+		#{SetFlag,mode=IN,jdbcType=INTEGER})}
+	]]>
+	</select>	
+
+	<!-- 分销取消订单 -->
+	<select id="tlStopDecOrder" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_StopDecOrder(
+		#{ID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR},
+		#{Msg,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+	
+	<!-- 分销审核订单 -->
+	<select id="tlCheckDecOrder" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_CheckDecOrder(
+		#{ID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR},
+		#{Msg,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+	
+
+	
+	<!-- 修改订单状态  -->
+	<select id="tlModifyDecOrderFlag" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_ModifyDecOrderFlag(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{ID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR},
+		#{SetFlag,mode=IN,jdbcType=INTEGER})}
+	]]>
+	</select>	
+		
+	<!-- 合并订单 -->
+	<select id="tlMergeDecOrderAuto" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_MergeDecOrderAuto(
+		#{CustomerID,mode=IN,jdbcType=INTEGER},
+		#{Checker,mode=IN,jdbcType=VARCHAR})}
+	]]>
+	</select>	
+
+	<!-- 设置订单的明细信息 -->
+	<select id="tlSetDecKeyPicNote" statementType="CALLABLE">
+	<![CDATA[
+	{#{c,mode=OUT,jdbcType=INTEGER}=call TL_SetDecKeyPicNote(
+		#{SheetID,mode=IN,jdbcType=VARCHAR},
+		#{CustomerID,mode=IN,jdbcType=INTEGER})}
+	]]>
+	</select>	
+	
+	<!-- 更新订单快递信息 -->
+	<update id="updateDeliveryInfo" parameterType="java.util.HashMap">
+	update ${tableprefix}decorder0 
+	<set>
+	<if test="deliverysheetid!=null and deliverysheetid!=''">
+	 deliverysheetid=#{deliverysheetid},
+	</if>
+	<if test="destCode!=null and destCode!=''">
+	AddressID=#{destCode},
+	</if>
+	<if test="zoneCode!=null and zoneCode!=''">
+	ZoneCode=#{zoneCode},
+	</if>
+	<if test="flag!='' and flag!=null" >
+	flag= case when #{flag}>flag then #{flag} else flag end  
+	</if>
+	</set>
+	where id=#{id} 
+	</update>
+	
+	
+	
+	<!-- 查询要确认的订单的快递信息 -->
+	<select id="getDeliveryOrder" resultMap="getDeliveryOrderMap">
+	select a.ID,a.Flag,a.DeliveryID,a.ShopID,a.DeliverySheetID,rtrim(a.SheetID) SheetID, c.code as deliveryname,isnull(a.Mobile,'') as Mobile,isnull(a.phone,'') as phone,a.LinkMan,a.Address,
+	isnull(a.ZipCode,'51000') as ZipCode,a.State,a.City,a.District,c.clientID,c.url,c.partnerkey,c.queryurl 
+	,c.v,c.appkey,c.SecretKey,c.UserId,c.DeliveryNoType,b.purqty,b.title, d.channelid from ${tableprefix}DecOrder0 as a inner join ${tableprefix}DecOrderitem0 b on a.sheetid=b.sheetid inner join DecDelivery as c on a.deliveryid=c.id 
+	inner join decshop as d on a.shopid=d.id  and a.flag in (0,10) and a.id in
+	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+	#{item}
+	</foreach>
+	 order by a.ID
+	</select>
+	
+	<!-- 取得要发货的订单信息 -->
+	<select id="getSendOrders" resultMap="sendOrders">
+		select a.ID,a.refsheetid,a.deliverysheetid,b.code,c.AppKey,c.Session,c.Token,c.channelid,c.isLbp,d.url,d.delivercompanycodelist from ${tableprefix}decorder0 a inner join 
+		decdelivery b on a.deliveryid=b.id inner join decshop c on a.shopid=c.id inner join channel d on c.channelid=d.id where a.id in
+		<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		 
+		union
+		select a.ID,e.refsheetid,a.deliverysheetid,b.code,c.AppKey,c.Session,c.Token,c.channelid,c.isLbp,d.url,d.delivercompanycodelist from ${tableprefix}decorder0 a inner join 
+		decdelivery b on a.deliveryid=b.id inner join decshop c on a.shopid=c.id inner join channel d 
+		on c.channelid=d.id inner join MerDecOrderLog e on a.sheetid=e.sheetid where a.id in
+		<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		order by a.ID
+	</select>
+	
+	<!-- 商品销售统计 -->
+	<select id="qryGoodsSta" resultMap="goodsStaMap" parameterType="java.util.HashMap">
+		select OuterSKUID , sum(PurQty) Qty , sum(PurQty*CustomPrice) Amount 
+		from ${front}DecOrder a , ${front}DecOrderitem b 		
+		<where>
+			a.SheetID = b.SheetID
+			and a.Flag  =100
+			and a.CustomerID = #{CustomerID} 
+			<if test="BeginTime != null ">
+				and PayTime >= '${BeginTime}'
+			</if>
+			<if test="EndTime != null ">
+				and PayTime &lt;= '${EndTime}'
+			</if>			
+		  	<if test="ShopID != null">
+				and a.ShopID = #{ShopID}
+			</if>
+		  	<if test="OuterSKUID != null">
+				and b.OuterSKUID like '%${OuterSKUID}%'
+			</if>
+		</where>
+		group by OuterSKUID 
+		
+	</select>	
+	
+	<!-- 日销售统计 -->
+	<select id="qryDaysSta" resultMap="daysStaMap" parameterType="java.util.HashMap">
+		select convert(varchar(10), PayTime, 120) PayTime , sum(PurQty) Qty , sum(PurQty*CustomPrice) Amount  
+		from ${front}DecOrder a , ${front}DecOrderitem b 		
+		<where>
+			a.SheetID = b.SheetID
+			and a.Flag  =100
+			and a.CustomerID = #{CustomerID} 
+			<if test="BeginTime != null ">
+				and PayTime >= '${BeginTime}'
+			</if>
+			<if test="EndTime != null ">
+				and PayTime &lt;= '${EndTime}'
+			</if>			
+		  	<if test="ShopID != null">
+				and a.ShopID = #{ShopID}
+			</if>
+		  	<if test="OuterSKUID != null">
+				and b.OuterSKUID like '%${OuterSKUID}%'
+			</if>
+		</where>
+		group by convert(varchar(10), PayTime, 120) 
+		
+	</select>		
+	
+	
+	<!-- 客户的基本统计数据 -->
+	<select id="stGetCustomerBaseSta" statementType="CALLABLE"   resultMap="resultCustomerBaseSta">  
+    	{call ST_GetCustomerBaseSta( ${CustomerID}) }  
+   </select>  	
+	
+		
+</mapper>

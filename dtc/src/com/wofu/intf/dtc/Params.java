@@ -36,10 +36,10 @@ public class Params {
 	public static String mobile="15992409145";
 	public static String email="panxingke@163.com";
 	public static String company="";
-
 	
 	public static Hashtable<String, String> htComCode = new Hashtable<String, String>() ;
 	public static Hashtable<String, String> htComTel = new Hashtable<String, String>() ;
+	public static String ship_tool_code="Y";
 	
 	public static void init(Properties properties)
 	{
@@ -63,6 +63,7 @@ public class Params {
 		Password = properties.getProperty("Password", "1234567891");
 		CustomsCode = properties.getProperty("CustomsCode", "8012");
 		EshopEntCode = properties.getProperty("EshopEntCode", "1234567891");
+		ship_tool_code = properties.getProperty("ship_tool_code", "1234567891");
 		EshopEntName = properties.getProperty("EshopEntName", "无锡火蚁信息科技有限公司");
 		PaymentEntCode = properties.getProperty("PaymentEntCode", "1234567891");
 		PaymentEntName = properties.getProperty("PaymentEntName", "无锡火蚁信息科技有限公司");
